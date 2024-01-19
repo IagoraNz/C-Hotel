@@ -17,7 +17,35 @@ typedef struct quartos {
 } Quartos;
 
 void menufuncionario(){
-    printf("\nTeste\n");
+    int opc;
+
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA       MENU       \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+    printf("1 - Cadastrar quartos\n");
+    printf("2 - Consultar quartos\n");
+    printf("3 - Editar quartos\n");
+    printf("4 - Excluir quartos\n");
+    printf("5 - Sair\n");
+    printf("Digite a opcao desejada: ");
+    scanf("%d", &opc);
+
+    switch(opc){
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            printf("Saindo...\n");
+            break;
+        default:
+            printf("Opcao invalida!\n");
+            break;
+    }
 }
 
 void cadastrar(Funcionario *funcionario){
@@ -64,6 +92,7 @@ void login(Funcionario *funcionario){
         scanf("%s", senha1);
 
         if(strcmp(usuario1, funcionario->usuario) == 0 && strcmp(senha1, funcionario->senha) == 0){
+            system("cls");
             menufuncionario();
         }
         else{
@@ -110,6 +139,8 @@ int main(){
             break;
         case 2:
             login(&funcionario);
+            system("PAUSE");
+            system("cls");
             break;
         case 3:
             printf("Saindo...\n");

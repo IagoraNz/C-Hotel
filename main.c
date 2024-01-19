@@ -3,10 +3,11 @@
 #include <string.h>
 
 #define tam 50
+#define maxsenha 10
 
 typedef struct funcionario {
     char senha[tam];
-    char usuario[tam];
+    char usuario[maxsenha];
 } Funcionario;
 
 void cadastrar(Funcionario funcionario){
@@ -22,8 +23,10 @@ void cadastrar(Funcionario funcionario){
     printf("Cadastre o nome do funcionario: ");
     scanf("%s", funcionario.usuario);
 
-    printf("Digite a senha: ");
-    scanf("%s", funcionario.senha);
+    do{
+        printf("Digite a senha (entre 8 e 10 caracteres): ");
+        scanf("%s", funcionario.senha);
+    }while(strlen(funcionario.senha) < 8 || strlen(funcionario.senha) > 10);
 
     fprintf(cadastro, "%s %s\n", funcionario.usuario, funcionario.senha);
 
@@ -41,13 +44,29 @@ void login(Funcionario funcionario){
         exit(EXIT_FAILURE);
     }
 
-    printf("Digite o usuário: ");
-    scanf("%s", usuario1);
+    fscanf(cadastro, "%s %s\n", funcionario.usuario, funcionario.senha);
 
-    printf("Digite a senha: ");
-    scanf("%s", senha1);
+    do{
+        printf("Digite o usuário: ");
+        scanf("%s", usuario1);
 
-    if(usuario1 == )
+        printf("Digite a senha: ");
+        scanf("%s", senha1);
+
+        if(usuario1 == funcionario.usuario && senha1 == funcionario.senha){
+            menufuncionario();
+        }
+        else{
+            if(usuario1 != funcionario.usuario){
+                printf("Usuario invalido!");
+            }
+            else if(senha1 != funcionario.senha){
+                printf("Senha invalida!");
+            }
+        }
+    }while(usuario1 != funcionario.usuario && senha1 != funcionario.senha);
+
+    fclose(cadastro);
 }
 
 int main(){

@@ -57,7 +57,7 @@ void login(Funcionario *funcionario){
     fscanf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);
 
     do{
-        printf("Digite o usuário: ");
+        printf("Digite o usuario: ");
         scanf("%s", usuario1);
 
         printf("Digite a senha: ");
@@ -79,29 +79,39 @@ void login(Funcionario *funcionario){
     fclose(cadastro);
 }
 
+int menu(){
+    int opc;
+
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA       MENU       \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+    printf("1 - Cadastrar funcionario\n");
+    printf("2 - Logar\n");
+    printf("3 - Sair\n");
+    printf("Digite a opcao desejada: ");
+    scanf("%d", &opc);
+
+    return opc;
+}
+
 int main(){
 
     int opcao;
     Funcionario funcionario;
 
-    printf("----- MENU -----\n");
-    printf("1 - Cadastrar funcionario\n");
-    printf("2 - Logar\n");
-    printf("3 - Cadastrar cliente\n");
-    printf("4 - Sair\n");
-    printf("Digite a opcao desejada: ");
-    scanf("%d", &opcao);
+    opcao = menu();
 
     switch(opcao){
         case 1:
             cadastrar(&funcionario);
+            system("PAUSE");
+            system("cls");
+            return main(); //Aqui é para retornar ao menu, que está no início do main
             break;
         case 2:
             login(&funcionario);
             break;
         case 3:
-            break;
-        case 4:
             printf("Saindo...\n");
             break;
         default:

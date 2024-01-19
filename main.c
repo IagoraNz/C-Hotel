@@ -245,5 +245,8 @@ int main(){
             break;
     }
 
+
+    printf("Teste");
+
     return 0;
 }

@@ -53,7 +53,58 @@ void listarQuartos(){
     FILE *quartos;
     Quartos quartos1;
 
-    int numconsul;
+    quartos = fopen("quartos.txt", "r");
+
+    if(quartos == NULL){
+        printf("Erro ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+
+    system("cls");
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA      LISTAR      \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+    while(!feof(quartos)){
+        fscanf(quartos, "%d\n%d\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status);
+
+        printf("Tipo: ");
+        if(quartos1.tipo == 1){
+            printf("Luxo");
+        }
+        else if(quartos1.tipo == 2){
+            printf("Executivo");
+        }
+        else if(quartos1.tipo == 3){
+            printf("Simples");
+        }
+        else{
+            printf("Tipo invalido!\n");
+        }
+        printf("\n");
+        printf("Numero: %d", quartos1.numquarto);
+        printf("\n");
+        printf("Status: ");
+        if(quartos1.status == 1){
+            printf("Disponivel");
+        }
+        else if(quartos1.status == 2){
+            printf("Ocupado");
+        }
+        else if(quartos1.status == 3){
+            printf("Reservado");
+        }
+        else{
+            printf("Status invalido!");
+        }
+        printf("\n\n");
+    }
+
+    fclose(quartos);
+}
+
+void consultarQuartos(){
+    FILE *quartos;
+    Quartos quartos1;
 
     quartos = fopen("quartos.txt", "r");
 
@@ -62,13 +113,10 @@ void listarQuartos(){
         exit(EXIT_FAILURE);
     }
 
-    printf("Digite o numero do quarto que deseja consultar: ");
-    scanf("%d", &numconsul);
-
     while(!feof(quartos)){
         fscanf(quartos, "%d\n%d\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status);
 
-        if(quartos1.numquarto == numconsul){
+        if(quartos1.status == 1){
             printf("Tipo: ");
             if(quartos1.tipo == 1){
                 printf("Luxo\n");
@@ -83,23 +131,8 @@ void listarQuartos(){
                 printf("Tipo invalido!\n");
             }
             printf("Numero: %d\n", quartos1.numquarto);
-            printf("Status: ");
-            if(quartos1.status == 1){
-                printf("Disponivel\n");
-            }
-            else if(quartos1.status == 2){
-                printf("Ocupado\n");
-            }
-            else if(quartos1.status == 3){
-                printf("Reservado\n");
-            }
-            else{
-                printf("Status invalido!\n");
-            }
         }
     }
-
-    fclose(quartos);
 }
 
 void menufuncionario(){
@@ -110,10 +143,10 @@ void menufuncionario(){
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
     printf("1 - Cadastrar quartos\n");
     printf("2 - Listar todos os quartos\n");
-    printf("3 - Consultar quartos");
-    printf("3 - Editar quartos\n");
-    printf("4 - Excluir quartos\n");
-    printf("5 - Sair\n");
+    printf("3 - Consultar quartos disponiveis\n");
+    printf("4 - Editar quartos\n");
+    printf("5 - Excluir quartos\n");
+    printf("6 - Sair\n");
     printf("Digite a opcao desejada: ");
     scanf("%d", &opc);
 
@@ -131,6 +164,7 @@ void menufuncionario(){
             return menufuncionario();
             break;
         case 3:
+            consultarQuartos();
             break;
         case 4:
             break;
@@ -244,9 +278,6 @@ int main(){
             printf("Opcao invalida!\n");
             break;
     }
-
-
-    printf("Teste");
 
     return 0;
 }

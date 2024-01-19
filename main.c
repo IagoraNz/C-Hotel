@@ -10,7 +10,17 @@ typedef struct funcionario {
     char usuario[maxsenha];
 } Funcionario;
 
-void cadastrar(Funcionario funcionario){
+typedef struct quartos {
+    char tipo[tam];
+    int numquarto[3];
+    char status[tam];
+} Quartos;
+
+void menufuncionario(){
+    printf("\nTeste\n");
+}
+
+void cadastrar(Funcionario *funcionario){
     FILE *cadastro;
 
     cadastro = fopen("cadastro.txt", "a");
@@ -21,19 +31,19 @@ void cadastrar(Funcionario funcionario){
     }
 
     printf("Cadastre o nome do funcionario: ");
-    scanf("%s", funcionario.usuario);
+    scanf("%s", funcionario->usuario);
 
     do{
         printf("Digite a senha (entre 8 e 10 caracteres): ");
-        scanf("%s", funcionario.senha);
-    }while(strlen(funcionario.senha) < 8 || strlen(funcionario.senha) > 10);
+        scanf("%s", funcionario->senha);
+    }while(strlen(funcionario->senha) < 8 || strlen(funcionario->senha) > 10);
 
-    fprintf(cadastro, "%s %s\n", funcionario.usuario, funcionario.senha);
+    fprintf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);
 
     fclose(cadastro);
 }
 
-void login(Funcionario funcionario){
+void login(Funcionario *funcionario){
     FILE *cadastro;
     char senha1[tam], usuario1[tam];
 
@@ -44,7 +54,7 @@ void login(Funcionario funcionario){
         exit(EXIT_FAILURE);
     }
 
-    fscanf(cadastro, "%s %s\n", funcionario.usuario, funcionario.senha);
+    fscanf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);
 
     do{
         printf("Digite o usuário: ");
@@ -53,18 +63,18 @@ void login(Funcionario funcionario){
         printf("Digite a senha: ");
         scanf("%s", senha1);
 
-        if(usuario1 == funcionario.usuario && senha1 == funcionario.senha){
+        if(strcmp(usuario1, funcionario->usuario) == 0 && strcmp(senha1, funcionario->senha) == 0){
             menufuncionario();
         }
         else{
-            if(usuario1 != funcionario.usuario){
-                printf("Usuario invalido!");
+            if(strcmp(usuario1, funcionario->usuario) != 0){
+                printf("Usuario invalido!\n");
             }
-            else if(senha1 != funcionario.senha){
-                printf("Senha invalida!");
+            else if(strcmp(senha1, funcionario->senha) != 0){
+                printf("Senha invalida!\n");
             }
         }
-    }while(usuario1 != funcionario.usuario && senha1 != funcionario.senha);
+    }while(strcmp(usuario1, funcionario->usuario) != 0 || strcmp(senha1, funcionario->senha) != 0);
 
     fclose(cadastro);
 }
@@ -74,30 +84,28 @@ int main(){
     int opcao;
     Funcionario funcionario;
 
-    FILE *cadastro;
-
     printf("----- MENU -----\n");
     printf("1 - Cadastrar funcionario\n");
     printf("2 - Logar\n");
     printf("3 - Cadastrar cliente\n");
-    printf("3 - Sair\n");
+    printf("4 - Sair\n");
     printf("Digite a opcao desejada: ");
     scanf("%d", &opcao);
 
     switch(opcao){
         case 1:
-            cadastrar(funcionario);
+            cadastrar(&funcionario);
             break;
         case 2:
-            login(funcionario);
+            login(&funcionario);
             break;
         case 3:
             break;
         case 4:
-            printf("Saindo...");
+            printf("Saindo...\n");
             break;
         default:
-            printf("Opcao invalida!");
+            printf("Opcao invalida!\n");
             break;
     }
 

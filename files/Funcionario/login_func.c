@@ -11,7 +11,6 @@ void login(Funcionario *funcionario){
         printf("Nenhum Funcionario Encontrado!\n");
         system("PAUSE");
         system("cls");
-        return main();
     }
 
     fscanf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);

@@ -11,9 +11,7 @@ void consultarQuartos(){
         exit(EXIT_FAILURE);
     }
 
-    while(!feof(quartos)){
-        fscanf(quartos, "%d\n%d\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status);
-
+    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
         if(quartos1.status == 1){
             printf("Tipo: ");
             if(quartos1.tipo == 1){
@@ -29,6 +27,20 @@ void consultarQuartos(){
                 printf("Tipo invalido!\n");
             }
             printf("Numero: %d\n", quartos1.numquarto);
+            printf("Valor da diaria: %.2f\n", quartos1.diaria);
+            printf("Capacidade: ");
+            if(quartos1.capacidade == 1){
+                printf("Solteiro\n");
+            }
+            else if(quartos1.capacidade == 2){
+                printf("Casal\n");
+            }
+            else{
+                printf("Capacidade invalida!\n");
+            }
+            printf("\n");
         }
     }
+
+    fclose(quartos);
 }

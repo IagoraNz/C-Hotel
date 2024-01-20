@@ -5,20 +5,20 @@ void Definindo_Predio(){
     int qtd_quartos;
 
     predio = fopen("..\\db\\predio.txt", "a+");  // "a+" abre o arquivo para leitura e escrita (append)
-    if (predio == NULL) {
+    if(predio == NULL){
         printf("Erro ao abrir o arquivo.\n");
         return;
     }
 
     fseek(predio, 0, SEEK_SET);  // Mover o cursor para o início do arquivo
 
-    // Verificar se o arquivo está vazio
-    if (fgetc(predio) == EOF) {
-        printf("Informe a Quantidade de Quartos no Predio: ");
+    if(fgetc(predio) == EOF){
+        printf("Informe a quantidade de quartos no predio: ");
         scanf("%d", &qtd_quartos);
         fprintf(predio, "%d ", qtd_quartos);
-    } else {
-        return;
+    } 
+    else{
+        return; // Se o arquivo já estiver preenchido, não faz nada
     }
 
     fclose(predio);

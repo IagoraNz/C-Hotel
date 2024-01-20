@@ -30,11 +30,11 @@ void cadastrarQuarto(){
 
     if(quartos1.tipo == 1){
         quartos1.diaria = 100;
-    } else if (quartos1.tipo == 2)
-    {
+    } 
+    else if(quartos1.tipo == 2){
         quartos1.diaria = 250;
-    } else if (quartos1.tipo == 3)
-    {
+    } 
+    else if(quartos1.tipo == 3){
         quartos1.diaria = 35;
     }
     

@@ -35,6 +35,7 @@ void menufuncionario(){
             break;
         case 3:
             consultarQuartos();
+            return menufuncionario();
             break;
         case 4:
             break;

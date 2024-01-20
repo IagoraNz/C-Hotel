@@ -5,13 +5,10 @@
 #include "./files/Quartos/quartos.h"
 #include "./files/Quartos/def_predio.c"
 
-
-
 #include "./files/Funcionario/cadastro_func.c"
 #include "./files/Funcionario/login_func.c"
 
-
-int main () {
+int main(){
     int opcao;
     Funcionario funcionario;
 

@@ -4,98 +4,101 @@ void editarQuarto(){
     FILE *quartos;
     Quartos quartos1;
 
-    quartos = fopen("..\\db\\quartos.txt", "r+");
+    quartos = fopen("..\\db\\quartos.txt", "r");
 
-    if(quartos == NULL){
-        printf("Erro ao abrir o arquivo.\n");
-        return;
+    if (quartos == NULL) {
+        printf("Erro ao abrir o arquivo");
+        exit(EXIT_FAILURE);
     }
 
-    int edicao, opc;
+    FILE *temporario;
 
-    system("cls");
-    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-    printf("\xBA      EDITAR      \xBA\n");
-    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+    temporario = fopen("..\\db\\quartos_temp.txt", "w");
+
+    if (temporario == NULL) {
+        printf("Erro ao abrir o arquivo temporário");
+        fclose(quartos);
+        exit(EXIT_FAILURE);
+    }
+
+    int edicao, carac;
+    int encontrado = 0;
 
     printf("Digite o numero do quarto que deseja editar: ");
     scanf("%d", &edicao);
 
-    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
-        fgetc(quartos);
-
+    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5) {
         if(edicao == quartos1.numquarto){
-            printf("Tipo: ");
-            if(quartos1.tipo == 1){
-                printf("Luxo");
-            } 
-            else if(quartos1.tipo == 2){
-                printf("Executivo");
-            } 
-            else if(quartos1.tipo == 3){
-                printf("Simples");
-            } 
-            else{
-                printf("Tipo invalido!\n");
-            }
-            printf("\n");
-            printf("Numero: %d\n", quartos1.numquarto);
-            printf("Status: ");
-            if(quartos1.status == 1){
-                printf("Disponivel");
-            } 
-            else if(quartos1.status == 2){
-                printf("Ocupado");
-            } 
-            else if(quartos1.status == 3){
-                printf("Reservado");
-            } 
-            else{
-                printf("Status invalido!\n");
-            }
-            printf("\nDiaria do Quarto: %.2f\n", quartos1.diaria);
-            printf("Capacidade: %d\n\n", quartos1.capacidade);
+            encontrado = 1;
+            printf("Quarto encontrado!\n");
+            printf("1 - Tipo: %d\n", quartos1.tipo);
+            printf("2 - Numero: %d\n", quartos1.numquarto);
+            printf("3 - Status: %d\n", quartos1.status);
+            printf("4 - Diaria: %.2f\n", quartos1.diaria);
+            printf("5 - Capacidade: %d\n", quartos1.capacidade);
+            printf("Digite qual caracteristica deseja atualizar: ");
+            scanf("%d", &carac);
 
-            printf("Digite qual campo deseja editar: \n");
-            printf("1 - Tipo\n");
-            printf("2 - Numero\n");
-            printf("3 - Status\n");
-            printf("4 - Capacidade\n");
-            printf("5 - Sair\n");
-            printf("Opcao: ");
-            scanf("%d", &opc);  
+            switch (carac) {
+                case 1:
+                    printf("TIPOS\n");
+                    printf("1 - Luxo\n");
+                    printf("2 - Executivo\n");
+                    printf("3 - Simples\n");
+                    printf("Digite o tipo do quarto: ");
+                    scanf("%d", &quartos1.tipo);
 
-            switch (opc)
-            {
-            case 1:
-                printf("Digite o novo tipo: ");
-                scanf("%d", &quartos1.tipo);
-                break;
-            case 2:
-                printf("Digite o novo numero: ");
-                scanf("%d", &quartos1.numquarto);
-                break;
-            case 3:
-                printf("Digite o novo status: ");
-                scanf("%d", &quartos1.status);
-                break;
-            case 4:
-                printf("Digite a nova capacidade: ");
-                scanf("%d", &quartos1.capacidade);
-                break;
-            case 5:
-                return;
-                break;
-            default:
-                printf("Opcao invalida!\n");
-                break;
+                    if(quartos1.tipo == 1){
+                        quartos1.diaria = 100;
+                    } 
+                    else if(quartos1.tipo == 2){
+                        quartos1.diaria = 250;
+                    } 
+                    else if(quartos1.tipo == 3){
+                        quartos1.diaria = 35;
+                    }
+                    break;
+                case 2:
+                    printf("Digite o numero do quarto: ");
+                    scanf("%d", &quartos1.numquarto);
+                    break;
+                case 3:
+                    printf("STATUS\n");
+                    printf("1 - Disponivel\n");
+                    printf("2 - Ocupado\n");
+                    printf("3 - Reservado\n");
+                    printf("Digite o status do quarto: ");
+                    scanf("%d", &quartos1.status);
+                    break;
+                case 5:
+                    printf("Capacidade do Quarto\n");
+                    printf("1 - Solteiro\n");
+                    printf("2 - Casal\n");
+                    printf("Digite a capacidade do quarto: ");
+                    scanf("%d", &quartos1.capacidade);
+                    break;
+                default:
+                    printf("Caracteristica invalida!\n");
+                    break;
             }
 
-            fseek(quartos, -sizeof(Quartos), SEEK_CUR);
-
-            fprintf(quartos, "%d\n%d\n%d\n%.2f\n%d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
-            break;
+            fprintf(temporario, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
+        } 
+        else{
+            fprintf(temporario, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
         }
     }
+
     fclose(quartos);
+    fclose(temporario);
+
+    if (!encontrado) {
+        printf("Quarto não encontrado.\n");
+        remove("..\\db\\quartos_temp.txt"); 
+    } 
+    else{
+        remove("..\\db\\quartos.txt");
+        rename("..\\db\\quartos_temp.txt", "..\\db\\quartos.txt");
+        printf("Quarto editado com sucesso!\n");
+    }
 }

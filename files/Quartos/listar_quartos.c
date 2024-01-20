@@ -10,6 +10,7 @@ void listarQuartos(){
     if(quartos == NULL){
         printf("Erro ao abrir o arquivo");
         exit(EXIT_FAILURE);
+        return;
     }
 
     system("cls");

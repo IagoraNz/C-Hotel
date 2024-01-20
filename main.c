@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define tam 50
 #define maxsenha 10
@@ -239,6 +240,7 @@ void login(Funcionario *funcionario){
 
 int menu(){
     int opc;
+    char buffer[tam];
 
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
     printf("\xBA       MENU       \xBA\n");
@@ -246,8 +248,15 @@ int menu(){
     printf("1 - Cadastrar funcionario\n");
     printf("2 - Logar\n");
     printf("3 - Sair\n");
-    printf("Digite a opcao desejada: ");
-    scanf("%d", &opc);
+    do{
+        printf("Digite a opcao desejada: ");
+
+        fgets(buffer, sizeof(buffer), stdin);
+
+        if(sscanf(buffer, "%d", &opc) != 1){
+            printf("Entrada invalida. Por favor, insira um numero inteiro.\n");
+        }
+    }while(opc < 1 || opc > 3);
 
     return opc;
 }

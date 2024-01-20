@@ -3,6 +3,7 @@
 #include "../Quartos/cadastro_quarto.c"
 #include "../Quartos/listar_quartos.c"
 #include "../Quartos/consultar_quartos.c"
+#include "../Quartos/edit_quarto.c"
 // #include "./files/Quartos/quartos.h"
 
 void menufuncionario(){
@@ -35,9 +36,15 @@ void menufuncionario(){
             break;
         case 3:
             consultarQuartos();
+            system("PAUSE");
+            system("cls");
             return menufuncionario();
             break;
         case 4:
+            editarQuarto();
+            system("PAUSE");
+            system("cls");
+            return menufuncionario();
             break;
         case 5:
             printf("Saindo...\n");

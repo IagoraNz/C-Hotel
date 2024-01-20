@@ -11,3 +11,5 @@ void cadastrarQuarto();
 void listarQuartos();
 
 void consultarQuartos();
+
+void editarQuarto();

@@ -9,4 +9,6 @@ typedef struct quartos {
     int tipo;
     int numquarto;
     int status;
+    float diaria;
+    int capacidade;
 } Quartos;

@@ -17,11 +17,35 @@ typedef struct quartos {
     int status;
 } Quartos;
 
+void Definindo_Predio(){
+    FILE *predio;
+    int qtd_quartos;
+
+    predio = fopen("..\\files\\predio.txt", "a+");  // "a+" abre o arquivo para leitura e escrita (append)
+    if (predio == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    fseek(predio, 0, SEEK_SET);  // Mover o cursor para o início do arquivo
+
+    // Verificar se o arquivo está vazio
+    if (fgetc(predio) == EOF) {
+        printf("Informe a Quantidade de Quartos no Predio: ");
+        scanf("%d", &qtd_quartos);
+        fprintf(predio, "%d ", qtd_quartos);
+    } else {
+        return;
+    }
+
+    fclose(predio);
+}
+
 void cadastrarQuarto(){
     FILE *quartos;
     Quartos quartos1;
 
-    quartos = fopen("quartos.txt", "a");
+    quartos = fopen("..\\files\\quartos.txt", "a");
 
     if(quartos == NULL){
         printf("Erro ao abrir o arquivo");
@@ -54,7 +78,7 @@ void listarQuartos(){
     FILE *quartos;
     Quartos quartos1;
 
-    quartos = fopen("quartos.txt", "r");
+    quartos = fopen("..\\files\\quartos.txt", "r");
 
     if(quartos == NULL){
         printf("Erro ao abrir o arquivo");
@@ -107,7 +131,7 @@ void consultarQuartos(){
     FILE *quartos;
     Quartos quartos1;
 
-    quartos = fopen("quartos.txt", "r");
+    quartos = fopen("..\\files\\quartos.txt", "r");
 
     if(quartos == NULL){
         printf("Erro ao abrir o arquivo");
@@ -181,7 +205,7 @@ void menufuncionario(){
 void cadastrar(Funcionario *funcionario){
     FILE *cadastro;
 
-    cadastro = fopen("cadastro.txt", "a");
+    cadastro = fopen("..\\files\\funcionario.txt", "a");
 
     if(cadastro == NULL){
         printf("Erro ao abrir o arquivo");
@@ -205,11 +229,13 @@ void login(Funcionario *funcionario){
     FILE *cadastro;
     char senha1[tam], usuario1[tam];
 
-    cadastro = fopen("cadastro.txt", "r");
+    cadastro = fopen("..\\files\\funcionario.txt", "r");
 
     if(cadastro == NULL){
-        printf("Erro ao executar o arquivo");
-        exit(EXIT_FAILURE);
+        printf("Nenhum Funcionario Encontrado!\n");
+        system("PAUSE");
+        system("cls");
+        return main();
     }
 
     fscanf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);
@@ -236,6 +262,17 @@ void login(Funcionario *funcionario){
     }while(strcmp(usuario1, funcionario->usuario) != 0 || strcmp(senha1, funcionario->senha) != 0);
 
     fclose(cadastro);
+}
+
+int menu_login(){
+    int opc;
+
+
+
+
+
+
+    return opc;
 }
 
 int menu(){
@@ -265,6 +302,8 @@ int main(){
 
     int opcao;
     Funcionario funcionario;
+
+    Definindo_Predio();
 
     opcao = menu();
 

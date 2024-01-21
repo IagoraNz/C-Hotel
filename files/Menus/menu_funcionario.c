@@ -5,12 +5,12 @@
 void menu_funcionario(){
     int opc;
 
-    do {
+    do{
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-        printf("1 - Area Quartos\n");
-        printf("2 - Area Clientes\n");
+        printf("1 - Area quartos\n");
+        printf("2 - Area clientes\n");
         printf("3 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
@@ -24,9 +24,9 @@ void menu_funcionario(){
             menuClientes();
             break;
         case 3:
-            return main();
+            return;
         default:
             break;
         }
-    } while (opc != 3);
+    }while(opc != 3);
 }

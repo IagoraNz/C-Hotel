@@ -4,11 +4,13 @@
 #include "../Quartos/listar_quartos.c"
 #include "../Quartos/consultar_quartos.c"
 #include "../Quartos/edit_quarto.c"
+#include "../Quartos/excluir_quarto.c"
 
 void menuQuartos(){
     int opc;
 
-    do {
+    system("cls");
+    do{
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
@@ -46,6 +48,12 @@ void menuQuartos(){
                 system("cls");
                 return menuQuartos();
                 break;
+            case 5:
+                excluirQuarto();
+                system("PAUSE");
+                system("cls");
+                return menuQuartos();
+                break;
             case 6:
                 printf("Saindo...\n");
                 break;
@@ -53,5 +61,5 @@ void menuQuartos(){
                 printf("Opcao invalida!\n");
                 break;
         }
-    } while (opc != 6);
+    }while(opc != 6);
 }

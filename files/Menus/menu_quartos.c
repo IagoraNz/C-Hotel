@@ -2,7 +2,7 @@
 #include "../Quartos/quartos.h"
 #include "../Quartos/cadastro_quarto.c"
 #include "../Quartos/listar_quartos.c"
-#include "../Quartos/consultar_quartos.c"
+#include "../Quartos/listar_disponiveis.c"
 #include "../Quartos/edit_quarto.c"
 #include "../Quartos/excluir_quarto.c"
 #include "../Quartos/tabela.c"
@@ -43,7 +43,7 @@ void menuQuartos(){
                 system("cls");
                 break;
             case 4:
-                consultarQuartos();
+                listarDisponiveis();
                 system("PAUSE");
                 system("cls");
                 break;

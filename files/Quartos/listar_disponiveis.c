@@ -1,6 +1,6 @@
 #include "quartos.h"
 
-void consultarQuartos(){
+void listarDisponiveis(){
     FILE *quartos;
     Quartos quartos1;
 

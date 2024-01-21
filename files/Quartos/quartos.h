@@ -15,3 +15,5 @@ void consultarQuartos();
 void editarQuarto();
 
 void excluirQuarto();
+
+void tabela();

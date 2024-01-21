@@ -5,6 +5,7 @@
 #include "../Quartos/consultar_quartos.c"
 #include "../Quartos/edit_quarto.c"
 #include "../Quartos/excluir_quarto.c"
+#include "../Quartos/tabela.c"
 
 void menuQuartos(){
     int opc;
@@ -16,10 +17,11 @@ void menuQuartos(){
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
         printf("1 - Cadastrar quartos\n");
         printf("2 - Listar todos os quartos\n");
-        printf("3 - Consultar quartos disponiveis\n");
-        printf("4 - Editar quartos\n");
-        printf("5 - Excluir quartos\n");
-        printf("6 - Voltar\n");
+        printf("3 - Tabela dos quartos\n");
+        printf("4 - Consultar quartos disponiveis\n");
+        printf("5 - Editar quartos\n");
+        printf("6 - Excluir quartos\n");
+        printf("7 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
 
@@ -34,22 +36,28 @@ void menuQuartos(){
                 system("PAUSE");
                 system("cls");
                 break;
+
             case 3:
-                consultarQuartos();
+                tabela();
                 system("PAUSE");
                 system("cls");
                 break;
             case 4:
-                editarQuarto();
+                consultarQuartos();
                 system("PAUSE");
                 system("cls");
                 break;
             case 5:
-                excluirQuarto();
+                editarQuarto();
                 system("PAUSE");
                 system("cls");
                 break;
             case 6:
+                excluirQuarto();
+                system("PAUSE");
+                system("cls");
+                break;
+            case 7:
                 printf("Saindo...\n");
                 system("PAUSE");
                 system("cls");
@@ -58,5 +66,5 @@ void menuQuartos(){
                 printf("Opcao invalida!\n");
                 break;
         }
-    }while(opc != 6);
+    }while(opc != 7);
 }

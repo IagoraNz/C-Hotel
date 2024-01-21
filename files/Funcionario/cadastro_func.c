@@ -16,6 +16,13 @@ void cadastrar(Funcionario *funcionario){
     do{
         printf("Digite a senha (entre 8 e 10 caracteres): ");
         scanf("%s", funcionario->senha);
+        if (strlen(funcionario->senha) < 8)
+        {
+            printf("Senha Curta!\nMinimo de 8 caracteres!\n");
+        } else if (strlen(funcionario->senha) > 10)
+        {
+            printf("Senha Longa!\nMaximo de 10 caracteres!\n");
+        }
     }while(strlen(funcionario->senha) < 8 || strlen(funcionario->senha) > 10);
 
     fprintf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);

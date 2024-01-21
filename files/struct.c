@@ -12,3 +12,10 @@ typedef struct quartos {
     float diaria;
     int capacidade;
 } Quartos;
+
+typedef struct clientes{
+    char usuarioc[tam];
+    char senhac[maxsenha];
+    int rg;
+} Clientes;
+

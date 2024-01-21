@@ -1,4 +1,4 @@
-#include "struct.h"
+#include "menus.h"
 
 int menu(){
     int opc;
@@ -7,8 +7,8 @@ int menu(){
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
     printf("\xBA       MENU       \xBA\n");
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-    printf("1 - Cadastrar funcionario\n");
-    printf("2 - Logar\n");
+    printf("1 - Area de Cadastro\n");
+    printf("2 - Area de Login\n");
     printf("3 - Sair\n");
     do{
         printf("Digite a opcao desejada: ");

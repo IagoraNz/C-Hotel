@@ -10,4 +10,4 @@ typedef struct funcionario Funcionario;
 
 typedef struct quartos Quartos;
 
-int menu();
+typedef struct clientes Clientes;

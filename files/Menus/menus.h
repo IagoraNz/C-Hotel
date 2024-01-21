@@ -6,4 +6,6 @@
 
 int menu();
 
-void menu_cadastro();
+void menuQuartos();
+
+void menu_funcionario();

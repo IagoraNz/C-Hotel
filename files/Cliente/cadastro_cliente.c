@@ -11,25 +11,34 @@ void Cadastro_Cliente(Clientes *clientes){
         exit(EXIT_FAILURE);
     }
 
-    printf("Informe seu Usuario: ");
-    scanf("%s", clientes->usuarioc);
+    printf("Informe o Nome Completo do Cliente: ");
+    scanf("%s", clientes->nome);
 
-    do{
-        printf("Digite a senha (entre 8 e 10 caracteres): ");
-        scanf("%s", clientes->senhac);
-        if (strlen(clientes->senhac) < 8)
-        {
-            printf("Senha Curta!\nMinimo de 8 caracteres!\n");
-        } else if (strlen(clientes->senhac) > 10)
-        {
-            printf("Senha Longa!\nMaximo de 10 caracteres!\n");
-        }
-    }while(strlen(clientes->senhac) < 8 || strlen(clientes->senhac) > 10);
+    printf("Informe a Idade: ");
+    scanf("%d", clientes->idade);
 
-    printf("Informe seu RG: ");
+    printf("Digite o CPF (no formato XXX.XXX.XXX-XX): ");
+    if (scanf("%3d.%3d.%3d-%2d", &clientes->cpf1->bloco1, &clientes->cpf1->bloco2, &clientes->cpf1->bloco3, &clientes->cpf1->bloco4) == 4) {
+        continue;
+    } else {
+        // Se a leitura falhar, exibe uma mensagem de erro
+        printf("Formato de CPF inválido.\n");
+    }
+
+    printf("Informe o RG: ");
     scanf("%d", &clientes->rg);
 
-    fprintf(cliente, "%s\n%s\n%d\n", clientes->usuarioc, clientes->senhac, clientes->rg);
+    printf("Informe o Email: ");
+    scanf("%99s", &clientes->email);
+
+    printf("Informe o Telefone: ");
+    scanf("%d", &clientes->telefone);
+
+    printf("Informe a Cidade: ");
+    scanf("%s", &clientes->cidade);
+
+    printf("Informe o Estado: ");
+    scanf("%d",&clientes->estado);
     
     fclose(cliente);
 

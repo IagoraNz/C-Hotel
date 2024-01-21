@@ -1,5 +1,5 @@
 #include "funcionario.h"
-#include "menu_func.c"
+#include "../Menus/menu_funcionario.c"
 
 void login(Funcionario *funcionario){
     FILE *cadastro;
@@ -24,7 +24,7 @@ void login(Funcionario *funcionario){
 
         if(strcmp(usuario1, funcionario->usuario) == 0 && strcmp(senha1, funcionario->senha) == 0){
             system("cls");
-            menufuncionario();
+            menu_funcionario();
         }
         else{
             if(strcmp(usuario1, funcionario->usuario) != 0){

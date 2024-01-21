@@ -1,12 +1,11 @@
-#include "funcionario.h"
+#include "menus.h"
 #include "../Quartos/quartos.h"
 #include "../Quartos/cadastro_quarto.c"
 #include "../Quartos/listar_quartos.c"
 #include "../Quartos/consultar_quartos.c"
 #include "../Quartos/edit_quarto.c"
-// #include "./files/Quartos/quartos.h"
 
-void menufuncionario(){
+void menuQuartos(){
     int opc;
 
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
@@ -26,25 +25,25 @@ void menufuncionario(){
             cadastrarQuarto();
             system("PAUSE");
             system("cls");
-            return menufuncionario();
+            return menuQuartos();
             break;
         case 2:
             listarQuartos();
             system("PAUSE");
             system("cls");
-            return menufuncionario();
+            return menuQuartos();
             break;
         case 3:
             consultarQuartos();
             system("PAUSE");
             system("cls");
-            return menufuncionario();
+            return menuQuartos();
             break;
         case 4:
             editarQuarto();
             system("PAUSE");
             system("cls");
-            return menufuncionario();
+            return menuQuartos();
             break;
         case 5:
             printf("Saindo...\n");

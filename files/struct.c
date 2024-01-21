@@ -13,9 +13,21 @@ typedef struct quartos {
     int capacidade;
 } Quartos;
 
+typedef struct cpf {
+    int bloco1;
+    int bloco2;
+    int bloco3;
+    int bloco4;
+} CPF;
+
 typedef struct clientes{
-    char usuarioc[tam];
-    char senhac[maxsenha];
+    char nome[maxnome];
+    int idade;
+    CPF cpf1;
     int rg;
+    char email[maxnome];
+    int telefone;
+    char cidade;
+    char estado;
 } Clientes;
 

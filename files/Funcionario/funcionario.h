@@ -4,8 +4,6 @@
 #include <ctype.h>
 #include "../struct.h"
 
-void menufuncionario();
-
 void cadastrar(Funcionario *funcionario);
 
 void login(Funcionario *funcionario);

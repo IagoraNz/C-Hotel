@@ -9,3 +9,5 @@ void Cadastro_Cliente(Clientes *clientes);
 void Listar_Clientes();
 
 void Consultar_Cliente();
+
+void Editar_Cliente();

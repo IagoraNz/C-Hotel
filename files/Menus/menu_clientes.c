@@ -5,6 +5,7 @@
 #include "../Cliente/cadastro_cliente.c"
 #include "../Cliente/visualizar_cliente.c"
 #include "../Cliente/consultar_cliente.c"
+#include "../Cliente/edit_cliente.c"
 
 
 void menuClientes(){
@@ -18,6 +19,7 @@ void menuClientes(){
         printf("1 - Cadastrar Cliente\n");
         printf("2 - Visualizar Clientes\n");
         printf("3 - Consultar Cliente\n");
+        printf("4 - Editar Cliente\n");
         printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
@@ -31,6 +33,9 @@ void menuClientes(){
             break;
         case 3:
             Consultar_Cliente();
+            break;
+        case 4:
+            Editar_Cliente();
             break;
         case 0:
             return;  // Retorna ao menu principal

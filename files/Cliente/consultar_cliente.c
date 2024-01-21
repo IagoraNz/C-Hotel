@@ -3,12 +3,8 @@
 void Consultar_Cliente(){
     FILE *cliente;
     Clientes cliente1;
-    int opc;
+    int opc, aux1, aux2, aux3, aux4;
     char auxs[maxnome];
-    int aux1;
-    int aux2;
-    int aux3;
-    int aux4;
     
 
     cliente = fopen("..\\db\\cliente.txt", "r");

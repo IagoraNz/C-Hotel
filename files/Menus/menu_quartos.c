@@ -21,7 +21,7 @@ void menuQuartos(){
         printf("4 - Consultar quartos disponiveis\n");
         printf("5 - Editar quartos\n");
         printf("6 - Excluir quartos\n");
-        printf("7 - Voltar\n");
+        printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
 
@@ -57,11 +57,11 @@ void menuQuartos(){
                 system("PAUSE");
                 system("cls");
                 break;
-            case 7:
+            case 0:
                 printf("Saindo...\n");
                 system("PAUSE");
                 system("cls");
-                break;
+                return;
             default:
                 printf("Opcao invalida!\n");
                 break;

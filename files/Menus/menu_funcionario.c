@@ -12,7 +12,7 @@ void menu_funcionario(){
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
         printf("1 - Area quartos\n");
         printf("2 - Area clientes\n");
-        printf("3 - Voltar\n");
+        printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
 
@@ -24,10 +24,10 @@ void menu_funcionario(){
         case 2:
             menuClientes();
             break;
-        case 3:
+        case 0:
             return;
         default:
             break;
         }
-    }while(opc != 3);
+    }while(opc != 0);
 }

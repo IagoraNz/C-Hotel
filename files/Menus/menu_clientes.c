@@ -3,6 +3,7 @@
 // #include "../struct.c"
 #include "../Cliente/cliente.h"
 #include "../Cliente/cadastro_cliente.c"
+#include "../Cliente/visualizar_cliente.c"
 
 
 void menuClientes(){
@@ -24,7 +25,7 @@ void menuClientes(){
             Cadastro_Cliente(&cliente);  // Chama a função de cadastro
             break;
         case 2:
-            // Adicione a lógica para visualizar clientes, se necessário
+            Listar_Clientes();
             break;
         case 3:
             return;  // Retorna ao menu principal

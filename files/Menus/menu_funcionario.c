@@ -23,6 +23,8 @@ void menu_funcionario(){
         case 2:
             menuClientes();
             break;
+        case 3:
+            return main();
         default:
             break;
         }

@@ -4,4 +4,6 @@
 #include <ctype.h>
 #include "../struct.h"
 
-void Cadastro_Cliente();
+void Cadastro_Cliente(Clientes *clientes);
+
+void Listar_Clientes();

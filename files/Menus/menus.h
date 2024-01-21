@@ -9,3 +9,5 @@ int menu();
 void menuQuartos();
 
 void menu_funcionario();
+
+void menuClientes();

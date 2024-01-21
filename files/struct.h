@@ -7,8 +7,6 @@
 #define tam 50
 #define maxsenha 10
 
-typedef struct cpf CPF;
-
 typedef struct funcionario Funcionario;
 
 typedef struct quartos Quartos;

@@ -19,7 +19,7 @@ void Listar_Clientes(){
         printf("Nome: %s\n", cliente1.nome);
         printf("Idade: %d\n", cliente1.idade);
         printf("CPF: %03d.%03d.%03d-%02d\n", cliente1.bloco1,cliente1.bloco2,cliente1.bloco3,cliente1.bloco4);
-        printf("RG: %d", cliente1.rg);
+        printf("RG: %d\n", cliente1.rg);
         printf("E-Mail: %s\n", cliente1.email);
         printf("Telefone: %s\n", cliente1.telefone);
         printf("Cidade: %s\n", cliente1.cidade);

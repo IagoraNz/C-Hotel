@@ -4,6 +4,7 @@
 #include "../Cliente/cliente.h"
 #include "../Cliente/cadastro_cliente.c"
 #include "../Cliente/visualizar_cliente.c"
+#include "../Cliente/consultar_cliente.c"
 
 
 void menuClientes(){
@@ -11,12 +12,13 @@ void menuClientes(){
     int opc;
 
     do{
-        printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+        printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU CLIENTES      \xBA\n");
-        printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+        printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
         printf("1 - Cadastrar Cliente\n");
         printf("2 - Visualizar Clientes\n");
-        printf("3 - Voltar\n");
+        printf("3 - Consultar Cliente\n");
+        printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
 
@@ -28,9 +30,12 @@ void menuClientes(){
             Listar_Clientes();
             break;
         case 3:
+            Consultar_Cliente();
+            break;
+        case 0:
             return;  // Retorna ao menu principal
         default:
             printf("Opcao invalida. Tente novamente.\n");
         }
-    }while(opc != 3);
+    }while(opc != 0);
 }

@@ -5,6 +5,7 @@
 void menu_funcionario(){
     int opc;
 
+    system("cls");
     do{
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");

@@ -16,23 +16,24 @@ int main(){
 
     Definindo_Predio();
 
-    opcao = menu();
+    do{
 
-    switch (opcao)
-    {
-    case 1:
-        cadastrar(&funcionario);
-        system("PAUSE");
-        system("cls");
-        return main(); //Aqui é para retornar ao menu, que está no início do main
-        break;
-    case 2:
-        // Colocar quando possivel uma verificação se o arquivo de cadastro funcionario está vazio ou não.
-        login(&funcionario);
-        system("PAUSE");
-        system("cls");
-        break;
-    default:
-        break;
-    }
+        opcao = menu();
+
+        switch (opcao)
+        {
+        case 1:
+            cadastrar(&funcionario);
+            system("PAUSE");
+            system("cls");
+            break;
+        case 2:
+            login(&funcionario);
+            system("PAUSE");
+            system("cls");
+            break;
+        default:
+            break;
+        }
+    }while(opcao != 3);
 }

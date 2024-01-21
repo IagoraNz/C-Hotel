@@ -28,34 +28,31 @@ void menuQuartos(){
                 cadastrarQuarto();
                 system("PAUSE");
                 system("cls");
-                return menuQuartos();
                 break;
             case 2:
                 listarQuartos();
                 system("PAUSE");
                 system("cls");
-                return menuQuartos();
                 break;
             case 3:
                 consultarQuartos();
                 system("PAUSE");
                 system("cls");
-                return menuQuartos();
                 break;
             case 4:
                 editarQuarto();
                 system("PAUSE");
                 system("cls");
-                return menuQuartos();
                 break;
             case 5:
                 excluirQuarto();
                 system("PAUSE");
                 system("cls");
-                return menuQuartos();
                 break;
             case 6:
                 printf("Saindo...\n");
+                system("PAUSE");
+                system("cls");
                 break;
             default:
                 printf("Opcao invalida!\n");

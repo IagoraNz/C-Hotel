@@ -14,6 +14,11 @@ void excluirQuarto(){
 
     quartosTemp = fopen("..\\db\\quartos_temp.txt", "w");
 
+    system("cls");
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA      EXCLUIR     \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+
     printf("Digite o numero do quarto que deseja excluir: ");
     scanf("%d", &numQuarto);
 

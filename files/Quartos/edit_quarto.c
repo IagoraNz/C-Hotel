@@ -24,6 +24,11 @@ void editarQuarto(){
     int edicao, carac;
     int encontrado = 0;
 
+    system("cls");
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA      EDITAR      \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+
     printf("Digite o numero do quarto que deseja editar: ");
     scanf("%d", &edicao);
 
@@ -92,7 +97,7 @@ void editarQuarto(){
     fclose(quartos);
     fclose(temporario);
 
-    if (!encontrado) {
+    if(!encontrado){
         printf("Quarto não encontrado.\n");
         remove("..\\db\\quartos_temp.txt"); 
     } 

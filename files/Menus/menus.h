@@ -4,6 +4,8 @@
 #include <ctype.h>
 #include "../struct.h"
 
+void logo();
+
 int menu();
 
 void menuQuartos();

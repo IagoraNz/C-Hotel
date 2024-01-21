@@ -10,7 +10,7 @@ void menuClientes(){
     Clientes cliente;
     int opc;
 
-    do {
+    do{
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU CLIENTES      \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
@@ -32,5 +32,5 @@ void menuClientes(){
         default:
             printf("Opcao invalida. Tente novamente.\n");
         }
-    } while (opc != 3);
+    }while(opc != 3);
 }

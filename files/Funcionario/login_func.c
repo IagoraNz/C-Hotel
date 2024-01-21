@@ -13,28 +13,29 @@ void login(Funcionario *funcionario){
         system("cls");
     }
 
-    fscanf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);
+    //O sistema deve ser capaz de ler vários cadastrados
 
-    do{
-        printf("Digite o usuario: ");
-        scanf("%s", usuario1);
+    printf("Digite o nome do funcionario: ");
+    scanf("%s", usuario1);
 
-        printf("Digite a senha: ");
-        scanf("%s", senha1);
+    printf("Digite a senha: ");
+    scanf("%s", senha1);
+
+    while(!feof(cadastro)){
+        fscanf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);
 
         if(strcmp(usuario1, funcionario->usuario) == 0 && strcmp(senha1, funcionario->senha) == 0){
-            system("cls");
             menu_funcionario();
+            break;
         }
-        else{
-            if(strcmp(usuario1, funcionario->usuario) != 0){
-                printf("Usuario invalido!\n");
-            }
-            else if(strcmp(senha1, funcionario->senha) != 0){
-                printf("Senha invalida!\n");
-            }
-        }
-    }while(strcmp(usuario1, funcionario->usuario) != 0 || strcmp(senha1, funcionario->senha) != 0);
+    }
+
+    if(strcmp(usuario1, funcionario->usuario) != 0 && strcmp(senha1, funcionario->senha) != 0){
+        printf("Usuario ou senha incorretos!\n");
+        system("PAUSE");
+        system("cls");
+        return login(funcionario);
+    }
 
     fclose(cadastro);
 }

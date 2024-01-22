@@ -98,6 +98,10 @@ void Reservar_Cliente(){
                             break;
                         }
                         fclose(quarto1);
+                        struct tm Datai, Dataf;
+                        // COntinuar isso olhe no chat gpt Francinaldo do presente.
+
+
                         Atualizar_Status(numquarto);
 
                         

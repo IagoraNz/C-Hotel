@@ -13,3 +13,5 @@ void menuQuartos();
 void menu_funcionario();
 
 void menuClientes();
+
+void Menu_Reservas();

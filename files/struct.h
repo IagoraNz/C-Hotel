@@ -12,3 +12,5 @@ typedef struct funcionario Funcionario;
 typedef struct quartos Quartos;
 
 typedef struct clientes Clientes;
+
+typedef struct reserva Reserva;

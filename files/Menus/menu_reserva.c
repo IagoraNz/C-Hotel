@@ -1,9 +1,7 @@
 #include "menus.h"
-#include "menu_quartos.c"
-#include "menu_clientes.c"
-#include "menu_reserva.c"
+#include "../Reserva/reserva_cliente.c"
 
-void menu_funcionario(){
+void Menu_Reservas(){
     int opc;
 
     system("cls");
@@ -11,9 +9,8 @@ void menu_funcionario(){
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-        printf("1 - Area quartos\n");
+        printf("1 - Realizar Reserva\n");
         printf("2 - Area clientes\n");
-        printf("3 - Area reservas\n");
         printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
@@ -21,13 +18,10 @@ void menu_funcionario(){
         switch (opc)
         {
         case 1:
-            menuQuartos();
+            Reservar_Cliente();
             break;
         case 2:
-            menuClientes();
-            break;
-        case 3:
-            Menu_Reservas();
+            
             break;
         case 0:
             return;

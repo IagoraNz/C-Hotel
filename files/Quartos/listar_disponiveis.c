@@ -28,34 +28,43 @@ void listarDisponiveis(){
 
     fseek(quartos, 0, SEEK_SET);
 
+    system("cls");
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA      TABELA      \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+    printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
     while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
         if(quartos1.status == 1){
-            printf("Tipo: ");
             if(quartos1.tipo == 1){
-                printf("Luxo\n");
+                printf("Luxo\t\t");
             }
             else if(quartos1.tipo == 2){
-                printf("Executivo\n");
+                printf("Exec.\t\t");
             }
             else if(quartos1.tipo == 3){
-                printf("Simples\n");
+                printf("Simples\t\t");
             }
-            else{
-                printf("Tipo invalido!\n");
+
+            printf("%d\t\t", quartos1.numquarto);
+
+            if(quartos1.status == 1){
+                printf("Disponivel\t\t");
             }
-            printf("Numero: %d\n", quartos1.numquarto);
-            printf("Valor da diaria: %.2f\n", quartos1.diaria);
-            printf("Capacidade: ");
+            else if(quartos1.status == 2){
+                printf("Ocupado\t\t");
+            }
+            else if(quartos1.status == 3){
+                printf("Reservado\t\t");
+            }
+
+            printf("%.2f\t\t", quartos1.diaria);
+
             if(quartos1.capacidade == 1){
                 printf("Solteiro\n");
             }
             else if(quartos1.capacidade == 2){
                 printf("Casal\n");
             }
-            else{
-                printf("Capacidade invalida!\n");
-            }
-            printf("\n");
         }
     }
 

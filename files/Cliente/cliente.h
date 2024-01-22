@@ -11,3 +11,5 @@ void Listar_Clientes();
 void Consultar_Cliente();
 
 void Editar_Cliente();
+
+void Reservar_Cliente();

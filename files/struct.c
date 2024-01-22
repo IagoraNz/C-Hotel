@@ -27,3 +27,18 @@ typedef struct clientes{
     char estado[maxnome];
 } Clientes;
 
+typedef struct data{
+    int dia;
+    int mes;
+    int ano;
+} Data;
+
+typedef struct reserva
+{
+    Data datai;
+    Clientes cliente;
+    Quartos quarto;
+    Data dataf;
+}Reserva;
+
+

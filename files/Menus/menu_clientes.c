@@ -16,10 +16,10 @@ void menuClientes(){
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU CLIENTES      \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-        printf("1 - Cadastrar Cliente\n");
-        printf("2 - Visualizar Clientes\n");
-        printf("3 - Consultar Cliente\n");
-        printf("4 - Editar Cliente\n");
+        printf("1 - Cadastrar cliente\n");
+        printf("2 - Visualizar clientes\n");
+        printf("3 - Consultar cliente\n");
+        printf("4 - Editar cliente\n");
         printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);

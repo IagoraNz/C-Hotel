@@ -63,7 +63,7 @@ int menu() {
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
     printf("1 - Cadastrar Funcionario\n");
     printf("2 - Login Funcionario\n");
-    printf("0 - Sair\n");
+    printf("3 - Sair\n");
 
     do{
         printf("Digite a opcao desejada: ");
@@ -72,7 +72,7 @@ int menu() {
         if(sscanf(buffer, "%d", &opc) != 1){
             return menu();
         }
-    }while(opc != 0);
+    }while(opc < 1 || opc > 3);
 
     return opc;
 }

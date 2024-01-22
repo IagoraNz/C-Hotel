@@ -35,5 +35,5 @@ int main(){
         default:
             break;
         }
-    }while(opcao != 0);
+    }while(opcao != 3);
 }

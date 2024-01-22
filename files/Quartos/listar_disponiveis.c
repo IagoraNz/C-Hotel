@@ -16,6 +16,18 @@ void listarDisponiveis(){
     printf("\xBA      LISTAR      \xBA\n");
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
 
+    int disp = 0;
+
+    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
+        if(quartos1.status == 1){
+            disp++;
+        }        
+    }
+
+    printf("A quantidade total de quartos disponiveis: %d\n\n", disp);
+
+    fseek(quartos, 0, SEEK_SET);
+
     while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
         if(quartos1.status == 1){
             printf("Tipo: ");

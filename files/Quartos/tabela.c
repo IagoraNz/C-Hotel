@@ -17,7 +17,6 @@ void tabela(){
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
     printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
     while(fscanf(quartos, "%d %d %d %f %d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) != EOF){
-        //Use ifs para verificar o numero do tipo e do status e converter para string
         if(quartos1.tipo == 1){
             printf("Luxo\t\t");
         }

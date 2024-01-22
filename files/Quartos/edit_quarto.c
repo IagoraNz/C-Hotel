@@ -32,7 +32,7 @@ void editarQuarto(){
     printf("Digite o numero do quarto que deseja editar: ");
     scanf("%d", &edicao);
 
-    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5) {
+    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
         if(edicao == quartos1.numquarto){
             encontrado = 1;
             printf("Quarto encontrado!\n");

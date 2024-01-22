@@ -17,7 +17,6 @@ int main(){
     Definindo_Predio();
 
     do{
-
         opcao = menu();
 
         switch (opcao)
@@ -28,7 +27,15 @@ int main(){
             system("cls");
             break;
         case 2:
-            login(&funcionario);
+            if(funcionario.usuario == 0 || funcionario.senha == 0){
+                printf("Nenhum funcionario cadastrado!\n");
+                system("PAUSE");
+                system("cls");
+                break;
+            }
+            else{
+                login(&funcionario);
+            }
             system("PAUSE");
             system("cls");
             break;

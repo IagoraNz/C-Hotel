@@ -6,6 +6,7 @@
 #include "../Quartos/edit_quarto.c"
 #include "../Quartos/excluir_quarto.c"
 #include "../Quartos/tabela.c"
+#include "../Quartos/consultar_quarto.c"
 
 void menuQuartos(){
     int opc;
@@ -21,6 +22,7 @@ void menuQuartos(){
         printf("4 - Consultar quartos disponiveis\n");
         printf("5 - Editar quartos\n");
         printf("6 - Excluir quartos\n");
+        printf("7 - Consultar quarto\n");
         printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
@@ -57,6 +59,11 @@ void menuQuartos(){
                 system("PAUSE");
                 system("cls");
                 break;
+            case 7:
+                consultarQuarto();
+                system("PAUSE");
+                system("cls");
+                break;
             case 0:
                 printf("Saindo...\n");
                 system("PAUSE");
@@ -66,5 +73,5 @@ void menuQuartos(){
                 printf("Opcao invalida!\n");
                 break;
         }
-    }while(opc != 7);
+    }while(opc != 0);
 }

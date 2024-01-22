@@ -8,7 +8,7 @@ void login(Funcionario *funcionario){
     cadastro = fopen("..\\db\\funcionario.txt", "r");
 
     if(cadastro == NULL){
-        printf("Nenhum Funcionario Encontrado!\n");
+        printf("Nenhum funcionario encontrado!\n");
         system("PAUSE");
         system("cls");
     }
@@ -30,10 +30,9 @@ void login(Funcionario *funcionario){
         }
     }
 
-    if(strcmp(usuario1, funcionario->usuario) != 0 && strcmp(senha1, funcionario->senha) != 0){
+    if(strcmp(usuario1, funcionario->usuario) != 0 || strcmp(senha1, funcionario->senha) != 0){
         printf("Usuario ou senha incorretos!\n");
         system("PAUSE");
-        system("cls");
         return login(funcionario);
     }
 

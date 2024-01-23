@@ -39,6 +39,7 @@ typedef struct reserva
     Clientes cliente;
     Quartos quarto;
     Data dataf;
+    int dias_reservado;
 }Reserva;
 
 

@@ -1,6 +1,7 @@
 #include "reserva.h"
 #include "calendario.c"
 #include "atualizar_status.c"
+#include "diferenca.c"
 
 void Reservar_Cliente(){
     Reserva reserva1;
@@ -98,13 +99,30 @@ void Reservar_Cliente(){
                             break;
                         }
                         fclose(quarto1);
-                        struct tm Datai, Dataf;
+                        struct tm Datai = {0}, Dataf = {0};
                         // COntinuar isso olhe no chat gpt Francinaldo do presente.
 
+                        Datai.tm_year = reserva1.datai.ano - 1900;
+                        Datai.tm_mon = reserva1.datai.mes - 1;
+                        Datai.tm_mday = reserva1.datai.dia;
+
+                        Dataf.tm_year = reserva1.dataf.ano - 1900;
+                        Dataf.tm_mon = reserva1.dataf.mes - 1;
+                        Dataf.tm_mday = reserva1.dataf.dia;
+
+                        reserva1.dias_reservado = diferencaDias(Datai, Dataf);
+
+                        reserva = fopen("..\\db\\reserva.txt", "a");
+                        if(reserva == NULL){
+                            printf("Erro ao abrir o arquivo.\n");
+                            exit(EXIT_FAILURE);
+                        }
+                        fprintf(reserva, "%s %d %02d/%02d/%4d %3d.%3d.%3d-%2d %02d/%02d/%4d %d\n", reserva1.cliente.nome, reserva1.quarto.numquarto, 
+                        reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4, 
+                        reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dias_reservado);
 
                         Atualizar_Status(numquarto);
-
-                        
+                        fclose(reserva);
                     }
                 }
             }
@@ -112,12 +130,4 @@ void Reservar_Cliente(){
     }
 
     fclose(cliente1);
-
-    reserva = fopen("..\\db\\reserva.txt", "a");
-
-    if(reserva == NULL){
-        printf("Erro ao abrir o arquivo.\n");
-        exit(EXIT_FAILURE);
-    }
-    fclose(reserva);
 }

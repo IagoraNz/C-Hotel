@@ -45,7 +45,7 @@ int Atualizar_Status(int numquarto){
     else{
         remove("..\\db\\quartos.txt");
         rename("..\\db\\quartos_temp.txt", "..\\db\\quartos.txt");
-        printf("Quarto editado com sucesso!\n");
+        printf("Status atualizado com sucesso!\n");
     }
     
     return 0; 

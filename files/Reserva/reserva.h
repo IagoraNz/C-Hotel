@@ -10,3 +10,5 @@ void Reservar_Cliente();
 void calendario();
 
 int Atualizar_Status(int numquarto);
+
+int diferencaDias(struct tm data1, struct tm data2);

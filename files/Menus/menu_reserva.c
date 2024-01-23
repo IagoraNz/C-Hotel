@@ -1,5 +1,6 @@
 #include "menus.h"
 #include "../Reserva/reserva_cliente.c"
+#include "../Reserva/consultar_reserva.c"
 
 void Menu_Reservas(){
     int opc;
@@ -10,7 +11,7 @@ void Menu_Reservas(){
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
         printf("1 - Realizar Reserva\n");
-        printf("2 - Area clientes\n");
+        printf("2 - Consultar Reserva\n");
         printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
@@ -21,7 +22,7 @@ void Menu_Reservas(){
             Reservar_Cliente();
             break;
         case 2:
-            
+            Consultar_reserva();
             break;
         case 0:
             return;

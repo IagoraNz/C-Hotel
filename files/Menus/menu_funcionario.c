@@ -2,6 +2,7 @@
 #include "menu_quartos.c"
 #include "menu_clientes.c"
 #include "menu_reserva.c"
+#include "menu_checks.c"
 
 void menu_funcionario(){
     int opc;
@@ -14,6 +15,7 @@ void menu_funcionario(){
         printf("1 - Area quartos\n");
         printf("2 - Area clientes\n");
         printf("3 - Area reservas\n");
+        printf("4 - Area check-in/out\n");
         printf("0 - Voltar\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
@@ -22,12 +24,23 @@ void menu_funcionario(){
         {
         case 1:
             menuQuartos();
+            system("PAUSE");
+            system("cls");
             break;
         case 2:
             menuClientes();
+            system("PAUSE");
+            system("cls");
             break;
         case 3:
             Menu_Reservas();
+            system("PAUSE");
+            system("cls");
+            break;
+        case 4:
+            menu_checks();
+            system("PAUSE");
+            system("cls");
             break;
         case 0:
             return;

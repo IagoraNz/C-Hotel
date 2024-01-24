@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/iagot/ProjetoProgramacao/ProjetoFinalII",
-      "program": "c:/Users/iagot/ProjetoProgramacao/ProjetoFinalII/build/Debug/outDebug",
+      "cwd": "c:/Users/iagot/ProjetoProgramacao/ProjetoFinalII/ProjetoFinalII",
+      "program": "c:/Users/iagot/ProjetoProgramacao/ProjetoFinalII/ProjetoFinalII/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

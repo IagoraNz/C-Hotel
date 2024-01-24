@@ -52,7 +52,7 @@ void cadastrarQuarto(){
         scanf("%d", &quartos1.capacidade);
     }while(quartos1.capacidade < 1 || quartos1.capacidade > 2);
 
-    fprintf(quartos, "%d\n%d\n%d\n%.2f\n%d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
+    fprintf(quartos, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
 
     fclose(quartos);
 }

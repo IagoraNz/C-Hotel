@@ -6,7 +6,6 @@
 
 void Menu_Reservas(){
     int opc;
-    int num;
 
     system("cls");
     do{

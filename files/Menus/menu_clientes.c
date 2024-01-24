@@ -11,6 +11,15 @@
 void menuClientes(){
     Clientes cliente;
     int opc;
+    FILE *arq;
+
+    arq = fopen("..\\db\\clientes.txt", "r");
+
+    int cont = 0;
+
+    while(fread(&cliente, sizeof(Clientes), 1, arq)){
+        cont++;
+    }
 
     do{
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
@@ -26,21 +35,47 @@ void menuClientes(){
 
         switch (opc) {
         case 1:
-            Cadastro_Cliente(&cliente);  // Chama a função de cadastro
+            Cadastro_Cliente(&cliente);
             break;
         case 2:
-            Listar_Clientes();
+            if(cont == 0){
+                printf("Nenhum cliente cadastrado!\n");
+                system("PAUSE");
+                system("cls");
+                break;
+            }
+            else{
+                Listar_Clientes();
+            }
             break;
         case 3:
-            Consultar_Cliente();
+            if(cont == 0){
+                printf("Nenhum cliente cadastrado!\n");
+                system("PAUSE");
+                system("cls");
+                break;
+            }
+            else{
+                Consultar_Cliente();
+            }
             break;
         case 4:
-            Editar_Cliente();
+            if(cont == 0){
+                printf("Nenhum cliente cadastrado!\n");
+                system("PAUSE");
+                system("cls");
+                break;
+            }
+            else{
+                Editar_Cliente();
+            }
             break;
         case 0:
-            return;  // Retorna ao menu principal
+            return;
         default:
             printf("Opcao invalida. Tente novamente.\n");
         }
     }while(opc != 0);
+
+    fclose(arq);
 }

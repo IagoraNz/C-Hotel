@@ -10,6 +10,16 @@
 
 void menuQuartos(){
     int opc;
+    FILE *quartos;
+    Quartos quarto;
+
+    quartos = fopen("..\\db\\quartos.txt", "r");
+
+    int cont = 0;
+
+    while(fread(&quarto, sizeof(Quartos), 1, quartos)){
+        cont++;
+    }
 
     system("cls");
     do{
@@ -29,38 +39,94 @@ void menuQuartos(){
 
         switch(opc){
             case 1:
-                cadastrarQuarto();
+                if(cont == 10){
+                    printf("Nao e possivel cadastrar mais quartos!\n");
+                    system("PAUSE");
+                    system("cls");
+                    break;
+                }
+                else{
+                    cadastroQuarto();
+                }
                 system("PAUSE");
                 system("cls");
                 break;
             case 2:
-                listarQuartos();
+                if(cont == 0){
+                    printf("Nenhum quarto cadastrado!\n");
+                    system("PAUSE");
+                    system("cls");
+                    break;
+                }
+                else{
+                    listarQuartos();
+                }
                 system("PAUSE");
                 system("cls");
                 break;
 
             case 3:
-                tabela();
+                if(cont == 0){
+                    printf("Nenhum quarto cadastrado!\n");
+                    system("PAUSE");
+                    system("cls");
+                    break;
+                }
+                else{
+                    tabela();
+                }
                 system("PAUSE");
                 system("cls");
                 break;
             case 4:
-                listarDisponiveis();
+                if(cont == 0){
+                    printf("Nenhum quarto cadastrado!\n");
+                    system("PAUSE");
+                    system("cls");
+                    break;
+                }
+                else{
+                    listarDisponiveis();
+                }
                 system("PAUSE");
                 system("cls");
                 break;
             case 5:
-                editarQuarto();
+                if(cont == 0){
+                    printf("Nenhum quarto cadastrado!\n");
+                    system("PAUSE");
+                    system("cls");
+                    break;
+                }
+                else{
+                    editQuarto();
+                }
                 system("PAUSE");
                 system("cls");
                 break;
             case 6:
-                excluirQuarto();
+                if(cont == 0){
+                    printf("Nenhum quarto cadastrado!\n");
+                    system("PAUSE");
+                    system("cls");
+                    break;
+                }
+                else{
+                    excluirQuarto();
+                }
                 system("PAUSE");
                 system("cls");
                 break;
             case 7:
-                consultarQuarto();
+                if(cont == 0){
+                    printf("Nenhum quarto cadastrado!\n");
+                    system("PAUSE");
+                    system("cls");
+                    break;
+                }
+                else{
+                    consultarQuarto();
+                }
                 system("PAUSE");
                 system("cls");
                 break;

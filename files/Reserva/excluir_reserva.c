@@ -1,0 +1,51 @@
+#include "reserva.h"
+
+void Excluir_reserva() {
+    FILE *reserva;
+    FILE *reservaTemp;
+    int aux1, aux2, aux3;
+
+    reserva = fopen("..\\db\\reserva.txt", "r");
+
+    if (reserva == NULL) {
+        printf("Erro ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+
+    reservaTemp = fopen("..\\db\\reserva_temp.txt", "a");
+
+    system("cls");
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA      EXCLUIR     \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+
+    int encontrado = 0;
+    Reserva reserva1;
+
+    printf("Digite a Data de Saida: ");
+    scanf("%2d/%2d/%4d", &aux1, &aux2, &aux3);
+
+    while (fscanf(reserva, "%s %d %02d/%02d/%4d %3d.%3d.%3d-%2d %02d/%02d/%4d %d\n", reserva1.cliente.nome, &reserva1.quarto.numquarto,
+                  &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.cliente.bloco1,
+                  &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
+                  &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dias_reservado) == 13) {
+        if (aux1 == reserva1.dataf.dia && aux2 == reserva1.dataf.mes && aux3 == reserva1.dataf.ano) {
+            encontrado = 1;
+            printf("Reserva excluída com sucesso!\n");
+        } else {
+            fprintf(reservaTemp, "%s %d %02d/%02d/%4d %3d.%3d.%3d-%2d %02d/%02d/%4d %d\n", reserva1.cliente.nome, reserva1.quarto.numquarto,
+                    reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
+                    reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dias_reservado);
+        }
+    }
+
+    if (encontrado == 0) {
+        printf("Quarto não encontrado!\n");
+    }
+
+    fclose(reserva);
+    fclose(reservaTemp);
+
+    remove("..\\db\\reserva.txt");
+    rename("..\\db\\reserva_temp.txt", "..\\db\\reserva.txt");
+}

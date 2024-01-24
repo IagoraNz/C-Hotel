@@ -8,21 +8,30 @@
 #include "../Quartos/tabela.c"
 #include "../Quartos/consultar_quarto.c"
 
-void menuQuartos(){
+void menuQuartos()
+{
     int opc;
     FILE *quartos;
-    Quartos quarto;
+    FILE *predio;
+    Quartos quartos1;
 
     quartos = fopen("..\\db\\quartos.txt", "r");
 
-    int cont = 0;
+    int cont = 0, qtd_quartos;
 
-    while(fread(&quarto, sizeof(Quartos), 1, quartos)){
+    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
         cont++;
     }
+    fclose(quartos);
+
+    predio = fopen("..\\db\\predio.txt", "r");
+
+    fscanf(predio,"%d", &qtd_quartos);
+    fclose(predio);
 
     system("cls");
-    do{
+    do
+    {
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
@@ -37,107 +46,122 @@ void menuQuartos(){
         printf("Digite a opcao desejada: ");
         scanf("%d", &opc);
 
-        switch(opc){
-            case 1:
-                if(cont == 10){
-                    printf("Nao e possivel cadastrar mais quartos!\n");
-                    system("PAUSE");
-                    system("cls");
-                    break;
-                }
-                else{
-                    cadastrarQuarto();
-                }
+        switch (opc)
+        {
+        case 1:
+            if (cont == qtd_quartos)
+            {
+                printf("Nao e possivel cadastrar mais quartos!\n");
                 system("PAUSE");
                 system("cls");
                 break;
-            case 2:
-                if(cont == 0){
-                    printf("Nenhum quarto cadastrado!\n");
-                    system("PAUSE");
-                    system("cls");
-                    break;
-                }
-                else{
-                    listarQuartos();
-                }
+            }
+            else
+            {
+                cadastrarQuarto();
+            }
+            system("PAUSE");
+            system("cls");
+            break;
+        case 2:
+            if (cont == 0)
+            {
+                printf("Nenhum quarto cadastrado!\n");
                 system("PAUSE");
                 system("cls");
                 break;
+            }
+            else
+            {
+                listarQuartos();
+            }
+            system("PAUSE");
+            system("cls");
+            break;
 
-            case 3:
-                if(cont == 0){
-                    printf("Nenhum quarto cadastrado!\n");
-                    system("PAUSE");
-                    system("cls");
-                    break;
-                }
-                else{
-                    tabela();
-                }
+        case 3:
+            if (cont == 0)
+            {
+                printf("Nenhum quarto cadastrado!\n");
                 system("PAUSE");
                 system("cls");
                 break;
-            case 4:
-                if(cont == 0){
-                    printf("Nenhum quarto cadastrado!\n");
-                    system("PAUSE");
-                    system("cls");
-                    break;
-                }
-                else{
-                    listarDisponiveis();
-                }
+            }
+            else
+            {
+                tabela();
+            }
+            system("PAUSE");
+            system("cls");
+            break;
+        case 4:
+            if (cont == 0)
+            {
+                printf("Nenhum quarto cadastrado!\n");
                 system("PAUSE");
                 system("cls");
                 break;
-            case 5:
-                if(cont == 0){
-                    printf("Nenhum quarto cadastrado!\n");
-                    system("PAUSE");
-                    system("cls");
-                    break;
-                }
-                else{
-                    editarQuarto();
-                }
+            }
+            else
+            {
+                listarDisponiveis();
+            }
+            system("PAUSE");
+            system("cls");
+            break;
+        case 5:
+            if (cont == 0)
+            {
+                printf("Nenhum quarto cadastrado!\n");
                 system("PAUSE");
                 system("cls");
                 break;
-            case 6:
-                if(cont == 0){
-                    printf("Nenhum quarto cadastrado!\n");
-                    system("PAUSE");
-                    system("cls");
-                    break;
-                }
-                else{
-                    excluirQuarto();
-                }
+            }
+            else
+            {
+                editarQuarto();
+            }
+            system("PAUSE");
+            system("cls");
+            break;
+        case 6:
+            if (cont == 0)
+            {
+                printf("Nenhum quarto cadastrado!\n");
                 system("PAUSE");
                 system("cls");
                 break;
-            case 7:
-                if(cont == 0){
-                    printf("Nenhum quarto cadastrado!\n");
-                    system("PAUSE");
-                    system("cls");
-                    break;
-                }
-                else{
-                    consultarQuarto();
-                }
+            }
+            else
+            {
+                excluirQuarto();
+            }
+            system("PAUSE");
+            system("cls");
+            break;
+        case 7:
+            if (cont == 0)
+            {
+                printf("Nenhum quarto cadastrado!\n");
                 system("PAUSE");
                 system("cls");
                 break;
-            case 0:
-                printf("Saindo...\n");
-                system("PAUSE");
-                system("cls");
-                return;
-            default:
-                printf("Opcao invalida!\n");
-                break;
+            }
+            else
+            {
+                consultarQuarto();
+            }
+            system("PAUSE");
+            system("cls");
+            break;
+        case 0:
+            printf("Saindo...\n");
+            system("PAUSE");
+            system("cls");
+            return;
+        default:
+            printf("Opcao invalida!\n");
+            break;
         }
-    }while(opc != 0);
+    } while (opc != 0);
 }

@@ -3,7 +3,7 @@
 int Contar_reservas()
 {
     Reserva reserva1;
-    int cont = 1;
+    int cont = 0;
 
     FILE *reserva = fopen("..\\db\\reserva.txt", "a+");
 

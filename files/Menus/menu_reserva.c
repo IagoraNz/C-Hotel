@@ -3,12 +3,17 @@
 #include "../Reserva/consultar_reserva.c"
 #include "../Reserva/listar_reservas.c"
 #include "../Reserva/excluir_reserva.c"
+#include "../Reserva/contar_reservas.c"
 
-void Menu_Reservas(){
-    int opc;
+void Menu_Reservas()
+{
+    int opc, cont;
+
+    cont = Contar_reservas();
 
     system("cls");
-    do{
+    do
+    {
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
@@ -26,18 +31,27 @@ void Menu_Reservas(){
             Reservar_Cliente();
             break;
         case 2:
-            Consultar_reserva();
+            if (cont != 0)
+            {
+                Consultar_reserva();
+            }
             break;
         case 3:
-            Listar_reservas();
+            if (cont != 0)
+            {
+                Listar_reservas();
+            }
             break;
         case 4:
-            Excluir_reserva();
+            if (cont != 0)
+            {
+                Excluir_reserva();
+            }
             break;
         case 0:
             return;
         default:
             break;
         }
-    }while(opc != 0);
+    } while (opc != 0);
 }

@@ -34,18 +34,24 @@ void Menu_Reservas()
             if (cont != 0)
             {
                 Consultar_reserva();
+            } else{
+                printf("Nenhuma Reserva Disponivel!\n");
             }
             break;
         case 3:
             if (cont != 0)
             {
                 Listar_reservas();
+            } else{
+                printf("Nenhuma Reserva Disponivel!\n");
             }
             break;
         case 4:
             if (cont != 0)
             {
                 Excluir_reserva();
+            } else{
+                printf("Nenhuma Reserva Disponivel!\n");
             }
             break;
         case 0:

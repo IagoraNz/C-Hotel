@@ -3,6 +3,7 @@
 #include "atualizar_status.c"
 #include "diferenca.c"
 // #include "listar_reservas.c"
+#include "contar_reservas.c"
 
 int verificarConflitos(int numquarto, struct tm Datai, struct tm Dataf)
 {
@@ -16,17 +17,16 @@ int verificarConflitos(int numquarto, struct tm Datai, struct tm Dataf)
 
     Datai.tm_year += 1900;
     Datai.tm_mon += 1;
-    
 
     Dataf.tm_year += 1900;
     Dataf.tm_mon += 1;
 
     Reserva reservaExistente;
 
-    while (fscanf(reserva, "%s %d %02d/%02d/%4d %3d.%3d.%3d-%2d %02d/%02d/%4d %d\n", reservaExistente.cliente.nome, &reservaExistente.quarto.numquarto,
-                  &reservaExistente.datai.dia, &reservaExistente.datai.mes, &reservaExistente.datai.ano, &reservaExistente.cliente.bloco1,
+    while (fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reservaExistente.cod_reserva, reservaExistente.cliente.nome, &reservaExistente.quarto.numquarto,
+                  &reservaExistente.datai.dia, &reservaExistente.datai.mes, &reservaExistente.datai.ano, &reservaExistente.datai.hora, &reservaExistente.datai.min, &reservaExistente.cliente.bloco1,
                   &reservaExistente.cliente.bloco2, &reservaExistente.cliente.bloco3, &reservaExistente.cliente.bloco4, &reservaExistente.dataf.dia,
-                  &reservaExistente.dataf.mes, &reservaExistente.dataf.ano, &reservaExistente.dias_reservado) == 13)
+                  &reservaExistente.dataf.mes, &reservaExistente.dataf.ano, &reservaExistente.dataf.hora, &reservaExistente.dataf.min, &reservaExistente.dias_reservado, &reservaExistente.status_pag, &reservaExistente.valor_total) == 20)
     {
         if (numquarto == reservaExistente.quarto.numquarto)
         {
@@ -133,15 +133,26 @@ void Reservar_Cliente()
 
                         if (num == 1)
                         {
+                            reserva1.cod_reserva = Contar_reservas();
                             // maincalendario();
                             printf("Informe a data da entrada(XX/XX/XXX): ");
                             if (scanf("%2d/%2d/%4d", &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano) != 3)
                             {
                                 printf("Formato invalido!\n");
                             }
+                            printf("Informe a hora de entrada(XX:XX): ");
+                            if (scanf("%2d:%d", &reserva1.datai.hora, &reserva1.datai.min) != 2)
+                            {
+                                printf("Formato invalido!\n");
+                            }
 
                             printf("Informe a data de saida(XX/XX/XXX): ");
                             if (scanf("%2d/%2d/%4d", &reserva1.dataf.dia, &reserva1.dataf.mes, &reserva1.dataf.ano) != 3)
+                            {
+                                printf("Formato invalido!\n");
+                            }
+                            printf("Informe a hora de saida(XX:XX): ");
+                            if (scanf("%2d:%d", &reserva1.dataf.hora, &reserva1.dataf.min) != 2)
                             {
                                 printf("Formato invalido!\n");
                             }
@@ -152,30 +163,45 @@ void Reservar_Cliente()
                                 break;
                             }
                             fclose(quarto1);
-                            struct tm Datai = {0}, Dataf = {0};
-                            // COntinuar isso olhe no chat gpt Francinaldo do presente.
 
-                            Datai.tm_year = reserva1.datai.ano - 1900;
-                            Datai.tm_mon = reserva1.datai.mes - 1;
-                            Datai.tm_mday = reserva1.datai.dia;
-
-                            Dataf.tm_year = reserva1.dataf.ano - 1900;
-                            Dataf.tm_mon = reserva1.dataf.mes - 1;
-                            Dataf.tm_mday = reserva1.dataf.dia;
-
-                            reserva1.dias_reservado = diferencaDias(Datai, Dataf);
-
-                            reserva = fopen("..\\db\\reserva.txt", "a");
-                            if (reserva == NULL)
+                            printf("Deseja fazer o pagamento logo?(1 - Sim ou 2 - Não): ");
+                            scanf("%d", &num);
+                            if (num == 1)
                             {
-                                printf("Erro ao abrir o arquivo.\n");
-                                exit(EXIT_FAILURE);
+                                // chamar função Realizar Pagamento.
                             }
-                            fprintf(reserva, "%s %d %02d/%02d/%4d %3d.%3d.%3d-%2d %02d/%02d/%4d %d\n", reserva1.cliente.nome, reserva1.quarto.numquarto,
-                                    reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
-                                    reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dias_reservado);
+                            else if (num == 2)
+                            {
+                                reserva1.status_pag = 1;
 
-                            Atualizar_Status(numquarto);
+                                struct tm Datai = {0}, Dataf = {0};
+
+                                Datai.tm_year = reserva1.datai.ano - 1900;
+                                Datai.tm_mon = reserva1.datai.mes - 1;
+                                Datai.tm_mday = reserva1.datai.dia;
+
+                                Dataf.tm_year = reserva1.dataf.ano - 1900;
+                                Dataf.tm_mon = reserva1.dataf.mes - 1;
+                                Dataf.tm_mday = reserva1.dataf.dia;
+
+                                reserva1.dias_reservado = diferencaDias(Datai, Dataf);
+
+                                reserva1.valor_total = (reserva1.dias_reservado + 1) * reserva1.quarto.diaria;
+
+                                reserva = fopen("..\\db\\reserva.txt", "a");
+                                if (reserva == NULL)
+                                {
+                                    printf("Erro ao abrir o arquivo.\n");
+                                    exit(EXIT_FAILURE);
+                                }
+                                fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
+                                        reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
+                                        reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
+                                        reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min,
+                                        reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
+
+                                Atualizar_Status(numquarto);
+                            }
                             fclose(reserva);
                         }
                     }
@@ -230,9 +256,16 @@ void Reservar_Cliente()
 
                         if (num == 1)
                         {
+                            reserva1.cod_reserva = Contar_reservas();
                             // maincalendario();
                             printf("Informe a data da entrada(XX/XX/XXX): ");
                             if (scanf("%2d/%2d/%4d", &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano) != 3)
+                            {
+                                printf("Formato invalido!\n");
+                            }
+
+                            printf("Informe a hora de entrada(XX:XX): ");
+                            if (scanf("%2d:%d", &reserva1.datai.hora, &reserva1.datai.min) != 2)
                             {
                                 printf("Formato invalido!\n");
                             }
@@ -243,12 +276,20 @@ void Reservar_Cliente()
                                 printf("Formato invalido!\n");
                             }
 
+                            printf("Informe a hora de saida(XX:XX): ");
+                            if (scanf("%2d:%d", &reserva1.dataf.hora, &reserva1.dataf.min) != 2)
+                            {
+                                printf("Formato invalido!\n");
+                            }
+
                             if (reserva1.datai.ano > reserva1.dataf.ano)
                             {
                                 printf("Nao e possivel alugar um quarto!\n");
                                 break;
                             }
                             fclose(quarto1);
+
+                            reserva1.status_pag = 1;
                             struct tm Datai = {0}, Dataf = {0};
                             // COntinuar isso olhe no chat gpt Francinaldo do presente.
 
@@ -269,9 +310,14 @@ void Reservar_Cliente()
                                     exit(EXIT_FAILURE);
                                 }
                                 reserva1.dias_reservado = diferencaDias(Datai, Dataf);
-                                fprintf(reserva, "%s %d %02d/%02d/%4d %3d.%3d.%3d-%2d %02d/%02d/%4d %d\n", reserva1.cliente.nome, reserva1.quarto.numquarto,
-                                        reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
-                                        reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dias_reservado);
+
+                                reserva1.valor_total = (reserva1.dias_reservado + 1) * reserva1.quarto.diaria;
+
+                                fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
+                                        reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
+                                        reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
+                                        reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min,
+                                        reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
                                 fclose(reserva);
                             }
                         }

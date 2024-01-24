@@ -15,4 +15,6 @@ int diferencaDias(struct tm data1, struct tm data2);
 
 void Listar_reservas();
 
+int Contar_reservas();
+
 void Excluir_reserva();

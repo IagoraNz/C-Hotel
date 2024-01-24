@@ -1,6 +1,7 @@
 #include "menus.h"
 #include "../Reserva/reserva_cliente.c"
 #include "../Reserva/consultar_reserva.c"
+#include "../Reserva/listar_reservas.c"
 
 void Menu_Reservas(){
     int opc;
@@ -23,6 +24,9 @@ void Menu_Reservas(){
             break;
         case 2:
             Consultar_reserva();
+            break;
+        case 3:
+            Listar_reservas();
             break;
         case 0:
             return;

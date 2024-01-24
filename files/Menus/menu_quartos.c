@@ -46,7 +46,7 @@ void menuQuartos(){
                     break;
                 }
                 else{
-                    cadastroQuarto();
+                    cadastrarQuarto();
                 }
                 system("PAUSE");
                 system("cls");
@@ -99,7 +99,7 @@ void menuQuartos(){
                     break;
                 }
                 else{
-                    editQuarto();
+                    editarQuarto();
                 }
                 system("PAUSE");
                 system("cls");

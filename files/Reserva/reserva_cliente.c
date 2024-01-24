@@ -164,44 +164,35 @@ void Reservar_Cliente()
                             }
                             fclose(quarto1);
 
-                            printf("Deseja fazer o pagamento logo?(1 - Sim ou 2 - Não): ");
-                            scanf("%d", &num);
-                            if (num == 1)
+                            reserva1.status_pag = 1;
+
+                            struct tm Datai = {0}, Dataf = {0};
+
+                            Datai.tm_year = reserva1.datai.ano - 1900;
+                            Datai.tm_mon = reserva1.datai.mes - 1;
+                            Datai.tm_mday = reserva1.datai.dia;
+
+                            Dataf.tm_year = reserva1.dataf.ano - 1900;
+                            Dataf.tm_mon = reserva1.dataf.mes - 1;
+                            Dataf.tm_mday = reserva1.dataf.dia;
+
+                            reserva1.dias_reservado = diferencaDias(Datai, Dataf);
+
+                            reserva1.valor_total = (reserva1.dias_reservado + 1) * reserva1.quarto.diaria;
+
+                            reserva = fopen("..\\db\\reserva.txt", "a");
+                            if (reserva == NULL)
                             {
-                                // chamar função Realizar Pagamento.
+                                printf("Erro ao abrir o arquivo.\n");
+                                exit(EXIT_FAILURE);
                             }
-                            else if (num == 2)
-                            {
-                                reserva1.status_pag = 1;
+                            fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
+                                    reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
+                                    reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
+                                    reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min,
+                                    reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
 
-                                struct tm Datai = {0}, Dataf = {0};
-
-                                Datai.tm_year = reserva1.datai.ano - 1900;
-                                Datai.tm_mon = reserva1.datai.mes - 1;
-                                Datai.tm_mday = reserva1.datai.dia;
-
-                                Dataf.tm_year = reserva1.dataf.ano - 1900;
-                                Dataf.tm_mon = reserva1.dataf.mes - 1;
-                                Dataf.tm_mday = reserva1.dataf.dia;
-
-                                reserva1.dias_reservado = diferencaDias(Datai, Dataf);
-
-                                reserva1.valor_total = (reserva1.dias_reservado + 1) * reserva1.quarto.diaria;
-
-                                reserva = fopen("..\\db\\reserva.txt", "a");
-                                if (reserva == NULL)
-                                {
-                                    printf("Erro ao abrir o arquivo.\n");
-                                    exit(EXIT_FAILURE);
-                                }
-                                fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
-                                        reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
-                                        reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
-                                        reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min,
-                                        reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
-
-                                Atualizar_Status(numquarto);
-                            }
+                            Atualizar_Status(numquarto);
                             fclose(reserva);
                         }
                     }

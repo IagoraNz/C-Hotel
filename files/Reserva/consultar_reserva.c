@@ -58,4 +58,5 @@ void Consultar_reserva(){
     default:
         break;
     }
+    fclose(reserva);
 }

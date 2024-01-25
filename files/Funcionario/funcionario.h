@@ -9,3 +9,5 @@ void cadastrar(Funcionario *funcionario);
 
 void login(Funcionario *funcionario);
 
+int verificar_funcionario(char *nome);
+

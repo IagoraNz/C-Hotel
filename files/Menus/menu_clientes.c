@@ -1,6 +1,4 @@
 #include "menus.h"
-// #include "../struct.h"
-// #include "../struct.c"
 #include "../Cliente/cliente.h"
 #include "../Cliente/cadastro_cliente.c"
 #include "../Cliente/visualizar_cliente.c"
@@ -40,7 +38,7 @@ void menuClientes()
         switch (opc)
         {
         case 1:
-            Cadastro_Cliente(&cliente);
+            Cadastro_Cliente(&cliente1);
             break;
         case 2:
             if (cont == 0)

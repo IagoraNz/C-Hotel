@@ -47,6 +47,13 @@ typedef struct reserva
     float valor_total;
 }Reserva;
 
+typedef struct pagamento
+{
+    Clientes cliente;
+    Data datap;
+    float valor_total;
+}Pagamento;
+
 
 //pagamento: 1 - Pedente 2 - Pago
 

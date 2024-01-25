@@ -6,3 +6,5 @@
 #include "../struct.h"
 
 void checkin();
+
+void Realizar_pagamento();

@@ -15,3 +15,5 @@ typedef struct quartos Quartos;
 typedef struct clientes Clientes;
 
 typedef struct reserva Reserva;
+
+typedef struct pagamento Pagamento;

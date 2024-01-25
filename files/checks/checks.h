@@ -7,4 +7,4 @@
 
 void checkin();
 
-void Realizar_pagamento();
+void Realizar_pagamento(Data *datapag, Reserva *reserva1);

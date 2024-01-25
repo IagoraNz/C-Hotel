@@ -1,3 +1,5 @@
+#include "checks.h"
+#include "realizar_pagamento.c"
 
 
 void attstatus(int numquarto)
@@ -66,11 +68,14 @@ void checkin()
     Quartos quartos1;
     Reserva reserva1;
 
+    Data dataini;
+    Data datafim;
+
     quartos = fopen("..\\db\\quartos.txt", "r");
     clientes = fopen("..\\db\\clientes.txt", "r");
     reserva = fopen("..\\db\\reserva.txt", "r");
 
-    int numquarto, aux1, aux2, aux3, aux4;
+    int numquarto, aux1, aux2, aux3, aux4, codigocheck;
 
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
     printf("\xBA      CHECKS      \xBA\n");
@@ -82,25 +87,23 @@ void checkin()
     printf("Digite o numero do quarto: ");
     scanf("%d", &numquarto);
 
-    int diai, mesi, anoi, diaf, mesf, anof, codigocheck, horai, horaf, mini, minf;
-
     printf("Digite a data de entrada(dd/mm/aaaa): ");
-    if(scanf("%2d/%2d/%4d", &diai, &mesi, &anoi) != 3){
+    if(scanf("%2d/%2d/%4d", &dataini.dia, &dataini.mes, &dataini.ano) != 3){
         printf("Formato invalido!\n");
     }
 
     printf("Informe a hora de entrada(XX:XX): ");
-    if(scanf("%2d:%d", &horai, &mini) != 2){
+    if(scanf("%2d:%d", &dataini.hora, &dataini.min) != 2){
         printf("Formato invalido!\n");
     }
 
     printf("Digite a data de saida(dd/mm/aaaa): ");
-    if(scanf("%2d/%2d/%4d", &diaf, &mesf, &anof) != 3){
+    if(scanf("%2d/%2d/%4d", &datafim.dia, &datafim.mes, &datafim.ano) != 3){
         printf("Formato invalido!\n");
     }
 
     printf("Informe a hora de saida(XX:XX) prevista: ");
-    if(scanf("%2d:%d", &horaf, &minf) != 2){
+    if(scanf("%2d:%d", &datafim.hora, &datafim.min) != 2){
         printf("Formato invalido!\n");
     }
 
@@ -114,28 +117,34 @@ void checkin()
         exit(EXIT_FAILURE);
     }
     int enc = 0;
+    char contcheck;
     
     while(fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
                   &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.datai.hora, &reserva1.datai.min, &reserva1.cliente.bloco1,
                   &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
                   &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total) == 20)
     {
-        if(reserva1.cliente.bloco1 == aux1 && reserva1.cliente.bloco2 == aux2 && reserva1.cliente.bloco3 == aux3 && reserva1.cliente.bloco4 == aux4 && reserva1.quarto.numquarto == numquarto && reserva1.datai.dia == diai && reserva1.datai.mes == mesi && reserva1.datai.ano == anoi && reserva1.dataf.dia == diaf && reserva1.dataf.mes == mesf && reserva1.dataf.ano == anof)
+        if(reserva1.cliente.bloco1 == aux1 && reserva1.cliente.bloco2 == aux2 && reserva1.cliente.bloco3 == aux3 && reserva1.cliente.bloco4 == aux4 && reserva1.quarto.numquarto == numquarto && reserva1.datai.dia == dataini.dia && reserva1.datai.mes == dataini.mes && reserva1.datai.ano == dataini.ano && reserva1.dataf.dia == datafim.dia && reserva1.dataf.mes == datafim.mes && reserva1.dataf.ano == datafim.ano)
         {
+            printf("Deseja fazer o pagamento agora? (s/n): ");
+            scanf(" %c", &contcheck);
+            if (contcheck == 's')
+            {
+                Realizar_pagamento(&dataini, &reserva1);
+                reserva1.status_pag = 2;
+            }
             enc = 1;
-            reserva1.datai.hora = horai;
-            reserva1.datai.min = mini;
+            reserva1.datai.hora = dataini.hora;
+            reserva1.datai.min = dataini.min;
 
-            reserva1.dataf.hora = horaf;
-            reserva1.dataf.min = minf;
-            fprintf(temporario, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto, reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4, reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min, reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
+            reserva1.dataf.hora = datafim.hora;
+            reserva1.dataf.min = datafim.min;
+            fprintf(temporario, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto, reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4, reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min, reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
         }
         else{
-            fprintf(temporario, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto, reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4, reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min, reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
+            fprintf(temporario, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto, reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4, reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min, reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
         }
     }
-
-    char contcheck;
 
     printf("Digite o codigo da reserva: ");
     scanf("%d", &codigocheck);
@@ -148,7 +157,7 @@ void checkin()
                   &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
                   &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total) == 20)
     {
-        if(reserva1.cliente.bloco1 == aux1 && reserva1.cliente.bloco2 == aux2 && reserva1.cliente.bloco3 == aux3 && reserva1.cliente.bloco4 == aux4 && reserva1.quarto.numquarto == numquarto && reserva1.datai.dia == diai && reserva1.datai.mes == mesi && reserva1.datai.ano == anoi && reserva1.dataf.dia == diaf && reserva1.dataf.mes == mesf && reserva1.dataf.ano == anof)
+        if(reserva1.cliente.bloco1 == aux1 && reserva1.cliente.bloco2 == aux2 && reserva1.cliente.bloco3 == aux3 && reserva1.cliente.bloco4 == aux4 && reserva1.quarto.numquarto == numquarto && reserva1.datai.dia == dataini.dia && reserva1.datai.mes == dataini.mes && reserva1.datai.ano == dataini.ano && reserva1.dataf.dia == datafim.dia && reserva1.dataf.mes == datafim.mes && reserva1.dataf.ano == datafim.ano)
         {
             printf("Deseja fazer o checkin? (s/n): ");
             scanf(" %c", &contcheck);

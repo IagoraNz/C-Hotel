@@ -1,5 +1,7 @@
 #include "menus.h"
 
+#define tam 50
+
 void logo() {
     FILE *contador;
     int logoExibido = 0;
@@ -41,7 +43,6 @@ void logo() {
 
     logoExibido++;
 
-    // Retorna ao início do arquivo para escrever o novo valor
     fseek(contador, 0, SEEK_SET);
     fprintf(contador, "%d", logoExibido);
 
@@ -50,11 +51,16 @@ void logo() {
     system("PAUSE");
 }
 
-int menu() {
+void limpabuffer(){
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
+}
+
+int menu(){
     int opc;
     char buffer[tam];
 
-    logo();  // Chama a função logo
+    logo();
 
     system("cls");
 
@@ -68,11 +74,20 @@ int menu() {
     do{
         printf("Digite a opcao desejada: ");
 
-        fgets(buffer, sizeof(buffer), stdin);
-        if(sscanf(buffer, "%d", &opc) != 1){
-            return menu();
+        if(fgets(buffer, sizeof(buffer), stdin) == NULL){
+            printf("Erro ao ler a entrada!\n");
+            exit(EXIT_FAILURE);
         }
-    }while(opc < 1 || opc > 3);
+
+        if(sscanf(buffer, "%d", &opc) == 1 && (opc >= 1 && opc <= 3)){
+            break;
+        }
+
+        printf("Opcao invalida! Digite um numero entre 1 e 3.\n");
+        printf("Pressione enter para tentar novamente... ");
+        limpabuffer();
+        printf("\n");
+    }while(1);
 
     return opc;
 }

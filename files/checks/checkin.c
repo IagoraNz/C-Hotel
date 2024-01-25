@@ -1,4 +1,5 @@
 
+
 void attstatus(int numquarto)
 {
     FILE *quartos;
@@ -27,7 +28,7 @@ void attstatus(int numquarto)
 
     while (fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5)
     {
-        if (numquarto == quartos1.numquarto)
+        if(numquarto == quartos1.numquarto)
         {
             encontrado = 1;
             quartos1.status = 2;

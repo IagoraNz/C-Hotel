@@ -258,7 +258,7 @@ void Reservar_Cliente()
                                     printf("Formato invalido!\n");
                                 }
 
-                                printf("Informe a hora de entrada(XX:XX): ");
+                                printf("Informe a hora de entrada(XX:XX) prevista: ");
                                 if (scanf("%2d:%d", &reserva1.datai.hora, &reserva1.datai.min) != 2)
                                 {
                                     printf("Formato invalido!\n");
@@ -270,7 +270,7 @@ void Reservar_Cliente()
                                     printf("Formato invalido!\n");
                                 }
 
-                                printf("Informe a hora de saida(XX:XX): ");
+                                printf("Informe a hora de saida(XX:XX) prevista: ");
                                 if (scanf("%2d:%d", &reserva1.dataf.hora, &reserva1.dataf.min) != 2)
                                 {
                                     printf("Formato invalido!\n");

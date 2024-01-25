@@ -4,3 +4,5 @@
 #include <ctype.h>
 #include <time.h>
 #include "../struct.h"
+
+void checkin();

@@ -52,8 +52,13 @@ typedef struct pagamento
     Clientes cliente;
     Data datap;
     float valor_total;
+    int forma_pag;
+    int cartao;
 }Pagamento;
 
+//int cartao e para caso selecionar se e Debito ou Credito: 0 - Nada 1 - Debito e 2 - Credito
+
+// Forma de Pagamento: 1 - Pix 2 - Especie 3 - Cartão
 
 //pagamento: 1 - Pedente 2 - Pago
 

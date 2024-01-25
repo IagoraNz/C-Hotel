@@ -16,4 +16,6 @@ typedef struct clientes Clientes;
 
 typedef struct reserva Reserva;
 
+typedef struct data Data;
+
 typedef struct pagamento Pagamento;

@@ -8,3 +8,5 @@
 void checkin();
 
 void Realizar_pagamento(Data *datapag, Reserva *reserva1);
+
+void atualizareserva();

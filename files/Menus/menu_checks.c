@@ -1,5 +1,6 @@
 #include "menus.h"
 #include "../checks/checkin.c"
+#include "../checks/checkout.c"
 
 void menu_checks(){
     int opc;
@@ -23,7 +24,7 @@ void menu_checks(){
             system("cls");
             break;
         case 2:
-            // checkout();
+            checkout();
             system("PAUSE");
             system("cls");
             break;

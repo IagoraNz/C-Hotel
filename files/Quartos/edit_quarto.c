@@ -6,7 +6,7 @@ void editarQuarto(){
 
     quartos = fopen("..\\db\\quartos.txt", "r");
 
-    if (quartos == NULL) {
+    if(quartos == NULL){
         printf("Erro ao abrir o arquivo");
         exit(EXIT_FAILURE);
     }

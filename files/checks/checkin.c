@@ -1,7 +1,6 @@
 #include "checks.h"
 #include "realizar_pagamento.c"
 
-
 void attstatus(int numquarto)
 {
     FILE *quartos;
@@ -77,6 +76,7 @@ void checkin()
 
     int numquarto, aux1, aux2, aux3, aux4, codigocheck;
 
+    system("cls");
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
     printf("\xBA      CHECKS      \xBA\n");
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");

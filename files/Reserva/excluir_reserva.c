@@ -29,10 +29,11 @@ void Excluir_reserva() {
                   &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.datai.hora, &reserva1.datai.min, &reserva1.cliente.bloco1,
                   &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
                   &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total) == 20) {
-        if (aux1 == reserva1.dataf.dia && aux2 == reserva1.dataf.mes && aux3 == reserva1.dataf.ano) {
+        if(aux1 == reserva1.dataf.dia && aux2 == reserva1.dataf.mes && aux3 == reserva1.dataf.ano){
             encontrado = 1;
             printf("Reserva excluída com sucesso!\n");
-        } else {
+        } 
+        else{
             fprintf(reservaTemp, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
                                         reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
                                         reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
@@ -42,7 +43,7 @@ void Excluir_reserva() {
     }
 
     if (encontrado == 0) {
-        printf("Quarto não encontrado!\n");
+        printf("Quarto nao encontrado!\n");
     }
 
     fclose(reserva);

@@ -33,7 +33,7 @@ void tabela(){
             printf("Disponivel\t\t");
         }
         else if(quartos1.status == 2){
-            printf("Ocupado\t\t");
+            printf("Ocupado\t\t\t");
         }
         else if(quartos1.status == 3){
             printf("Reservado\t\t");

@@ -4,7 +4,15 @@
 #include "menu_reserva.c"
 #include "menu_checks.c"
 
+#define tam 50
+
+void lbuffer1(){
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
+}
+
 void menu_funcionario(){
+    char buffer[tam];
     int opc;
 
     system("cls");
@@ -17,8 +25,24 @@ void menu_funcionario(){
         printf("3 - Area reservas\n");
         printf("4 - Area check-in/out\n");
         printf("0 - Voltar\n");
-        printf("Digite a opcao desejada: ");
-        scanf("%d", &opc);
+        fflush(stdin);
+        do{
+            printf("Digite a opcao desejada: ");
+
+            if(fgets(buffer, sizeof(buffer), stdin) == NULL){
+                printf("Erro ao ler a entrada!\n");
+                exit(EXIT_FAILURE);
+            }
+
+            if(sscanf(buffer, "%d", &opc) == 1 && (opc >= 1 && opc <= 4)){
+                break;
+            }
+
+            printf("Opcao invalida! Digite um numero entre 1 e 3.\n");
+            printf("Pressione enter para tentar novamente... ");
+            lbuffer();
+            printf("\n");
+        }while(opc < 0 || opc > 7);
 
         switch (opc)
         {

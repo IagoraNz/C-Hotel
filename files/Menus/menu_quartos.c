@@ -8,9 +8,15 @@
 #include "../Quartos/tabela.c"
 #include "../Quartos/consultar_quarto.c"
 
+void lbuffer(){
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
+}
+
 void menuQuartos()
 {
     int opc;
+    char buffer[tam];
     FILE *quartos;
     FILE *predio;
     Quartos quartos1;
@@ -43,8 +49,25 @@ void menuQuartos()
         printf("6 - Excluir quartos\n");
         printf("7 - Consultar quarto\n");
         printf("0 - Voltar\n");
-        printf("Digite a opcao desejada: ");
-        scanf("%d", &opc);
+        fflush(stdin);
+        do
+        {
+            printf("Digite a opcao desejada: ");
+
+            if(fgets(buffer, sizeof(buffer), stdin) == NULL){
+                printf("Erro ao ler a entrada!\n");
+                exit(EXIT_FAILURE);
+            }
+
+            if(sscanf(buffer, "%d", &opc) == 1 && (opc >= 1 && opc <= 7)){
+                break;
+            }
+
+            printf("Opcao invalida! Digite um numero entre 1 e 3.\n");
+            printf("Pressione enter para tentar novamente... ");
+            lbuffer();
+            printf("\n");
+        }while(opc < 0 || opc > 7);
 
         switch (opc)
         {

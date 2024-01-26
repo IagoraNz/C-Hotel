@@ -6,14 +6,22 @@
 
 #define tam 50
 
-void lbuffer1(){
-    int c;
-    while((c = getchar()) != '\n' && c != EOF);
+int stringparaintf(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
 }
 
 void menu_funcionario(){
-    char buffer[tam];
-    int opc;
+    char opc[1];
+    int input;
 
     system("cls");
     do{
@@ -28,23 +36,18 @@ void menu_funcionario(){
         fflush(stdin);
         do{
             printf("Digite a opcao desejada: ");
-            fflush(stdin);
-            if(fgets(buffer, sizeof(buffer), stdin) == NULL){
-                printf("Erro ao ler a entrada!\n");
-                exit(EXIT_FAILURE);
+            scanf("%s", opc);
+
+            input = stringparaintf(opc);
+
+            if(input == -1){
+                printf("Opcao invalida!\n");
+                system("PAUSE");
+                return menu_funcionario();
             }
+        }while(input < 0 || input > 7);
 
-            if(sscanf(buffer, "%d", &opc) == 1 && (opc >= 1 && opc <= 4)){
-                break;
-            }
-
-            printf("Opcao invalida! Digite um numero entre 1 e 3.\n");
-            printf("Pressione enter para tentar novamente... ");
-            lbuffer();
-            printf("\n");
-        }while(opc < 0 || opc > 7);
-
-        switch (opc)
+        switch (input)
         {
         case 1:
             menuQuartos();

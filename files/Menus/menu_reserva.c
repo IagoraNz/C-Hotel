@@ -5,15 +5,28 @@
 #include "../Reserva/excluir_reserva.c"
 #include "../Reserva/contar_reservas.c"
 
+int stringparaint1(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
+}
+
 void Menu_Reservas()
 {
-    int opc, cont;
-
-    cont = Contar_reservas();
+    char opc[1];
+    int cont, input;
 
     system("cls");
     do
     {
+        cont = Contar_reservas();
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
@@ -22,35 +35,45 @@ void Menu_Reservas()
         printf("3 - Listar Reservas\n");
         printf("4 - Excluir Reservas\n");
         printf("0 - Voltar\n");
-        printf("Digite a opcao desejada: ");
-        scanf("%d", &opc);
+        do{
+            printf("Digite a opcao desejada: ");
+            scanf("%s", opc);
 
-        switch (opc)
+            input = stringparaint(opc);
+
+            if(input == -1){
+                printf("Opcao invalida!\n");
+                system("PAUSE");
+                return Menu_Reservas();
+            }
+        }while(input < 0 || input > 4);
+
+        switch (input)
         {
         case 1:
             Reservar_Cliente();
             break;
         case 2:
-            if (cont != 0)
-            {
+            if(cont != 0){
                 Consultar_reserva();
-            } else{
+            } 
+            else{
                 printf("Nenhuma Reserva Disponivel!\n");
             }
             break;
         case 3:
-            if (cont != 0)
-            {
+            if(cont != 0){
                 Listar_reservas();
-            } else{
+            } 
+            else{
                 printf("Nenhuma Reserva Disponivel!\n");
             }
             break;
         case 4:
-            if (cont != 0)
-            {
+            if(cont != 0){
                 Excluir_reserva();
-            } else{
+            } 
+            else{
                 printf("Nenhuma Reserva Disponivel!\n");
             }
             break;

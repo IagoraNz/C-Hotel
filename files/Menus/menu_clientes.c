@@ -5,25 +5,39 @@
 #include "../Cliente/consultar_cliente.c"
 #include "../Cliente/edit_cliente.c"
 
+int stringparaintc(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
+}
+
 void menuClientes()
 {
     Clientes cliente1;
-    int opc;
     FILE *cliente;
 
-    cliente = fopen("..\\db\\cliente.txt", "r");
+    int input;
+    char opc[1];
 
-    int cont = 0;
+    do{
+        cliente = fopen("..\\db\\cliente.txt", "r");
 
-    while (fscanf(cliente, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n", cliente1.nome, &cliente1.idade,
-                  &cliente1.bloco1, &cliente1.bloco2, &cliente1.bloco3, &cliente1.bloco4,
-                  &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11)
-    {
-        cont++;
-    }
-    fclose(cliente);
-    do
-    {
+        int cont = 0;
+
+        while (fscanf(cliente, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n", cliente1.nome, &cliente1.idade,
+                    &cliente1.bloco1, &cliente1.bloco2, &cliente1.bloco3, &cliente1.bloco4,
+                    &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11)
+        {
+            cont++;
+        }
+        fclose(cliente);
         system("cls");
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU CLIENTES      \xBA\n");
@@ -33,10 +47,20 @@ void menuClientes()
         printf("3 - Consultar cliente\n");
         printf("4 - Editar cliente\n");
         printf("0 - Voltar\n");
-        printf("Digite a opcao desejada: ");
-        scanf("%d", &opc);
+        do{
+            printf("Digite a opcao desejada: ");
+            scanf("%s", opc);
 
-        switch (opc)
+            input = stringparaintc(opc);
+
+            if(input == -1){
+                printf("Opcao invalida!\n");
+                system("PAUSE");
+                return menuClientes();
+            }
+        }while(input < 0 || input > 4);
+
+        switch (input)
         {
         case 1:
             Cadastro_Cliente(&cliente1);

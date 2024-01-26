@@ -19,7 +19,7 @@ void Cadastro_Cliente(Clientes *clientes) {
     printf("Digite o CPF (no formato XXX.XXX.XXX-XX): ");
     if (scanf("%3d.%3d.%3d-%2d", &clientes->bloco1, &clientes->bloco2, &clientes->bloco3, &clientes->bloco4) != 4) {
         printf("Formato de CPF inválido.\n");
-        // Tratamento de erro, se necessário
+
         fclose(cliente);
         exit(EXIT_FAILURE);
     }

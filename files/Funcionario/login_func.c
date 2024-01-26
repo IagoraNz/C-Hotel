@@ -37,6 +37,11 @@ void login(Funcionario *funcionario){
         system("cls");
     }
 
+    system("cls");
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA        FUNCIONARIO       \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+
     do{
         printf("Digite o nome do funcionario: ");
         scanf("%s", usuario1);
@@ -56,8 +61,6 @@ void login(Funcionario *funcionario){
 
     if(strcmp(usuario1, funcionario->usuario) != 0 || strcmp(senha1, funcionario->senha) != 0){
         printf("\n\nUsuario ou senha incorretos!\n\n");
-        system("PAUSE");
-        system("cls");
         printf("\n\n");
         return login(funcionario);
     }

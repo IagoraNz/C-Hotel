@@ -51,14 +51,22 @@ void logo() {
     system("PAUSE");
 }
 
-void limpabuffer(){
-    int c;
-    while((c = getchar()) != '\n' && c != EOF);
+int stringparaintp(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
 }
 
 int menu(){
-    int opc;
-    char buffer[tam];
+    int input;
+    char opc[1];
 
     logo();
 
@@ -73,21 +81,16 @@ int menu(){
 
     do{
         printf("Digite a opcao desejada: ");
+        scanf("%s", opc);
 
-        if(fgets(buffer, sizeof(buffer), stdin) == NULL){
-            printf("Erro ao ler a entrada!\n");
-            exit(EXIT_FAILURE);
+        input = stringparaintp(opc);
+
+        if(input == -1){
+            printf("Opcao invalida!\n");
+            system("PAUSE");
+            return menu();
         }
+    }while(input < 0 || input > 3);
 
-        if(sscanf(buffer, "%d", &opc) == 1 && (opc >= 1 && opc <= 3)){
-            break;
-        }
-
-        printf("Opcao invalida! Digite um numero entre 1 e 3.\n");
-        printf("Pressione enter para tentar novamente... ");
-        limpabuffer();
-        printf("\n");
-    }while(1);
-
-    return opc;
+    return input;
 }

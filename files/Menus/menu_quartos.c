@@ -8,36 +8,45 @@
 #include "../Quartos/tabela.c"
 #include "../Quartos/consultar_quarto.c"
 
-void lbuffer(){
-    int c;
-    while((c = getchar()) != '\n' && c != EOF);
+int stringparaint(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if (isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
 }
 
 void menuQuartos()
 {
-    int opc;
-    char buffer[tam];
+    char opc[1];
+    int input;
+
     FILE *quartos;
     FILE *predio;
     Quartos quartos1;
 
-    quartos = fopen("..\\db\\quartos.txt", "r");
-
-    int cont = 0, qtd_quartos;
-
-    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
-        cont++;
-    }
-    fclose(quartos);
-
-    predio = fopen("..\\db\\predio.txt", "r");
-
-    fscanf(predio,"%d", &qtd_quartos);
-    fclose(predio);
-
     system("cls");
     do
     {
+        quartos = fopen("..\\db\\quartos.txt", "r");
+
+        int cont = 0, qtd_quartos;
+
+        while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
+            cont++;
+        }
+        fclose(quartos);
+
+        predio = fopen("..\\db\\predio.txt", "r");
+
+        fscanf(predio,"%d", &qtd_quartos);
+        fclose(predio);
+
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
@@ -53,23 +62,18 @@ void menuQuartos()
         do
         {
             printf("Digite a opcao desejada: ");
-            fflush(stdin);
-            if(fgets(buffer, sizeof(buffer), stdin) == NULL){
-                printf("Erro ao ler a entrada!\n");
-                exit(EXIT_FAILURE);
+            scanf("%s", opc);
+
+            input = stringparaint(opc);
+
+            if(input == -1){
+                printf("Opcao invalida!\n");
+                system("PAUSE");
+                return menuQuartos();
             }
+        }while(input < 0 || input > 7);
 
-            if(sscanf(buffer, "%d", &opc) == 1 && (opc >= 1 && opc <= 7)){
-                break;
-            }
-
-            printf("Opcao invalida! Digite um numero entre 1 e 3.\n");
-            printf("Pressione enter para tentar novamente... ");
-            lbuffer();
-            printf("\n");
-        }while(opc < 0 || opc > 7);
-
-        switch (opc)
+        switch (input)
         {
         case 1:
             if (cont == qtd_quartos)
@@ -178,9 +182,6 @@ void menuQuartos()
             system("cls");
             break;
         case 0:
-            printf("Saindo...\n");
-            system("PAUSE");
-            system("cls");
             return;
         default:
             printf("Opcao invalida!\n");

@@ -40,7 +40,7 @@ int main(){
             system("cls");
             break;
         default:
-            break;
+            exit(EXIT_FAILURE);
         }
     }while(opcao != 3);
 }

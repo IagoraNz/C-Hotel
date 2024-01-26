@@ -1,5 +1,18 @@
 #include "quartos.h"
 
+int strparaint(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
+}
+
 void cadastrarQuarto(){
     FILE *quartos;
     Quartos quartos1;
@@ -11,18 +24,25 @@ void cadastrarQuarto(){
         exit(EXIT_FAILURE);
     }
 
+    char input[1];
+
     printf("TIPOS\n");
     printf("1 - Luxo\n");
     printf("2 - Executivo\n");
     printf("3 - Simples\n");
     do{
         printf("Digite o tipo do quarto: ");
-        scanf("%d", &quartos1.tipo);
+        scanf("%s", input);
+
+        quartos1.tipo = strparaint(input);
+
     }while(quartos1.tipo < 1 || quartos1.tipo > 3);
 
     do{
         printf("Digite o numero do quarto: ");
-        scanf("%d", &quartos1.numquarto);
+        scanf("%s", input);
+
+        quartos1.numquarto = strparaint(input);
     }while(quartos1.numquarto == 0);
 
     printf("STATUS\n");

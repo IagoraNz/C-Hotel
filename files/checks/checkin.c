@@ -78,8 +78,9 @@ void checkin()
 
     system("cls");
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-    printf("\xBA      CHECKS      \xBA\n");
+    printf("\xBA       MENU       \xBA\n");
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+    
     do{
         printf("Digite o CPF(XXX.XXX.XXX-XX): ");
     }while(scanf("%3d.%3d.%3d-%2d", &aux1, &aux2, &aux3, &aux4) != 4);

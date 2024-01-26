@@ -10,7 +10,7 @@ void Cadastro_Cliente(Clientes *clientes) {
         exit(EXIT_FAILURE);
     }
 
-    printf("Informe o Nome Completo do Cliente: ");
+    printf("Informe o nome completo do cliente: ");
     scanf("%s", clientes->nome);
 
     printf("Informe a Idade: ");

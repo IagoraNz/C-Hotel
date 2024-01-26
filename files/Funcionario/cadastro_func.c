@@ -35,6 +35,6 @@ void cadastrar(Funcionario *funcionario)
         }
     } while (strlen(funcionario->senha) < 8 || strlen(funcionario->senha) > 10);
 
-    fprintf(cadastro, "%s %s\n", funcionario->usuario, funcionario->senha);
+    fprintf(cadastro, "%s\n%s\n", funcionario->usuario, funcionario->senha);
     fclose(cadastro);
 }

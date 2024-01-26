@@ -7,7 +7,7 @@ void Excluir_reserva() {
 
     reserva = fopen("..\\db\\reserva.txt", "r");
 
-    if (reserva == NULL) {
+    if(reserva == NULL){
         printf("Erro ao abrir o arquivo");
         exit(EXIT_FAILURE);
     }
@@ -17,12 +17,12 @@ void Excluir_reserva() {
     system("cls");
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
     printf("\xBA      EXCLUIR     \xBA\n");
-    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
 
     int encontrado = 0;
     Reserva reserva1;
 
-    printf("Digite a Data de Saida: ");
+    printf("Digite a data de saida: ");
     scanf("%2d/%2d/%4d", &aux1, &aux2, &aux3);
 
     while (fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
@@ -42,13 +42,14 @@ void Excluir_reserva() {
         }
     }
 
-    if (encontrado == 0) {
-        printf("Quarto nao encontrado!\n");
-    }
-
     fclose(reserva);
     fclose(reservaTemp);
 
-    remove("..\\db\\reserva.txt");
-    rename("..\\db\\reserva_temp.txt", "..\\db\\reserva.txt");
+    if(!encontrado){
+      remove("..\\db\\reserva.txt");  
+    }
+    else{
+        remove("..\\db\\reserva.txt");
+        rename("..\\db\\reserva_temp.txt", "..\\db\\reserva.txt");
+    }
 }

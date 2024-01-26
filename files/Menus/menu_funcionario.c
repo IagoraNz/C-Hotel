@@ -28,7 +28,7 @@ void menu_funcionario(){
         fflush(stdin);
         do{
             printf("Digite a opcao desejada: ");
-
+            fflush(stdin);
             if(fgets(buffer, sizeof(buffer), stdin) == NULL){
                 printf("Erro ao ler a entrada!\n");
                 exit(EXIT_FAILURE);

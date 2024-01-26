@@ -1,54 +1,5 @@
 #include "checks.h"
 
-// void atualizareserva(){
-//     FILE *reserva;
-//     FILE *reservaTemp;
-//     int aux1, aux2, aux3, aux4;
-
-//     reserva = fopen("..\\db\\reserva.txt", "r");
-
-//     if(reserva == NULL){
-//         printf("Erro ao abrir o arquivo");
-//         exit(EXIT_FAILURE);
-//     }
-
-//     reservaTemp = fopen("..\\db\\reserva_temp.txt", "a");
-
-//     int encontrado = 0;
-//     Reserva reserva1;
-
-//     do{
-//         printf("Digite o CPF(XXX.XXX.XXX-XX) para check-ou: ");
-//     }while(scanf("%3d.%3d.%3d-%2d", &aux1, &aux2, &aux3, &aux4) != 4);
-
-//     while(fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
-//                   &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.datai.hora, &reserva1.datai.min, &reserva1.cliente.bloco1,
-//                   &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
-//                   &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total) == 20) {
-//         if(reserva1.cliente.bloco1 == aux1 && reserva1.cliente.bloco2 == aux2 && reserva1.cliente.bloco3 == aux3 && reserva1.cliente.bloco4 == aux4){
-//             encontrado = 1;
-//             printf("Reserva excluída com sucesso!\n");
-//         } 
-//         else{
-//             fprintf(reservaTemp, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
-//                                         reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
-//                                         reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
-//                                         reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min,
-//                                         reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
-//         }
-//     }
-
-//     if(encontrado == 0){
-//         printf("Quarto nao encontrado!\n");
-//     }
-
-//     fclose(reserva);
-//     fclose(reservaTemp);
-
-//     remove("..\\db\\reserva.txt");
-//     rename("..\\db\\reserva_temp.txt", "..\\db\\reserva.txt");
-// }
-
 void checkout(){
 
     FILE *quartos;
@@ -110,15 +61,15 @@ void checkout(){
     }
 
     int enc = 0;
-    char contcheck;
-    while (fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
+    
+    while(fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
                   &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.datai.hora, &reserva1.datai.min, &reserva1.cliente.bloco1,
                   &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
                   &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total) == 20) {
 
         if (reserva1.cliente.bloco1 == aux1 && reserva1.cliente.bloco2 == aux2 && reserva1.cliente.bloco3 == aux3 && reserva1.cliente.bloco4 == aux4 && reserva1.quarto.numquarto == numquarto && reserva1.datai.dia == dataini.dia && reserva1.datai.mes == dataini.mes && reserva1.datai.ano == dataini.ano && reserva1.dataf.dia == datafim.dia && reserva1.dataf.mes == datafim.mes && reserva1.dataf.ano == datafim.ano) {
 
-            printf("Para concluir o check-out: \n");
+            printf("Antes de concluir o check-out: \n");
             Realizar_pagamento(&dataini, &reserva1);
             reserva1.status_pag = 2;
         
@@ -133,7 +84,7 @@ void checkout(){
 
             int codres;
 
-            printf("Digite o codigo da reserva: ");
+            printf("Digite o codigo da reserva para finalizar o check-out: ");
             scanf("%d", &codres);
 
             while (fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
@@ -142,35 +93,68 @@ void checkout(){
                           &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total) == 20) {
 
                 if(reserva1.cod_reserva == codres){
-                    printf("Deseja fazer o check-out? (s/n): ");
-                    scanf(" %c", &contcheck);
-
-                    // Caso sim, realizar o check-out e mudar o status do quarto para ocupado
-                    if (contcheck == 's') {
-                        while (fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5) {
-                            if (quartos1.numquarto == numquarto) {
-                                fclose(quartos);
-                                attstatus(numquarto);
-                            }
-                        }
-                        printf("Check-out realizado com sucesso!\n");
-                    } 
+                    printf("Check-out realizado com sucesso!\n");
                 } 
+                else{
+                    fprintf(temporario, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto, reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4, reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min, reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
+                }
             }
         } 
         else{
-            // Write the reservation back to the temporary file
             fprintf(temporario, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto, reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4, reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min, reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
         }
     }
 
+    FILE *temp;
+
+    temp = fopen("..\\db\\quartos_temp.txt", "w");
+
+    fseek(reserva, 0, SEEK_SET);
+
+    int q = 0;
+
+    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) != EOF){
+        while(fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
+                    &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.datai.hora, &reserva1.datai.min, &reserva1.cliente.bloco1,
+                    &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
+                    &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total) == 20) 
+        {
+            if(reserva1.status_pag == 2){
+                q = 1;
+                if(reserva1.quarto.numquarto == quartos1.numquarto){
+                    quartos1.status = 2;
+                    fprintf(temp, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
+                }
+                else{
+                    quartos1.status = 1;
+                    fprintf(temp, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
+                }
+            }
+            else{
+                fprintf(temp, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
+            }
+        }
+    }
+
+    fclose(quartos);
+    fclose(temp);
     fclose(reserva);
     fclose(temporario);
 
-    if (!enc) {
+    if(!q){
+        printf("Pagamento nao encontrado!\n");
+        remove("..\\db\\quartos_temp.txt");
+    } 
+    else{
+        remove("..\\db\\quartos.txt");
+        rename("..\\db\\quartos_temp.txt", "..\\db\\quartos.txt");
+    }
+
+    if(!enc){
         printf("Reserva nao encontrada!\n");
         remove("..\\db\\reserva_temp.txt");
-    } else {
+    } 
+    else{
         remove("..\\db\\reserva.txt");
         rename("..\\db\\reserva_temp.txt", "..\\db\\reserva.txt");
     }

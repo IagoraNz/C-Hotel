@@ -285,7 +285,6 @@ void Reservar_Cliente()
 
                                 reserva1.status_pag = 1;
                                 struct tm Datai = {0}, Dataf = {0};
-                                // COntinuar isso olhe no chat gpt Francinaldo do presente.
 
                                 Datai.tm_year = reserva1.datai.ano - 1900;
                                 Datai.tm_mon = reserva1.datai.mes - 1;
@@ -294,6 +293,19 @@ void Reservar_Cliente()
                                 Dataf.tm_year = reserva1.dataf.ano - 1900;
                                 Dataf.tm_mon = reserva1.dataf.mes - 1;
                                 Dataf.tm_mday = reserva1.dataf.dia;
+
+                                if(reserva1.dataf.ano < reserva1.datai.ano){
+                                    printf("\nA data final nao pode ser anterior a inicial\n");
+                                    exit(EXIT_FAILURE);
+                                }
+                                else if((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes < reserva1.datai.mes)){
+                                    printf("\nA data final nao pode ser anterior a inicial\n");
+                                    exit(EXIT_FAILURE);                                    
+                                }
+                                else if((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes == reserva1.datai.mes) && reserva1.dataf.dia < reserva1.datai.dia){
+                                    printf("\nA data final nao pode ser anterior a inicial\n");
+                                    exit(EXIT_FAILURE);
+                                }
 
                                 if (!verificarConflitos(numquarto, Datai, Dataf))
                                 {

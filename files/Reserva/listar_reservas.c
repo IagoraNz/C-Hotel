@@ -27,4 +27,5 @@ void Listar_reservas(){
                                 printf("%2d/%2d/%4d\t", reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano);
                                 printf("\n\n");
                         }
+    fclose(reserva);
 }

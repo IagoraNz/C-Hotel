@@ -97,7 +97,7 @@ void Realizar_pagamento(Data *datapag, Reserva *reserva1)
         exit(EXIT_FAILURE);
     }
 
-    fprintf(pagamento, "%02d/%02d/%4d %s %f %3d.%3d.%3d-%2d %d %d", pagamento1.datap.dia, pagamento1.datap.mes, pagamento1.datap.ano, pagamento1.cliente.nome,
+    fprintf(pagamento, "%02d/%02d/%4d %s %f %3d.%3d.%3d-%2d %d %d\n", pagamento1.datap.dia, pagamento1.datap.mes, pagamento1.datap.ano, pagamento1.cliente.nome,
             pagamento1.valor_total, pagamento1.cliente.bloco1, pagamento1.cliente.bloco2, pagamento1.cliente.bloco3,
             pagamento1.cliente.bloco4, pagamento1.forma_pag, pagamento1.cartao);
 

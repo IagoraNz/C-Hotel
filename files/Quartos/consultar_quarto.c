@@ -48,6 +48,7 @@ void consultarQuarto(){
                 printf("Opcao invalida. Tente novamente.\n");
                 system("PAUSE");
                 system("cls");
+                fclose(quartos);
                 return consultarQuarto();
             }
         }while(consulta < 0 || consulta > 5);
@@ -105,6 +106,7 @@ void consultarQuarto(){
                 }
             }
             fseek(quartos, 0, SEEK_SET);
+            fclose(quartos);
             system("PAUSE");
             system("cls");
             break;
@@ -155,6 +157,7 @@ void consultarQuarto(){
                 }
             }
             fseek(quartos, 0, SEEK_SET);
+            fclose(quartos);
             system("PAUSE");
             system("cls");
             break;
@@ -210,6 +213,7 @@ void consultarQuarto(){
                 }
             }
             fseek(quartos, 0, SEEK_SET);
+            fclose(quartos);
             system("PAUSE");
             system("cls");
             break;
@@ -260,6 +264,7 @@ void consultarQuarto(){
                 }
             }
             fseek(quartos, 0, SEEK_SET);
+            fclose(quartos);
             system("PAUSE");
             system("cls");
             break;
@@ -314,6 +319,7 @@ void consultarQuarto(){
                 }
             }
             fseek(quartos, 0, SEEK_SET);
+            fclose(quartos);
             system("PAUSE");
             system("cls");
             break;

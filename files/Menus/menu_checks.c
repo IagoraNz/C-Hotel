@@ -1,6 +1,7 @@
 #include "menus.h"
 #include "../checks/checkin.c"
 #include "../checks/checkout.c"
+#include "../checks/valores_recebidos.c"
 
 int stringparaintch(const char str[]) {
     int result = 0, i;
@@ -26,6 +27,7 @@ void menu_checks(){
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
         printf("1 - Check-in\n");
         printf("2 - Check-out\n");
+        printf("3 - Valores Recebidos\n");
         printf("0 - Voltar\n");
         do{
             printf("Digite a opcao desejada: ");
@@ -33,12 +35,12 @@ void menu_checks(){
 
             input = stringparaintch(opc);
 
-            if(input == -1 || input > 2 || input < 0){
+            if(input == -1 || input > 3 || input < 0){
                 printf("Opcao invalida!\n");
                 system("PAUSE");
                 return menu_checks();
             }
-        }while(input < 0 || input > 2);
+        }while(input < 0 || input > 3);
 
         switch (input)
         {
@@ -49,6 +51,11 @@ void menu_checks(){
             break;
         case 2:
             checkout();
+            system("PAUSE");
+            system("cls");
+            break;
+        case 3:
+            Valores_Recebidos();
             system("PAUSE");
             system("cls");
             break;

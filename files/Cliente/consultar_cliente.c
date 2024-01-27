@@ -45,6 +45,7 @@ void Consultar_Cliente(){
             }
         }
         fclose(cliente);
+        system("PAUSE");
         break;
     case 2:
         printf("Digite o CPF (no formato XXX.XXX.XXX-XX): ");
@@ -71,6 +72,7 @@ void Consultar_Cliente(){
                 }
             }
         fclose(cliente);
+        system("PAUSE");
         break;
     case 3:
         printf("Informe o RG: ");
@@ -92,6 +94,7 @@ void Consultar_Cliente(){
                 }
             }
         fclose(cliente);
+        system("PAUSE");
         break;
     default:
         break;

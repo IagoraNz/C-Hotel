@@ -25,5 +25,6 @@ void Listar_Clientes(){
         printf("Estado: %s\n", cliente1.estado);
         printf("\n\n");
     }
-    
+    fclose(cliente);
+    system("PAUSE");
 }

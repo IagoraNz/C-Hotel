@@ -55,6 +55,12 @@ void Reservar_Cliente()
     FILE *cliente1;
     int aux1, aux2, aux3, aux4, num = 0, numquarto, cont;
 
+
+    srand(time(NULL));
+
+    // Gera um número aleatório entre 100 e 999
+    int numero = rand() % 900 + 100;
+
     cliente1 = fopen("..\\db\\cliente.txt", "r");
 
     if (cliente1 == NULL)
@@ -134,7 +140,7 @@ void Reservar_Cliente()
 
                         if (num == 1)
                         {
-                            reserva1.cod_reserva = Contar_reservas() + 1;
+                            reserva1.cod_reserva = numero + (Contar_reservas() + 1);
                             // maincalendario();
                             printf("Informe a data da entrada(XX/XX/XXX): ");
                             if (scanf("%2d/%2d/%4d", &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano) != 3)
@@ -250,7 +256,7 @@ void Reservar_Cliente()
 
                             if (num == 1)
                             {
-                                reserva1.cod_reserva = Contar_reservas() + 1;
+                                reserva1.cod_reserva = numero + (Contar_reservas() + 1);
                                 // maincalendario();
                                 printf("Informe a data da entrada(XX/XX/XXX): ");
                                 if (scanf("%2d/%2d/%4d", &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano) != 3)

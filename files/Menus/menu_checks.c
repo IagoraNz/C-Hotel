@@ -33,7 +33,7 @@ void menu_checks(){
 
             input = stringparaintch(opc);
 
-            if(input == -1){
+            if(input == -1 || input > 2 || input < 0){
                 printf("Opcao invalida!\n");
                 system("PAUSE");
                 return menu_checks();

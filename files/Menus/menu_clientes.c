@@ -53,7 +53,7 @@ void menuClientes()
 
             input = stringparaintc(opc);
 
-            if(input == -1){
+            if(input == -1 || input > 4 || input < 0){
                 printf("Opcao invalida!\n");
                 system("PAUSE");
                 return menuClientes();

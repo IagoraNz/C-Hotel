@@ -40,12 +40,12 @@ void menu_funcionario(){
 
             input = stringparaintf(opc);
 
-            if(input == -1){
+            if(input == -1 || input > 4 || input < 0){
                 printf("Opcao invalida!\n");
                 system("PAUSE");
                 return menu_funcionario();
             }
-        }while(input < 0 || input > 7);
+        }while(input < 0 || input > 4);
 
         switch (input)
         {

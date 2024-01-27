@@ -85,7 +85,7 @@ int menu(){
 
         input = stringparaintp(opc);
 
-        if(input == -1){
+        if(input == -1 || input > 3 || input < 0){
             printf("Opcao invalida!\n");
             system("PAUSE");
             return menu();

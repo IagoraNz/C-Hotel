@@ -1,5 +1,18 @@
 #include "quartos.h"
 
+int strparaintconsul(const char str[]){
+    int result = 0, i;
+    for(i = 0; str[i] != '\0'; i++){
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
+}
+
 void consultarQuarto(){
     FILE *quartos;
     Quartos quartos1;
@@ -13,9 +26,10 @@ void consultarQuarto(){
 
     int consulta, tipo, numquarto, status, capacidade;
     float diaria;
+    char input[1];
 
+    system("cls");
     do{
-        system("cls");
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA      OPCOES      \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
@@ -25,8 +39,18 @@ void consultarQuarto(){
         printf("4 - Busca por diaria\n");
         printf("5 - Busca por capacidade\n");
         printf("0 - Voltar\n");
-        printf("Digite a opcao desejada: ");
-        scanf("%d", &consulta);
+        do{
+            printf("Digite a opcao desejada: ");
+            scanf("%s", input);
+
+            consulta = strparaintconsul(input);
+            if(consulta == -1 || consulta > 5 || consulta < 0){
+                printf("Opcao invalida. Tente novamente.\n");
+                system("PAUSE");
+                system("cls");
+                return consultarQuarto();
+            }
+        }while(consulta < 0 || consulta > 5);
 
         switch (consulta)
         {
@@ -35,18 +59,27 @@ void consultarQuarto(){
             printf("1 - Luxo\n");
             printf("2 - Executivo\n");
             printf("3 - Simples\n");
-            do{
-                printf("Digite o tipo do quarto: ");
-                scanf("%d", &tipo);
-            }while(tipo < 1 || tipo > 3);
 
+            printf("Digite o tipo do quarto: ");
+            scanf("%s", input);
+
+            tipo = strparaintconsul(input);
+
+            if(tipo == -1 || tipo < 1 || tipo > 3){
+                printf("Opcao invalida. Tente novamente.\n");
+                system("PAUSE");
+                system("cls");
+                fclose(quartos);
+                return consultarQuarto();
+            }
+
+            system("cls");
+            printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+            printf("\xBA      QUARTO      \xBA\n");
+            printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+            printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
             while(fscanf(quartos, "%d\n%d\n%d\n%f\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) != EOF){
                 if(quartos1.tipo == tipo){
-                    system("cls");
-                    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-                    printf("\xBA      QUARTO      \xBA\n");
-                    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-                    printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
 
                     if(quartos1.tipo == 1){
                         printf("Luxo\t\t%d\t\t", quartos1.numquarto);
@@ -69,8 +102,6 @@ void consultarQuarto(){
                     }
 
                     printf("%.2f\t\t%d\n", quartos1.diaria, quartos1.capacidade);
-
-                    printf("\n");
                 }
             }
             fseek(quartos, 0, SEEK_SET);
@@ -79,18 +110,26 @@ void consultarQuarto(){
             break;
 
         case 2:
-            do{
-                printf("Digite o numero do quarto: ");
-                scanf("%d", &numquarto);
-            }while(numquarto == 0);
+            printf("Digite o numero do quarto: ");
+            scanf("%s", input);
 
+            numquarto = strparaintconsul(input);
+
+            if(numquarto == -1 || numquarto < 1){
+                printf("Opcao invalida. Tente novamente.\n");
+                system("PAUSE");
+                system("cls");
+                fclose(quartos);
+                return consultarQuarto();
+            }
+
+            system("cls");
+            printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+            printf("\xBA      QUARTO      \xBA\n");
+            printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+            printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
             while(fscanf(quartos, "%d\n%d\n%d\n%f\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) != EOF){
                 if(quartos1.numquarto == numquarto){
-                    system("cls");
-                    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-                    printf("\xBA      QUARTO      \xBA\n");
-                    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-                    printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
 
                     if(quartos1.tipo == 1){
                         printf("Luxo\t\t%d\t\t", quartos1.numquarto);
@@ -113,8 +152,6 @@ void consultarQuarto(){
                     }
 
                     printf("%.2f\t\t%d\n", quartos1.diaria, quartos1.capacidade);
-
-                    printf("\n");
                 }
             }
             fseek(quartos, 0, SEEK_SET);
@@ -127,18 +164,27 @@ void consultarQuarto(){
             printf("1 - Disponivel\n");
             printf("2 - Ocupado\n");
             printf("3 - Reservado\n");
-            do{
-                printf("Digite o status do quarto: ");
-                scanf("%d", &status);
-            }while(status < 1 || status > 3);
 
+            printf("Digite o status do quarto: ");
+            scanf("%s", input);
+
+            status = strparaintconsul(input);
+
+            if(status == -1 || status < 1 || status > 3){
+                printf("Opcao invalida. Tente novamente.\n");
+                system("PAUSE");
+                system("cls");
+                fclose(quartos);
+                return consultarQuarto();
+            }
+
+            system("cls");
+            printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+            printf("\xBA      QUARTO      \xBA\n");
+            printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+            printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
             while(fscanf(quartos, "%d\n%d\n%d\n%f\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) != EOF){
                 if(quartos1.status == status){
-                    system("cls");
-                    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-                    printf("\xBA      QUARTO      \xBA\n");
-                    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-                    printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
 
                     if(quartos1.tipo == 1){
                         printf("Luxo\t\t%d\t\t", quartos1.numquarto);
@@ -161,8 +207,6 @@ void consultarQuarto(){
                     }
 
                     printf("%.2f\t\t%d\n", quartos1.diaria, quartos1.capacidade);
-
-                    printf("\n");
                 }
             }
             fseek(quartos, 0, SEEK_SET);
@@ -171,18 +215,26 @@ void consultarQuarto(){
             break;
 
         case 4:
-            do{
-                printf("Digite a diaria do quarto: ");
-                scanf("%f", &diaria);
-            }while(diaria == 0);
+            printf("Digite a diaria do quarto: ");
+            scanf("%s", input);
 
+            diaria = strparaintconsul(input);
+
+            if(diaria == -1 || diaria < 35 || diaria > 250){
+                printf("Opcao invalida. Tente novamente.\n");
+                system("PAUSE");
+                system("cls");
+                fclose(quartos);
+                return consultarQuarto();
+            }
+
+            system("cls");
+            printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+            printf("\xBA      QUARTO      \xBA\n");
+            printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+            printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
             while(fscanf(quartos, "%d\n%d\n%d\n%f\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) != EOF){
                 if(quartos1.diaria == diaria){
-                    system("cls");
-                    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-                    printf("\xBA      QUARTO      \xBA\n");
-                    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-                    printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
 
                     if(quartos1.tipo == 1){
                         printf("Luxo\t\t%d\t\t", quartos1.numquarto);
@@ -205,8 +257,6 @@ void consultarQuarto(){
                     }
 
                     printf("%.2f\t\t%d\n", quartos1.diaria, quartos1.capacidade);
-
-                    printf("\n");
                 }
             }
             fseek(quartos, 0, SEEK_SET);
@@ -218,18 +268,27 @@ void consultarQuarto(){
             printf("Capacidade do Quarto\n");
             printf("1 - Solteiro\n");
             printf("2 - Casal\n");
-            do{
-                printf("Digite a capacidade do quarto: ");
-                scanf("%d", &capacidade);
-            }while(capacidade < 1 || capacidade > 2);
 
+            printf("Digite a capacidade do quarto: ");
+            scanf("%s", input);
+
+            capacidade = strparaintconsul(input);
+
+            if(capacidade == -1 || capacidade < 1 || capacidade > 2){
+                printf("Opcao invalida. Tente novamente.\n");
+                system("PAUSE");
+                system("cls");
+                fclose(quartos);
+                return consultarQuarto();
+            }
+
+            system("cls");
+            printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+            printf("\xBA      QUARTO      \xBA\n");
+            printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+            printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
             while(fscanf(quartos, "%d\n%d\n%d\n%f\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) != EOF){
                 if(quartos1.capacidade == capacidade){
-                    system("cls");
-                    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-                    printf("\xBA      QUARTO      \xBA\n");
-                    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-                    printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
 
                     if(quartos1.tipo == 1){
                         printf("Luxo\t\t%d\t\t", quartos1.numquarto);
@@ -252,8 +311,6 @@ void consultarQuarto(){
                     }
 
                     printf("%.2f\t\t%d\n", quartos1.diaria, quartos1.capacidade);
-
-                    printf("\n");
                 }
             }
             fseek(quartos, 0, SEEK_SET);

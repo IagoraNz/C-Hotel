@@ -5,7 +5,7 @@
 #include "../Reserva/excluir_reserva.c"
 #include "../Reserva/contar_reservas.c"
 
-int stringparaint1(const char str[]) {
+int stringparaintr(const char str[]) {
     int result = 0, i;
     for (i = 0; str[i] != '\0'; i++) {
         if(isdigit(str[i])) {
@@ -39,9 +39,9 @@ void Menu_Reservas()
             printf("Digite a opcao desejada: ");
             scanf("%s", opc);
 
-            input = stringparaint(opc);
+            input = stringparaintr(opc);
 
-            if(input == -1){
+            if(input == -1 || input > 4 || input < 0){
                 printf("Opcao invalida!\n");
                 system("PAUSE");
                 return Menu_Reservas();

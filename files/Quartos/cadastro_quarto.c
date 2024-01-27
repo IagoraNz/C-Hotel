@@ -25,34 +25,81 @@ void cadastrarQuarto(){
     }
 
     char input[1];
+    char cont[1];
+
+    system("cls");
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA     CADASTRO     \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
 
     printf("TIPOS\n");
     printf("1 - Luxo\n");
     printf("2 - Executivo\n");
     printf("3 - Simples\n");
-    do{
-        printf("Digite o tipo do quarto: ");
-        scanf("%s", input);
+    printf("Digite o tipo do quarto: ");
+    scanf("%s", input);
 
-        quartos1.tipo = strparaint(input);
+    quartos1.tipo = strparaint(input);
 
-    }while(quartos1.tipo < 1 || quartos1.tipo > 3);
+    if(quartos1.tipo < 1 || quartos1.tipo > 3 || quartos1.tipo == -1){
+        printf("Falha ao cadastrar as informacoes\n");
+        printf("Deseja tentar o cadastro novamente (s/n)?: ");
+        scanf("%s", cont);
+        if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
+            return cadastrarQuarto();
+        }
+        else{
+            fclose(quartos);
+            return menuQuartos();
+        }
+    }
 
-    do{
-        printf("Digite o numero do quarto: ");
-        scanf("%s", input);
+    printf("\n");
 
-        quartos1.numquarto = strparaint(input);
-    }while(quartos1.numquarto == 0);
+    printf("Digite o numero do quarto: ");
+    scanf("%s", input);
+
+    quartos1.numquarto = strparaint(input);
+
+    if(quartos1.numquarto < 1 || quartos1.tipo < 0){
+        printf("Falha ao cadastrar as informacoes\n");
+        printf("Deseja tentar o cadastro novamente (s/n)?: ");
+        scanf("%s", cont);
+        if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
+            return cadastrarQuarto();
+        }
+        else{
+            fclose(quartos);
+            return menuQuartos();
+        }
+    }
+
+    printf("\n");
 
     printf("STATUS\n");
     printf("1 - Disponivel\n");
     printf("2 - Ocupado\n");
     printf("3 - Reservado\n");
-    do{
-        printf("Digite o status do quarto: ");
-        scanf("%d", &quartos1.status);
-    }while(quartos1.status < 1 || quartos1.status > 3);
+
+    printf("Digite o status do quarto: ");
+    scanf("%s", input);
+
+    quartos1.status = strparaint(input);
+
+    if(quartos1.status < 1 || quartos1.status > 3 || quartos1.status == -1){
+        printf("Falha ao cadastrar as informacoes\n");
+        printf("Deseja tentar o cadastro novamente (s/n)?: ");
+        scanf("%s", cont);
+        if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
+            return cadastrarQuarto();
+        }
+        else{
+            fclose(quartos);
+            return menuQuartos();
+        }
+    }
+
+    printf("\n");
 
     if(quartos1.tipo == 1){
         quartos1.diaria = 100;
@@ -67,10 +114,24 @@ void cadastrarQuarto(){
     printf("Capacidade do Quarto\n");
     printf("1 - Solteiro\n");
     printf("2 - Casal\n");
-    do{
-        printf("Digite a capacidade do quarto: ");
-        scanf("%d", &quartos1.capacidade);
-    }while(quartos1.capacidade < 1 || quartos1.capacidade > 2);
+
+    printf("Digite a capacidade do quarto: ");
+    scanf("%s", input);
+
+    quartos1.capacidade = strparaint(input);
+
+    if(quartos1.capacidade < 1 || quartos1.capacidade > 2 || quartos1.capacidade == -1){
+        printf("Falha ao cadastrar as informacoes\n");
+        printf("Deseja tentar o cadastro novamente (s/n)?: ");
+        scanf("%s", cont);
+        if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
+            return cadastrarQuarto();
+        }
+        else{
+            fclose(quartos);
+            return menuQuartos();
+        }
+    }
 
     fprintf(quartos, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
 

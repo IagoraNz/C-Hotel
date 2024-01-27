@@ -8,7 +8,7 @@
 #include "../Quartos/tabela.c"
 #include "../Quartos/consultar_quarto.c"
 
-int stringparaint(const char str[]) {
+int stringparaintq(const char str[]) {
     int result = 0, i;
     for (i = 0; str[i] != '\0'; i++) {
         if (isdigit(str[i])) {
@@ -64,9 +64,9 @@ void menuQuartos()
             printf("Digite a opcao desejada: ");
             scanf("%s", opc);
 
-            input = stringparaint(opc);
+            input = stringparaintq(opc);
 
-            if(input == -1){
+            if(input == -1 || input > 7 || input < 0){
                 printf("Opcao invalida!\n");
                 system("PAUSE");
                 return menuQuartos();

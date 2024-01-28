@@ -24,6 +24,8 @@ void cadastrarQuarto(){
         fclose(quartos);
         exit(EXIT_FAILURE);
     }
+    fclose(quartos);
+
     int aux = 0;
     char input[1], input2[1], input4[1];
     char cont[1];
@@ -48,11 +50,9 @@ void cadastrarQuarto(){
         printf("Deseja tentar o cadastro novamente (s/n)?: ");
         scanf("%s", cont);
         if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
-            fclose(quartos);
             return cadastrarQuarto();
         }
         else{
-            fclose(quartos);
             return menuQuartos();
         }
     }
@@ -63,17 +63,38 @@ void cadastrarQuarto(){
     scanf("%s", input);
 
     quartos1.numquarto = strparaint(input);
+    int aux2 = quartos1.numquarto;
+    int enc = 1;
+    printf("Numero: %d\n", quartos1.numquarto);
+
+    quartos = fopen("..\\db\\quartos.txt", "r");
+
+    while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5)
+    {
+        if (aux2 == quartos1.numquarto)
+        {
+            enc = 0;
+        }
+    }
+
+    fclose(quartos);
+    if (!enc)
+    {
+        printf("Nao e possivel cadastrar esse quarto!\n");
+        printf("Numero em uso!\n");
+        return;
+    }
+    
+    quartos1.numquarto = aux2;
 
     if(quartos1.numquarto < 1 || quartos1.tipo < 0){
         printf("Falha ao cadastrar as informacoes\n");
         printf("Deseja tentar o cadastro novamente (s/n)?: ");
         scanf("%s", cont);
         if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
-            fclose(quartos);
             return cadastrarQuarto();
         }
         else{
-            fclose(quartos);
             return menuQuartos();
         }
     }
@@ -87,11 +108,9 @@ void cadastrarQuarto(){
         printf("Deseja tentar o cadastro novamente (s/n)?: ");
         scanf("%s", cont);
         if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
-            fclose(quartos);
             return cadastrarQuarto();
         }
         else{
-            fclose(quartos);
             return menuQuartos();
         }
     }
@@ -124,13 +143,18 @@ void cadastrarQuarto(){
         printf("Deseja tentar o cadastro novamente (s/n)?: ");
         scanf("%s", cont);
         if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
-            fclose(quartos);
             return cadastrarQuarto();
         }
         else{
-            fclose(quartos);
             return menuQuartos();
         }
+    }
+    quartos = fopen("..\\db\\quartos.txt", "a");
+
+    if(quartos == NULL){
+        printf("Erro ao abrir o arquivo");
+        fclose(quartos);
+        exit(EXIT_FAILURE);
     }
 
     fprintf(quartos, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);

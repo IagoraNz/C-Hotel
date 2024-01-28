@@ -4,3 +4,5 @@
 13/01/2024 Francinaldo_de_Sousa_Barbosa 2250.00 123.321.123-13 1 0
 25/02/2024 Francinaldo_de_Sousa_Barbosa 1000.00 123.321.123-13 1 0
 26/01/2024 Francinaldo_de_Sousa_Barbosa 1250.00 123.321.123-13 2 0
+15/01/2024 Iago_Roberto_Esmerio 1000.00 321.123.321-13 1 0
+14/01/2024 Francis_De_Sousa_Barbosa 1250.00 123.321.123-13 2 0

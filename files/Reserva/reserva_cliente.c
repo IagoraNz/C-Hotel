@@ -23,10 +23,10 @@ int verificarConflitos(int numquarto, struct tm Datai, struct tm Dataf)
 
     Reserva reservaExistente;
 
-    while (fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f\n", &reservaExistente.cod_reserva, reservaExistente.cliente.nome, &reservaExistente.quarto.numquarto,
+    while (fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f %d\n", &reservaExistente.cod_reserva, reservaExistente.cliente.nome, &reservaExistente.quarto.numquarto,
                   &reservaExistente.datai.dia, &reservaExistente.datai.mes, &reservaExistente.datai.ano, &reservaExistente.datai.hora, &reservaExistente.datai.min, &reservaExistente.cliente.bloco1,
                   &reservaExistente.cliente.bloco2, &reservaExistente.cliente.bloco3, &reservaExistente.cliente.bloco4, &reservaExistente.dataf.dia,
-                  &reservaExistente.dataf.mes, &reservaExistente.dataf.ano, &reservaExistente.dataf.hora, &reservaExistente.dataf.min, &reservaExistente.dias_reservado, &reservaExistente.status_pag, &reservaExistente.valor_total) == 20)
+                  &reservaExistente.dataf.mes, &reservaExistente.dataf.ano, &reservaExistente.dataf.hora, &reservaExistente.dataf.min, &reservaExistente.dias_reservado, &reservaExistente.status_pag, &reservaExistente.valor_total, &reservaExistente.status_check) == 21)
     {
         if (numquarto == reservaExistente.quarto.numquarto)
         {
@@ -54,6 +54,8 @@ void Reservar_Cliente()
     FILE *quarto1;
     FILE *cliente1;
     int aux1, aux2, aux3, aux4, num = 0, numquarto, cont;
+
+    reserva1.status_check = 0;
 
 
     srand(time(NULL));
@@ -193,11 +195,11 @@ void Reservar_Cliente()
                                 printf("Erro ao abrir o arquivo.\n");
                                 exit(EXIT_FAILURE);
                             }
-                            fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
+                            fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f %d\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
                                     reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
                                     reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
                                     reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min,
-                                    reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
+                                    reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total, reserva1.status_check);
 
                             Atualizar_Status(numquarto);
                             fclose(reserva);
@@ -325,11 +327,11 @@ void Reservar_Cliente()
 
                                     reserva1.valor_total = (reserva1.dias_reservado + 1) * reserva1.quarto.diaria;
 
-                                    fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
+                                    fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f %d\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
                                             reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
                                             reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
                                             reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min,
-                                            reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total);
+                                            reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total, reserva1.status_check);
                                     fclose(reserva);
                                 }
                             }

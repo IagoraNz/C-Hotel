@@ -1,4 +1,5 @@
 #include "checks.h"
+#include "../Cliente/cliente.h"
 
 void Realizar_pagamento(Data *datapag, Reserva *reserva1)
 {
@@ -65,6 +66,7 @@ void Realizar_pagamento(Data *datapag, Reserva *reserva1)
 
     printf("Comprovante de Pagamento\n");
     printf("Data de Pagamento: %02d/%02d/%4d\n", pagamento1.datap.dia, pagamento1.datap.mes, pagamento1.datap.ano);
+    replaceUnderscoreWithSpace(pagamento1.cliente.nome);
     printf("Nome: %s\n", pagamento1.cliente.nome);
     printf("CPF: %3d.%3d.%3d-%2d\n", pagamento1.cliente.bloco1, pagamento1.cliente.bloco2, pagamento1.cliente.bloco3, pagamento1.cliente.bloco4);
     printf("Valor Pago: %.2f\n", pagamento1.valor_total);

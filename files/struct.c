@@ -45,6 +45,7 @@ typedef struct reserva
     int dias_reservado;
     int status_pag;
     float valor_total;
+    int status_check;
 }Reserva;
 
 typedef struct pagamento

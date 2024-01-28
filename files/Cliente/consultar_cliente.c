@@ -1,6 +1,19 @@
 #include "cliente.h"
 #include "Extras/funcao01.c"
 
+int stringparaintc1(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
+}
+
 void Consultar_Cliente(){
     FILE *cliente;
     Clientes cliente1;
@@ -15,22 +28,38 @@ void Consultar_Cliente(){
         return;
     }
 
+    char input[1];
+
     system("cls");
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
     printf("\xBA      CONSULTAR     \xBA\n");
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
 
     printf("1 - Nome\n2 - CPF\n3 - RG\n");
-    printf("Informe sua Opcao: ");
-    scanf("%d", &opc);
+    printf("Informe sua opcao: ");
+    scanf("%s", input);
+
+    opc = stringparaintc1(input);
+
+    if(opc < 1 || opc > 3 || opc == -1){
+        printf("Opcao invalida!\n");
+        printf("Deseja tentar a consulta novamente? (s/n): ");
+        scanf("%s", input);
+        system("PAUSE");
+        if(input[0] == 's' || input[0] == 'S'){
+            Consultar_Cliente();
+        }
+        else{
+            return;
+        }
+    }
 
     switch (opc)
     {
     case 1:
-        printf("Informe o Nome: ");
+        printf("Informe o nome: ");
         scanf(" %[^\n]", auxs);
         replaceSpaceWithUnderscore(auxs);
-        printf("Nome: %s\n", auxs);
         while (fscanf(cliente, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n", cliente1.nome, &cliente1.idade, 
         &cliente1.bloco1, &cliente1.bloco2, &cliente1.bloco3, &cliente1.bloco4,
         &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
@@ -55,7 +84,7 @@ void Consultar_Cliente(){
         printf("Digite o CPF (no formato XXX.XXX.XXX-XX): ");
         if (scanf("%3d.%3d.%3d-%2d", &aux1, &aux2, &aux3, &aux4) != 4) {
             printf("Formato de CPF inválido.\n");
-            // Tratamento de erro, se necessário
+
             fclose(cliente);
             exit(EXIT_FAILURE);
         }

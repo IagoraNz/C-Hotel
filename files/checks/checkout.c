@@ -139,10 +139,6 @@ void checkout()
     }
     fclose(reserva);
 
-    printf("Numero Quarto: %d\n", aux_quarto);
-    printf("Status: %d\n", aux_status);
-    system("PAUSE");
-
     FILE *quartos;
     Quartos quartos1;
 

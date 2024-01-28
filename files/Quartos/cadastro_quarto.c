@@ -42,7 +42,6 @@ void cadastrarQuarto(){
     getchar();
     quartos1.tipo = strparaint(input2);
     aux = quartos1.tipo;
-    printf("Tipo: %d\n", quartos1.tipo);
 
     if(quartos1.tipo < 1 || quartos1.tipo > 3 || quartos1.tipo == -1){
         printf("Falha ao cadastrar as informacoes\n");
@@ -57,7 +56,6 @@ void cadastrarQuarto(){
             return menuQuartos();
         }
     }
-    printf("Tipo: %d\n", quartos1.tipo);
 
     printf("\n");
 
@@ -108,7 +106,6 @@ void cadastrarQuarto(){
 
     
     quartos1.tipo = aux;
-    printf("Tipo: %d\n", quartos1.tipo);
     printf("\n");
 
     if(quartos1.tipo == 1){

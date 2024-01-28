@@ -44,6 +44,7 @@ void Editar_Cliente(){
                 if (aux1 == cliente1.bloco1 && aux2 == cliente1.bloco2 && aux3 == cliente1.bloco3 && aux4 == cliente1.bloco4){
                     encontrado = 1;
                     printf("Cliente encontrado!\n");
+                    replaceUnderscoreWithSpace(cliente1.nome);
                     printf("1 - Nome: %s\n", cliente1.nome);
                     printf("2 - Idade: %d\n", cliente1.idade);
                     printf("3 - CPF: %3d.%3d.%3d-%2d\n", cliente1.bloco1, cliente1.bloco2, cliente1.bloco3, cliente1.bloco4);
@@ -58,7 +59,8 @@ void Editar_Cliente(){
                     {
                     case 1:
                         printf("Informe o novo nome do Cliente: ");
-                        scanf("%s", cliente1.nome);
+                        scanf(" %[^\n]", cliente1.nome);
+                        replaceSpaceWithUnderscore(cliente1.nome);
                         break;
                     case 2:
                         printf("Informe a Nova Idade: ");

@@ -1,4 +1,5 @@
 #include "cliente.h"
+#include "Extras/funcao02.c"
 
 void Cadastro_Cliente(Clientes *clientes) {
     FILE *cliente;
@@ -11,7 +12,12 @@ void Cadastro_Cliente(Clientes *clientes) {
     }
 
     printf("Informe o nome completo do cliente: ");
-    scanf("%s", clientes->nome);
+    
+    // Use o modificador %[^'\n'] para ler uma string até encontrar uma nova linha
+    scanf(" %[^\n]", clientes->nome);
+
+    // Substitua espaços por underscores
+    replaceSpaceWithUnderscore(clientes->nome);
 
     printf("Informe a Idade: ");
     scanf("%d", &clientes->idade);

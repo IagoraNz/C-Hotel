@@ -1,4 +1,5 @@
 #include "cliente.h"
+#include "Extras/funcao01.c"
 
 void Consultar_Cliente(){
     FILE *cliente;
@@ -27,12 +28,15 @@ void Consultar_Cliente(){
     {
     case 1:
         printf("Informe o Nome: ");
-        scanf("%s", auxs);
+        scanf(" %[^\n]", auxs);
+        replaceSpaceWithUnderscore(auxs);
+        printf("Nome: %s\n", auxs);
         while (fscanf(cliente, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n", cliente1.nome, &cliente1.idade, 
         &cliente1.bloco1, &cliente1.bloco2, &cliente1.bloco3, &cliente1.bloco4,
         &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
             if (strcmp(auxs, cliente1.nome) == 0)
-            {
+            {   
+                replaceUnderscoreWithSpace(cliente1.nome);
                 printf("Nome: %s\n", cliente1.nome);
                 printf("Idade: %d\n", cliente1.idade);
                 printf("CPF: %03d.%03d.%03d-%02d\n", cliente1.bloco1,cliente1.bloco2,cliente1.bloco3,cliente1.bloco4);
@@ -60,6 +64,7 @@ void Consultar_Cliente(){
             &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
             if (aux1 == cliente1.bloco1 && aux2 == cliente1.bloco2 && aux3 == cliente1.bloco3 && aux4 == cliente1.bloco4)
                 {
+                    replaceUnderscoreWithSpace(cliente1.nome);
                     printf("Nome: %s\n", cliente1.nome);
                     printf("Idade: %d\n", cliente1.idade);
                     printf("CPF: %03d.%03d.%03d-%02d\n", cliente1.bloco1,cliente1.bloco2,cliente1.bloco3,cliente1.bloco4);
@@ -82,6 +87,7 @@ void Consultar_Cliente(){
             &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
             if (aux1 == cliente1.rg)
                 {
+                    replaceUnderscoreWithSpace(cliente1.nome);
                     printf("Nome: %s\n", cliente1.nome);
                     printf("Idade: %d\n", cliente1.idade);
                     printf("CPF: %03d.%03d.%03d-%02d\n", cliente1.bloco1,cliente1.bloco2,cliente1.bloco3,cliente1.bloco4);

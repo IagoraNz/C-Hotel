@@ -5,6 +5,10 @@
 #include <time.h>
 #include "../struct.h"
 
+void replaceUnderscoreWithSpace(char *str);
+
+void replaceSpaceWithUnderscore(char *str);
+
 void Cadastro_Cliente(Clientes *clientes);
 
 void Listar_Clientes();

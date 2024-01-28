@@ -36,6 +36,7 @@ void Consultar_reserva()
         {
             if (aux1 == reserva1.cliente.bloco1 && aux2 == reserva1.cliente.bloco2 && aux3 == reserva1.cliente.bloco3 && aux4 == reserva1.cliente.bloco4)
             {
+                replaceUnderscoreWithSpace(reserva1.cliente.nome);
                 printf("Nome: %s\n", reserva1.cliente.nome);
                 printf("CPF: %3d.%3d.%3d-%2d\n", reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4);
                 printf("Numero do quarto: %d\n", reserva1.quarto.numquarto);
@@ -54,6 +55,7 @@ void Consultar_reserva()
         {
             if (numquarto == reserva1.quarto.numquarto)
             {
+                replaceUnderscoreWithSpace(reserva1.cliente.nome);
                 printf("Nome: %s\n", reserva1.cliente.nome);
                 printf("CPF: %3d.%3d.%3d-%2d\n", reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4);
                 printf("Numero do quarto: %d", reserva1.quarto.numquarto);

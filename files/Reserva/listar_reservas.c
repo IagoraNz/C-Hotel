@@ -1,4 +1,5 @@
 #include "reserva.h"
+#include "../Cliente/cliente.h"
 
 void Listar_reservas(){
     FILE *reserva;
@@ -20,6 +21,7 @@ void Listar_reservas(){
                   &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.datai.hora, &reserva1.datai.min, &reserva1.cliente.bloco1,
                   &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
                   &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total) == 20){
+                                replaceUnderscoreWithSpace(reserva1.cliente.nome);
                                 printf("%s\t", reserva1.cliente.nome);
                                 printf("%3d.%3d.%3d-%2d\t", reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4);
                                 printf("%d\t", reserva1.quarto.numquarto);

@@ -25,7 +25,7 @@ void cadastrarQuarto(){
         exit(EXIT_FAILURE);
     }
     int aux = 0;
-    char input[1], input2[1], input3[1], input4[1];
+    char input[1], input2[1], input4[1];
     char cont[1];
 
     system("cls");
@@ -80,15 +80,7 @@ void cadastrarQuarto(){
 
     printf("\n");
 
-    printf("STATUS\n");
-    printf("1 - Disponivel\n");
-    printf("2 - Ocupado\n");
-    printf("3 - Reservado\n");
-
-    printf("Digite o status do quarto: ");
-    scanf("%s", input3);
-
-    quartos1.status = strparaint(input3);
+    quartos1.status = 1;
 
     if(quartos1.status < 1 || quartos1.status > 3 || quartos1.status == -1){
         printf("Falha ao cadastrar as informacoes\n");

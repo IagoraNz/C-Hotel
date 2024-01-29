@@ -1,5 +1,18 @@
 #include "cliente.h"
 
+int stringparainteditc(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
+}
+
 void Editar_Cliente(){
     FILE *cliente;
     Clientes cliente1;
@@ -29,7 +42,7 @@ void Editar_Cliente(){
     printf("\xBA      EDITAR      \xBA\n");
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
 
-    printf("Informe o CPF (no formato XXX.XXX.XXX-XX): ");
+    printf("Digite o CPF (no formato XXX.XXX.XXX-XX): ");
         if (scanf("%3d.%3d.%3d-%2d", &aux1, &aux2, &aux3, &aux4) != 4) {
             printf("Formato de CPF inválido.\n");
             // Tratamento de erro, se necessário
@@ -38,6 +51,7 @@ void Editar_Cliente(){
             return;
         }
 
+    char input[1];
     while (fscanf(cliente, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n", cliente1.nome, &cliente1.idade, 
             &cliente1.bloco1, &cliente1.bloco2, &cliente1.bloco3, &cliente1.bloco4,
             &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
@@ -53,18 +67,58 @@ void Editar_Cliente(){
                     printf("6 - Telefone: %s\n", cliente1.telefone);
                     printf("7 - Endereco: %s - %s\n", cliente1.cidade, cliente1.estado);
                     printf("Digite qual caracteristica deseja atualizar: ");
-                    scanf("%d", &carac);
+                    scanf("%s", input);
 
+                    carac = stringparainteditc(input);
+
+                    if(carac == -1){
+                        printf("Opcao invalida!\n");
+                        printf("Deseja tentar editar novamente (s/n)?: ");
+                        scanf("%s", input);
+                        if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
+                            return Editar_Cliente();
+                        }
+                        else{
+                            return menuClientes();
+                        }
+                    }
+                    
                     switch (carac)
                     {
                     case 1:
-                        printf("Informe o novo nome do Cliente: ");
+                        printf("Digite o novo nome do cliente: ");
                         scanf(" %[^\n]", cliente1.nome);
+
+                        if(strlen(cliente1.nome) < 3){
+                            printf("Nome muito curto!\n");
+                            printf("Deseja tentar o cadastro novamente (s/n)?: ");
+                            scanf("%s", input);
+                            if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
+                                return Editar_Cliente();
+                            }
+                            else{
+                                return menuClientes();
+                            }
+                        }
                         replaceSpaceWithUnderscore(cliente1.nome);
                         break;
                     case 2:
-                        printf("Informe a Nova Idade: ");
-                        scanf("%d", &cliente1.idade);
+                        printf("Digite a nova idade: ");
+                        scanf("%s", input);
+
+                        cliente1.idade = stringparaintc1(input);
+
+                        if(cliente1.idade < 18 || cliente1.idade == -1){
+                            printf("O cliente deve ter +18!\n");
+                            printf("Deseja tentar editar novamente (s/n)?: ");
+                            scanf("%s", input);
+                            if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
+                                return Editar_Cliente();
+                            }
+                            else{
+                                return menuClientes();
+                            }
+                        }
                         break;
                     case 3:
                         printf("Digite o novo CPF (no formato XXX.XXX.XXX-XX): ");
@@ -76,32 +130,35 @@ void Editar_Cliente(){
                         }
                         break;
                     case 4:
-                        printf("Informe o novo RG: ");
+                        printf("Digite o novo RG: ");
                         scanf("%d", &cliente1.rg);
                         break;
                     case 6:
-                        printf("Informe o Telefone: ");
+                        printf("Digite o telefone: ");
                         scanf("%s", cliente1.telefone);
                         break;
                     case 5:
-                        printf("Informe o Email: ");
+                        printf("Digite o e-mail: ");
                         scanf("%s", cliente1.email);
                         break;
                     
                     case 7:
-                        printf("Informe a Cidade: ");
+                        printf("Digite a cidade: ");
                         scanf("%s", cliente1.cidade);
-                        printf("Informe o Estado: ");
+                        printf("Digite o estado: ");
                         scanf("%s", cliente1.estado);
                         break;               
                     default:
                         break;
                     }
+                    replaceSpaceWithUnderscore(cliente1.nome);
                     fprintf(temporario, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n",
                             cliente1.nome, cliente1.idade,
                             cliente1.bloco1, cliente1.bloco2, cliente1.bloco3, cliente1.bloco4,
                             cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado);
-                } else{
+                } 
+                else{
+                    replaceSpaceWithUnderscore(cliente1.nome);
                     fprintf(temporario, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n",
                             cliente1.nome, cliente1.idade,
                             cliente1.bloco1, cliente1.bloco2, cliente1.bloco3, cliente1.bloco4,

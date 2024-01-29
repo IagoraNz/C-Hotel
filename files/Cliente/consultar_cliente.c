@@ -66,6 +66,10 @@ void Consultar_Cliente(){
             if (strcmp(auxs, cliente1.nome) == 0)
             {   
                 replaceUnderscoreWithSpace(cliente1.nome);
+                printf("Cliente encontrado!\n");
+                printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+                printf("\xBA      CLIENTES    \xBA\n");
+                printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
                 printf("Nome: %s\n", cliente1.nome);
                 printf("Idade: %d\n", cliente1.idade);
                 printf("CPF: %03d.%03d.%03d-%02d\n", cliente1.bloco1,cliente1.bloco2,cliente1.bloco3,cliente1.bloco4);
@@ -93,6 +97,10 @@ void Consultar_Cliente(){
             &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
             if (aux1 == cliente1.bloco1 && aux2 == cliente1.bloco2 && aux3 == cliente1.bloco3 && aux4 == cliente1.bloco4)
                 {
+                    printf("Cliente encontrado!\n");
+                    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+                    printf("\xBA      CLIENTES    \xBA\n");
+                    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
                     replaceUnderscoreWithSpace(cliente1.nome);
                     printf("Nome: %s\n", cliente1.nome);
                     printf("Idade: %d\n", cliente1.idade);
@@ -116,6 +124,10 @@ void Consultar_Cliente(){
             &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
             if (aux1 == cliente1.rg)
                 {
+                    printf("Cliente encontrado!\n");
+                    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+                    printf("\xBA      CLIENTES    \xBA\n");
+                    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
                     replaceUnderscoreWithSpace(cliente1.nome);
                     printf("Nome: %s\n", cliente1.nome);
                     printf("Idade: %d\n", cliente1.idade);

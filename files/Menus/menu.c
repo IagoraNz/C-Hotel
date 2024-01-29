@@ -75,8 +75,8 @@ int menu(){
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
     printf("\xBA       MENU       \xBA\n");
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-    printf("1 - Cadastrar Funcionario\n");
-    printf("2 - Login Funcionario\n");
+    printf("1 - Cadastrar funcionario\n");
+    printf("2 - Login funcionario\n");
     printf("3 - Sair\n");
 
     do{

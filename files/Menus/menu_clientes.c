@@ -30,7 +30,7 @@ void menuClientes()
         cliente = fopen("..\\db\\cliente.txt", "r");
 
         int cont = 0;
-
+        fseek(cliente, 0, SEEK_SET);
         while (fscanf(cliente, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n", cliente1.nome, &cliente1.idade,
                     &cliente1.bloco1, &cliente1.bloco2, &cliente1.bloco3, &cliente1.bloco4,
                     &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11)

@@ -2,9 +2,23 @@
 #include "../Menus/menus.h"
 #include "Extras/funcao02.c"
 
+int stringparainteditcadc(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
+}
+
 void Cadastro_Cliente(Clientes *clientes) {
     FILE *cliente;
-    char cont[1];
+    char input[1];
+    Clientes cliente1;
 
     cliente = fopen("..\\db\\cliente.txt", "a");
 
@@ -15,23 +29,32 @@ void Cadastro_Cliente(Clientes *clientes) {
 
     fclose(cliente);
 
-    printf("Informe o nome completo do cliente: ");
+    system("cls");
+    printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+    printf("\xBA     CLIENTES     \xBA\n");
+    printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+
+    printf("Digite o nome completo do cliente: ");
     
-    // Use o modificador %[^'\n'] para ler uma string até encontrar uma nova linha
+    // Use o modificador %[^'\n'] para ler uma string até eninputrar uma nova linha
     scanf(" %[^\n]", clientes->nome);
 
     // Substitua espaços por underscores
     replaceSpaceWithUnderscore(clientes->nome);
 
-    printf("Informe a Idade: ");
-    scanf("%d", &clientes->idade);
-    if (clientes->idade < 18)
+    printf("Digite a idade: ");
+    scanf("%s", input);
+
+    clientes->idade = stringparainteditcadc(input);
+
+    if (clientes->idade < 18 || clientes->idade == -1)
     {
-        printf("O Cliente deve ter +18!\n");
-        printf("Deseja tentar o cadastro novamente (s/n)?: ");
-        scanf("%s", cont);
-        if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
-            return Cadastro_Cliente(clientes);
+        printf("O cliente deve ter +18 ou idade invalida!\n");
+        printf("Deseja tentar editar novamente (s/n)?: ");
+        scanf("%s", input);
+        fclose(cliente);
+        if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
+            return Cadastro_Cliente(&cliente1);
         }
         else{
             return menuClientes();
@@ -43,25 +66,51 @@ void Cadastro_Cliente(Clientes *clientes) {
 
     printf("Digite o CPF (no formato XXX.XXX.XXX-XX): ");
     if (scanf("%3d.%3d.%3d-%2d", &clientes->bloco1, &clientes->bloco2, &clientes->bloco3, &clientes->bloco4) != 4) {
-        printf("Formato de CPF inválido.\n");
+        printf("Formato de CPF invalido.\n");
         printf("Deseja tentar o cadastro novamente (s/n)?: ");
-        scanf("%s", cont);
-        if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
-            return Cadastro_Cliente(clientes);
+        scanf("%s", input);
+        if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
+            return Cadastro_Cliente(&cliente1);
         }
         else{
             return menuClientes();
         }
     }
 
+    printf("Digite o RG: ");
+    scanf("%s", input);
 
-    printf("Informe o RG: ");
-    scanf("%d", &RG);
+    RG = stringparainteditcadc(input);
 
-    printf("Informe o Telefone: ");
+    if(RG == -1){
+        printf("RG invalido!\n");
+        printf("Deseja tentar o cadastro novamente(s/n)?: ");
+        scanf("%s", input);
+        if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
+            return cadastrarQuarto(&cliente1);
+        }
+        else{
+            return menuClientes();
+        }
+    }
+
+    printf("Digite o telefone, incluindo o DDD: ");
     scanf(" %[^\n]", Telefone);
 
-    printf("Informe o Email: ");
+    if(strlen(Telefone) != 11)
+    {
+        printf("Telefone invalido!\n");
+        printf("Deseja tentar o cadastro novamente (s/n)?: ");
+        scanf("%s", input);
+        if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
+            return cadastrarQuarto(&cliente1);
+        }
+        else{
+            return menuClientes();
+        }
+    }
+
+    printf("Digite o email: ");
     scanf(" %[^\n]", Email);
 
     aux1 = clientes->bloco1;
@@ -74,19 +123,22 @@ void Cadastro_Cliente(Clientes *clientes) {
     while (fscanf(cliente, "%s %d %03d.%03d.%03d-%02d %d %s %s %s %s\n", clientes->nome, &clientes->idade, 
     &clientes->bloco1, &clientes->bloco2, &clientes->bloco3, &clientes->bloco4,
     &clientes->rg, clientes->email, clientes->telefone, clientes->cidade, clientes->estado) == 11){
-        if (RG == clientes->rg)
+        if(RG == clientes->rg)
         {
             printf("RG ja existe no banco de dados!\n");
             enc = 0;
-        } else if (strcmp(Telefone, clientes->telefone) == 0)
+        } 
+        else if(strcmp(Telefone, clientes->telefone) == 0)
         {
             printf("Telefone ja existe no banco de dados!\n");
             enc = 0;
-        } else if (strcmp(Email, clientes->email) == 0)
+        } 
+        else if(strcmp(Email, clientes->email) == 0)
         {
             printf("Email ja existe no banco de dados!\n");
             enc = 0;
-        } else if (aux1 == clientes->bloco1 && aux2 == clientes->bloco2 && aux3 == clientes->bloco3 && aux4 == clientes->bloco4)
+        } 
+        else if (aux1 == clientes->bloco1 && aux2 == clientes->bloco2 && aux3 == clientes->bloco3 && aux4 == clientes->bloco4)
         {
             printf("CPF ja existe no banco de dados!\n");
             enc = 0;
@@ -95,7 +147,7 @@ void Cadastro_Cliente(Clientes *clientes) {
 
     fclose(cliente);
 
-    if (!enc)
+    if(!enc)
     {
         printf("Nao e possivel cadastrar esse cliente!\n");
         system("PAUSE");
@@ -111,10 +163,10 @@ void Cadastro_Cliente(Clientes *clientes) {
     clientes->bloco3 = aux3;
     clientes->bloco4 = aux4;
 
-    printf("Informe a Cidade: ");
+    printf("Digite a cidade: ");
     scanf("%s", clientes->cidade);
 
-    printf("Informe o Estado: ");
+    printf("Digite o estado: ");
     scanf("%s", clientes->estado);
 
     cliente = fopen("..\\db\\cliente.txt", "a");

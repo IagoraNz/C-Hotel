@@ -31,7 +31,7 @@ void Cadastro_Cliente(Clientes *clientes) {
         printf("Deseja tentar o cadastro novamente (s/n)?: ");
         scanf("%s", cont);
         if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
-            return Cadastro_Cliente(&clientes);
+            return Cadastro_Cliente(clientes);
         }
         else{
             return menuClientes();
@@ -47,7 +47,7 @@ void Cadastro_Cliente(Clientes *clientes) {
         printf("Deseja tentar o cadastro novamente (s/n)?: ");
         scanf("%s", cont);
         if((strcmp(cont, "s") == 0) || (strcmp(cont, "S") == 0)){
-            return Cadastro_Cliente(&clientes);
+            return Cadastro_Cliente(clientes);
         }
         else{
             return menuClientes();

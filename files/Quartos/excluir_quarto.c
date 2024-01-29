@@ -11,6 +11,7 @@ void excluirQuarto()
     if (quartos == NULL)
     {
         printf("Erro ao abrir o arquivo");
+        fclose(quartos);
         exit(EXIT_FAILURE);
     }
 

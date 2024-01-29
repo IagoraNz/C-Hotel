@@ -63,12 +63,7 @@ void Menu_Reservas()
             }
             break;
         case 3:
-            if(cont != 0){
-                Listar_reservas();
-            } 
-            else{
-                printf("Nenhuma reserva disponivel\n");
-            }
+            Listar_reservas();
             break;
         case 4:
             if(cont != 0){

@@ -27,13 +27,14 @@ void Menu_Reservas()
     do
     {
         cont = Contar_reservas();
+        system("cls");
         printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-        printf("1 - Realizar Reserva\n");
-        printf("2 - Consultar Reserva\n");
-        printf("3 - Listar Reservas\n");
-        printf("4 - Excluir Reservas\n");
+        printf("1 - Realizar reserva\n");
+        printf("2 - Consultar reserva\n");
+        printf("3 - Listar reservas\n");
+        printf("4 - Excluir reservas\n");
         printf("0 - Voltar\n");
         do{
             printf("Digite a opcao desejada: ");
@@ -58,7 +59,7 @@ void Menu_Reservas()
                 Consultar_reserva();
             } 
             else{
-                printf("Nenhuma Reserva Disponivel!\n");
+                printf("Nenhuma reserva disponivel\n");
             }
             break;
         case 3:
@@ -66,7 +67,7 @@ void Menu_Reservas()
                 Listar_reservas();
             } 
             else{
-                printf("Nenhuma Reserva Disponivel!\n");
+                printf("Nenhuma reserva disponivel\n");
             }
             break;
         case 4:
@@ -74,7 +75,7 @@ void Menu_Reservas()
                 Excluir_reserva();
             } 
             else{
-                printf("Nenhuma Reserva Disponivel!\n");
+                printf("Nenhuma reserva disponivel\n");
             }
             break;
         case 0:

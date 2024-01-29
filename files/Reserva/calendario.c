@@ -44,14 +44,6 @@ long int tempo(long int data, int aux){
     return julgreg(juliana);
 }
 
-void esp(){
-    
-    int i;
-    for (i = 0; i < espaco; i++){
-        printf("-");
-    }
-}
-
 void centro(char str[]){
     int i, quantidade;
     i = strlen(str);
@@ -82,8 +74,6 @@ void maincalendario(){
     }
 
     data = (ano * 10000) + (mes * 100) + 1;
-    
-    printf("\nCalendario de %d - %s\n", ano, matriz[mes - 1]);
 
     while((data / 100) % 100 == mes){
         mes = (data % 10000) / 100;
@@ -91,13 +81,7 @@ void maincalendario(){
 
         if(dia == 1){
             printf("\n");
-            esp();
-
-            printf("\n");
             centro(matriz[mes - 1]);
-
-            printf("\n");
-            esp();
 
             printf("\n D   S   T   Q   Q   S   S\n");
             semana = diajul(dia, mes, ano);
@@ -114,7 +98,5 @@ void maincalendario(){
         data = tempo(data, 1);
     }
 
-    printf("\n");
-    esp();
-    printf("\n");
+    printf("\n\n");
 }

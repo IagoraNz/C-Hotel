@@ -18,3 +18,5 @@ void Listar_reservas();
 int Contar_reservas();
 
 void Excluir_reserva();
+
+int stringparaintres(const char str[]);

@@ -39,7 +39,8 @@ int Atualizar_Status(int numquarto){
     fclose(temporario);
 
     if(!encontrado){
-        printf("Quarto não encontrado.\n");
+        printf("Quarto nao encontrado.\n");
+        system("PAUSE");
         remove("..\\db\\quartos_temp.txt");
     } 
     else{

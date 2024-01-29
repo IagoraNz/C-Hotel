@@ -11,10 +11,21 @@
 #include "./files/Funcionario/login_func.c"
 
 int main(){
-    int opcao;
+    int opcao, cont;
     Funcionario funcionario;
 
     Definindo_Predio();
+
+    FILE *func;
+
+    func = fopen("..\\db\\funcionario.txt", "r");
+
+    if(func == NULL){
+        cont = 0;
+    }
+    else{
+        cont = 1;
+    }
 
     do{
         opcao = menu();
@@ -27,14 +38,17 @@ int main(){
             system("cls");
             break;
         case 2:
-            if(funcionario.usuario == 0 || funcionario.senha == 0){
-                printf("Nenhum funcionario cadastrado!\n");
-                system("PAUSE");
-                system("cls");
-                break;
+            if(cont == 1){
+                login(&funcionario);
             }
             else{
-                login(&funcionario);
+                printf("Nenhum funcionario cadastrado!\n");
+                printf("Deseja cadastrar um funcionario? (s/n): ");
+                char input[1];
+                scanf("%s", input);
+                if(input[0] == 's' || input[0] == 'S'){
+                    cadastrar(&funcionario);
+                }
             }
             system("PAUSE");
             system("cls");

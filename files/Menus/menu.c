@@ -39,7 +39,7 @@ void logo() {
     printf("               I_II  I__I_____[]_|_[]_____I\n");
     printf("               I II__I  I     XXXXXXX     I\n");
     printf("            ~~~~~\"   \"~~~~~~~~~~~~~~~~~~~~~~~~\n");
-    printf("Seja bem-vindo ao Folklore Palace!\n");
+    printf("Seja bem-vindo ao Esmerio-de Sousa Palace!\n");
 
     logoExibido++;
 

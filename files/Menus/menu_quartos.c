@@ -51,7 +51,7 @@ void menuQuartos()
         printf("\xBA       MENU       \xBA\n");
         printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
         printf("1 - Cadastrar quartos\n");
-        printf("2 - Listar todos os quartos\n");
+        printf("2 - Quantidade de quartos\n");
         printf("3 - Tabela dos quartos\n");
         printf("4 - Consultar quartos disponiveis\n");
         printf("5 - Editar quartos\n");

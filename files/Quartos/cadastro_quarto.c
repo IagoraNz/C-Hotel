@@ -65,7 +65,6 @@ void cadastrarQuarto(){
     quartos1.numquarto = strparaint(input);
     int aux2 = quartos1.numquarto;
     int enc = 1;
-    printf("Numero: %d\n", quartos1.numquarto);
 
     quartos = fopen("..\\db\\quartos.txt", "r");
 
@@ -98,8 +97,6 @@ void cadastrarQuarto(){
             return menuQuartos();
         }
     }
-
-    printf("\n");
 
     quartos1.status = 1;
 

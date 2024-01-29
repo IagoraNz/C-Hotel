@@ -48,11 +48,43 @@ void editarQuarto()
             else
             {
                 printf("Quarto encontrado!\n");
-                printf("1 - Tipo: %d\n", quartos1.tipo);
-                printf("2 - Numero: %d\n", quartos1.numquarto);
-                printf("3 - Capacidade: %d\n", quartos1.capacidade);
+                printf("1 - Tipo: ");
+
+                if(quartos1.tipo == 1){
+                    printf("Luxo\n");
+                }
+                else if(quartos1.tipo == 2){
+                    printf("Executivo\n");
+                }
+                else if(quartos1.tipo == 3){
+                    printf("Simples\n");
+                }
+
+                printf("2 - Valor da diaria: ");
+
+                if(quartos1.tipo == 1){
+                    printf("R$ 100,00\n");
+                }
+                else if(quartos1.tipo == 2){
+                    printf("R$ 250,00\n");
+                }
+                else if(quartos1.tipo == 3){
+                    printf("R$ 35,00\n");
+                }
+
+                printf("3 - Capacidade: ");
+
+                if(quartos1.capacidade == 1){
+                    printf("Solteiro\n");
+                }
+                else if(quartos1.capacidade == 2){
+                    printf("Casal\n");
+                }
+
                 printf("Digite qual caracteristica deseja atualizar: ");
                 scanf("%d", &carac);
+
+                int tipo, capacidade;
 
                 switch (carac)
                 {
@@ -62,7 +94,7 @@ void editarQuarto()
                     printf("2 - Executivo\n");
                     printf("3 - Simples\n");
                     printf("Digite o tipo do quarto: ");
-                    scanf("%d", &quartos1.tipo);
+                    scanf("%d", &tipo);
 
                     if (quartos1.tipo == 1)
                     {
@@ -76,17 +108,67 @@ void editarQuarto()
                     {
                         quartos1.diaria = 35;
                     }
+
+                    if(tipo == quartos1.tipo){
+                        printf("\nPara editar, digite uma opcao diferente da original\n");
+                        system("PAUSE");
+                        system("cls");
+                        return editarQuarto();
+                    }
+                    else{
+                        quartos1.tipo = tipo;
+                    }
+                    printf("Tipo do quarto atualizado!\n");
                     break;
                 case 2:
-                    printf("Digite o numero do quarto: ");
-                    scanf("%d", &quartos1.numquarto);
+                    printf("Para mudar o valor da diaria, mude o tipo do quarto!\n");
+                    printf("1 - Luxo\n");
+                    printf("2 - Executivo\n");
+                    printf("3 - Simples\n");
+                    printf("Digite o tipo do quarto: ");
+                    scanf("%d", &tipo);
+
+                    if (quartos1.tipo == 1)
+                    {
+                        quartos1.diaria = 100;
+                    }
+                    else if (quartos1.tipo == 2)
+                    {
+                        quartos1.diaria = 250;
+                    }
+                    else if (quartos1.tipo == 3)
+                    {
+                        quartos1.diaria = 35;
+                    }
+
+                    if(tipo == quartos1.tipo){
+                        printf("O tipo do quarto é o mesmo!\nPara editar, digite uma opcao diferente da original\n");
+                        system("PAUSE");
+                        system("cls");
+                        return editarQuarto();
+                    }
+                    else{
+                        quartos1.tipo = tipo;
+                    }
+                    printf("Valor da diaria atualizado!\n");
                     break;
                 case 3:
                     printf("Capacidade do Quarto\n");
                     printf("1 - Solteiro\n");
                     printf("2 - Casal\n");
                     printf("Digite a capacidade do quarto: ");
-                    scanf("%d", &quartos1.capacidade);
+                    scanf("%d", &capacidade);
+
+                    if(capacidade == quartos1.capacidade){
+                        printf("A capacidade do quarto é a mesma!\nPara editar, digite uma opcao diferente da original\n");
+                        system("PAUSE");
+                        system("cls");
+                        return editarQuarto();
+                    }
+                    else{
+                        quartos1.capacidade = capacidade;
+                    }
+                    printf("Capacidade do quarto atualizada!\n");
                     break;
                 default:
                     printf("Caracteristica invalida!\n");

@@ -61,7 +61,8 @@ void login(Funcionario *funcionario){
 
     if(strcmp(usuario1, funcionario->usuario) != 0 || strcmp(senha1, funcionario->senha) != 0){
         printf("\n\nUsuario ou senha incorretos!\n\n");
-        printf("\n\n");
+        system("PAUSE");
+        system("cls");
         return login(funcionario);
     }
 

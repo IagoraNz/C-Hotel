@@ -1,66 +1,24 @@
 #include "reserva.h"
+#include <time.h>
 
 #define espaco 26
 
-int gregjul(int dia, int mes, int ano){
-    int juliana;
-
-    juliana = (1461 * (ano + 4800 + (mes - 14) / 12)) / 4 + (367 * (mes - 2 - 12 * ((mes - 14) / 12))) / 12 - (3 * ((ano + 4900 + (mes - 14) / 12) / 100)) / 4 + dia - 32075;
-    
-    return juliana;
-}
-
-long int julgreg(int juliana){
-    int b, n, k, j, dia, mes, ano;
-
-    b = juliana + 68569;
-    n = (4 * b) / 146097;
-    b = b - ((146097 * n + 3) / 4);
-    k = 4000 * (b + 1) / 1461001;
-    b = b - (1461 * k) / 4 + 31;
-    j = (80 * b) / 2447;
-    dia = b - (2447 * j) / 80;
-    b = (j / 11);
-    mes = j + 2 - (12 * b);
-    ano = 100 * (n - 49) + k + b;
-
-    return ((ano * 10000) + (mes * 100) + dia);
-}
-
-int diajul(int dia, int mes, int ano){
-    return ((gregjul(dia, mes, ano) + 1) % 7);
-}
-
-long int tempo(long int data, int aux){
-    int juliana, dia, mes, ano;
-
-    ano = data / 10000;
-    mes = (data % 10000) / 100;
-    dia = data % 100;
-
-    juliana = gregjul(dia, mes, ano);
-    juliana += aux;
-
-    return julgreg(juliana);
-}
-
-void centro(char str[]){
+void centro(char str[]) {
     int i, quantidade;
     i = strlen(str);
 
     quantidade = (espaco - i) / 2;
 
-    for(i = 0; i < quantidade; i++){
+    for (i = 0; i < quantidade; i++) {
         printf(" ");
     }
     printf("%s", str);
 }
 
-void maincalendario(){
-
+void maincalendario() {
     char matriz[12][15] = {"Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
     int dia, mes, ano, semana, i;
-    long int data;
+    int ultimo_dia;
 
     printf("Digite o atual ano: ");
     scanf("%d", &ano);
@@ -68,34 +26,47 @@ void maincalendario(){
     printf("Digite o numero do mes: ");
     scanf("%d", &mes);
 
-    if(mes < 1 || mes > 12){
+    if (mes < 1 || mes > 12) {
         printf("Mes invalido.\n");
         exit(1);
     }
 
-    data = (ano * 10000) + (mes * 100) + 1;
+    struct tm primeiro_dia = {0};
+    primeiro_dia.tm_year = ano - 1900;
+    primeiro_dia.tm_mon = mes - 1;
+    primeiro_dia.tm_mday = 1;
+    mktime(&primeiro_dia);
 
-    while((data / 100) % 100 == mes){
-        mes = (data % 10000) / 100;
-        dia = data % 100;
+    printf("\n");
+    centro(matriz[mes - 1]);
+    printf("\n D   S   T   Q   Q   S   S\n");
 
-        if(dia == 1){
-            printf("\n");
-            centro(matriz[mes - 1]);
-
-            printf("\n D   S   T   Q   Q   S   S\n");
-            semana = diajul(dia, mes, ano);
-            for (i = 0; i < semana; i++){
-                printf("    ");
-            }
+    // Determina o último dia do mês
+    if (mes == 2) {
+        if ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0)) {
+            ultimo_dia = 29; // Ano bissexto
+        } else {
+            ultimo_dia = 28;
         }
+    } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+        ultimo_dia = 30;
+    } else {
+        ultimo_dia = 31;
+    }
 
-        printf("%02d  ", dia);
+    semana = primeiro_dia.tm_wday;
 
-        if(((dia + semana) % 7 == 0) && (tempo(data, 1) - data == 1)){
+    for (i = 0; i < semana; i++) {
+        printf("    ");
+    }
+
+    for (dia = 1; dia <= ultimo_dia; dia++) {
+        printf("%2d  ", dia);
+
+        if (++semana == 7) {
             printf("\n");
+            semana = 0;
         }
-        data = tempo(data, 1);
     }
 
     printf("\n\n");

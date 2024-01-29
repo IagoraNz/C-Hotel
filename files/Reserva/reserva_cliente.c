@@ -187,7 +187,7 @@ void Reservar_Cliente()
                                     else{
                                         break;
                                     }
-                                }while(strcmp(input, "n") == 0 || strcmp(input, "N") == 0);
+                                }while(1);
                             }
                             do{
                                 erro = 0;

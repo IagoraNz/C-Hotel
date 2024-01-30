@@ -2,6 +2,7 @@
 #include "../checks/checkin.c"
 #include "../checks/checkout.c"
 #include "../checks/valores_recebidos.c"
+#include "../checks/valortotal.c"
 
 int stringparaintch(const char str[]) {
     int result = 0, i;
@@ -28,6 +29,7 @@ void menu_checks(){
         printf("1 - Check-in\n");
         printf("2 - Check-out\n");
         printf("3 - Valores Recebidos\n");
+        printf("4 - Valores Totais\n");
         printf("0 - Voltar\n");
         do{
             printf("Digite a opcao desejada: ");
@@ -35,12 +37,12 @@ void menu_checks(){
 
             input = stringparaintch(opc);
 
-            if(input == -1 || input > 3 || input < 0){
+            if(input == -1 || input > 4 || input < 0){
                 printf("Opcao invalida!\n");
                 system("PAUSE");
                 return menu_checks();
             }
-        }while(input < 0 || input > 3);
+        }while(input < 0 || input > 4);
 
         switch (input)
         {
@@ -56,6 +58,11 @@ void menu_checks(){
             break;
         case 3:
             Valores_Recebidos();
+            system("PAUSE");
+            system("cls");
+            break;
+        case 4:
+            Valor_total();
             system("PAUSE");
             system("cls");
             break;

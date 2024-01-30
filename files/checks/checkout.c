@@ -61,6 +61,7 @@ void checkout()
     }
 
     int enc = 0, enc2 = 0;
+    int aux_quarto, aux_status = 0;
 
     while (fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f %d\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
                   &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.datai.hora, &reserva1.datai.min, &reserva1.cliente.bloco1,
@@ -79,7 +80,7 @@ void checkout()
 
                 reserva1.dataf.hora = datafim.hora;
                 reserva1.dataf.min = datafim.min;
-
+                aux_quarto = reserva1.quarto.numquarto;
                 // fseek(reserva, 0, SEEK_SET); // Move to the beginning of the file
 
                 int codres;
@@ -108,6 +109,7 @@ void checkout()
             } else
             {
                 printf("Check-in nao foi realizado!\n");
+                printf("Faca o check-in primeiro!\n");
                 fprintf(temporario, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f %d\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto, reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min, reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4, reserva1.dataf.dia, reserva1.dataf.mes, reserva1.dataf.ano, reserva1.dataf.hora, reserva1.dataf.min, reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total, reserva1.status_check);
             }
         }
@@ -133,10 +135,7 @@ void checkout()
     {
         remove("..\\db\\reserva.txt");
         rename("..\\db\\reserva_temp.txt", "..\\db\\reserva.txt");
-    }
-
-    int aux_quarto, aux_status = 0;
-    aux_quarto = reserva1.quarto.numquarto;
+    }    
 
     reserva = fopen("..\\db\\reserva.txt", "r");
 
@@ -173,6 +172,7 @@ void checkout()
     }
 
     int encontrado = 0;
+    printf("Aux Quarto: %d\nAux Status: %d\n", aux_quarto, aux_status);
 
     while (fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5)
     {

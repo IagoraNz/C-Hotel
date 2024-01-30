@@ -105,6 +105,9 @@ void checkin()
     if (!enc)
     {
         printf("Quarto se encontra Ocupado ou nao possui reserva!\n");
+        fclose(quartos);
+        fclose(clientes);
+        fclose(reserva);
         return;
     }
 
@@ -219,6 +222,9 @@ void checkin()
     if (!enc)
     {
         printf("Reserva nao encontrada!\n");
+        fclose(quartos);
+        fclose(clientes);
+        fclose(reserva);
         remove("..\\db\\reserva_temp.txt");
     }
     else

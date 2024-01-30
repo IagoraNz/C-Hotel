@@ -182,7 +182,7 @@ void menuQuartos()
             system("cls");
             break;
         case 0:
-            return;
+            return menu_funcionario();
         default:
             printf("Opcao invalida!\n");
             break;

@@ -55,8 +55,6 @@ void Reservar_Cliente()
     FILE *cliente1;
     int aux1, aux2, aux3, aux4, num = 0, numquarto, cont;
 
-    reserva1.status_check = 0;
-
     char input[1];
     srand(time(NULL));
 
@@ -287,6 +285,9 @@ void Reservar_Cliente()
                                 printf("Erro ao abrir o arquivo.\n");
                                 exit(EXIT_FAILURE);
                             }
+
+                            reserva1.status_check = 0;
+
                             fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f %d\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
                                     reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,
                                     reserva1.cliente.bloco1, reserva1.cliente.bloco2, reserva1.cliente.bloco3, reserva1.cliente.bloco4,
@@ -469,6 +470,8 @@ void Reservar_Cliente()
                                     reserva1.dias_reservado = diferencaDias(Datai, Dataf);
 
                                     reserva1.valor_total = (reserva1.dias_reservado + 1) * reserva1.quarto.diaria;
+
+                                    reserva1.status_check = 0;
 
                                     fprintf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f %d\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
                                             reserva1.datai.dia, reserva1.datai.mes, reserva1.datai.ano, reserva1.datai.hora, reserva1.datai.min,

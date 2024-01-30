@@ -17,15 +17,7 @@ void consultarQuarto(){
     FILE *quartos;
     Quartos quartos1;
 
-    quartos = fopen("..\\db\\quartos.txt", "r");
-
-    if(quartos == NULL){
-        printf("Erro ao abrir o arquivo");
-        exit(EXIT_FAILURE);
-    }
-
     int consulta, tipo, numquarto, status, capacidade;
-    float diaria;
     char input[1];
 
     system("cls");
@@ -36,8 +28,7 @@ void consultarQuarto(){
         printf("1 - Busca por tipo\n");
         printf("2 - Busca por numero\n");
         printf("3 - Busca por status\n");
-        printf("4 - Busca por diaria\n");
-        printf("5 - Busca por capacidade\n");
+        printf("4 - Busca por capacidade\n");
         printf("0 - Voltar\n");
         do{
             printf("Digite a opcao desejada: ");
@@ -51,11 +42,17 @@ void consultarQuarto(){
                 fclose(quartos);
                 return consultarQuarto();
             }
-        }while(consulta < 0 || consulta > 5);
+        }while(consulta < 0 || consulta > 4);
 
         switch (consulta)
         {
         case 1:
+            quartos = fopen("..\\db\\quartos.txt", "r");
+
+            if(quartos == NULL){
+                printf("Erro ao abrir o arquivo");
+                exit(EXIT_FAILURE);
+            }
             printf("TIPOS\n");
             printf("1 - Luxo\n");
             printf("2 - Executivo\n");
@@ -112,6 +109,12 @@ void consultarQuarto(){
             break;
 
         case 2:
+            quartos = fopen("..\\db\\quartos.txt", "r");
+
+            if(quartos == NULL){
+                printf("Erro ao abrir o arquivo");
+                exit(EXIT_FAILURE);
+            }
             printf("Digite o numero do quarto: ");
             scanf("%s", input);
 
@@ -124,7 +127,7 @@ void consultarQuarto(){
                 fclose(quartos);
                 return consultarQuarto();
             }
-
+            fseek(quartos, 0, SEEK_SET);
             system("cls");
             printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
             printf("\xBA      QUARTO      \xBA\n");
@@ -163,6 +166,12 @@ void consultarQuarto(){
             break;
 
         case 3:
+            quartos = fopen("..\\db\\quartos.txt", "r");
+
+            if(quartos == NULL){
+                printf("Erro ao abrir o arquivo");
+                exit(EXIT_FAILURE);
+            }
             printf("STATUS\n");
             printf("1 - Disponivel\n");
             printf("2 - Ocupado\n");
@@ -219,57 +228,12 @@ void consultarQuarto(){
             break;
 
         case 4:
-            printf("Digite a diaria do quarto: ");
-            scanf("%s", input);
+            quartos = fopen("..\\db\\quartos.txt", "r");
 
-            diaria = strparaintconsul(input);
-
-            if(diaria == -1 || diaria < 35 || diaria > 250){
-                printf("Opcao invalida. Tente novamente.\n");
-                system("PAUSE");
-                system("cls");
-                fclose(quartos);
-                return consultarQuarto();
+            if(quartos == NULL){
+                printf("Erro ao abrir o arquivo");
+                exit(EXIT_FAILURE);
             }
-
-            system("cls");
-            printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-            printf("\xBA      QUARTO      \xBA\n");
-            printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-            printf("TIPO\t\tNUMERO\t\tSTATUS\t\t\tDIARIA\t\tCAPACIDADE\n");
-            while(fscanf(quartos, "%d\n%d\n%d\n%f\n%d\n", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) != EOF){
-                if(quartos1.diaria == diaria){
-
-                    if(quartos1.tipo == 1){
-                        printf("Luxo\t\t%d\t\t", quartos1.numquarto);
-                    }
-                    else if(quartos1.tipo == 2){
-                        printf("Executivo\t%d\t\t", quartos1.numquarto);
-                    }
-                    else if(quartos1.tipo == 3){
-                        printf("Simples\t\t%d\t\t", quartos1.numquarto);
-                    }
-
-                    if(quartos1.status == 1){
-                        printf("Disponivel\t\t");
-                    }
-                    else if(quartos1.status == 2){
-                        printf("Ocupado\t\t");
-                    }
-                    else if(quartos1.status == 3){
-                        printf("Reservado\t\t");
-                    }
-
-                    printf("%.2f\t\t%d\n", quartos1.diaria, quartos1.capacidade);
-                }
-            }
-            fseek(quartos, 0, SEEK_SET);
-            fclose(quartos);
-            system("PAUSE");
-            system("cls");
-            break;
-
-        case 5:
             printf("Capacidade do Quarto\n");
             printf("1 - Solteiro\n");
             printf("2 - Casal\n");

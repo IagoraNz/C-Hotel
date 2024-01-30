@@ -42,6 +42,10 @@ void Cadastro_Cliente(Clientes *clientes) {
     // Substitua espaços por underscores
     replaceSpaceWithUnderscore(clientes->nome);
 
+    char nome[maxnome];
+
+    strcpy(nome, clientes->nome);
+
     printf("Digite a idade: ");
     scanf("%s", input);
 
@@ -87,7 +91,7 @@ void Cadastro_Cliente(Clientes *clientes) {
         printf("Deseja tentar o cadastro novamente(s/n)?: ");
         scanf("%s", input);
         if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
-            return cadastrarQuarto(&cliente1);
+            return Cadastro_Cliente(&cliente1);
         }
         else{
             return menuClientes();
@@ -103,7 +107,7 @@ void Cadastro_Cliente(Clientes *clientes) {
         printf("Deseja tentar o cadastro novamente (s/n)?: ");
         scanf("%s", input);
         if((strcmp(input, "s") == 0) || (strcmp(input, "S") == 0)){
-            return cadastrarQuarto(&cliente1);
+            return Cadastro_Cliente(&cliente1);
         }
         else{
             return menuClientes();
@@ -162,6 +166,7 @@ void Cadastro_Cliente(Clientes *clientes) {
     clientes->bloco2 = aux2;
     clientes->bloco3 = aux3;
     clientes->bloco4 = aux4;
+    strcpy(clientes->nome, nome);
 
     printf("Digite a cidade: ");
     scanf("%s", clientes->cidade);

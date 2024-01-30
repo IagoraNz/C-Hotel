@@ -134,15 +134,15 @@ void editarQuarto()
                         }
                     }while(tipo < 1 || tipo > 3);
 
-                    if (quartos1.tipo == 1)
+                    if (tipo == 1)
                     {
                         quartos1.diaria = 100;
                     }
-                    else if (quartos1.tipo == 2)
+                    else if (tipo == 2)
                     {
                         quartos1.diaria = 250;
                     }
-                    else if (quartos1.tipo == 3)
+                    else if (tipo == 3)
                     {
                         quartos1.diaria = 35;
                     }
@@ -174,15 +174,15 @@ void editarQuarto()
                         }
                     }while(tipo < 1 || tipo > 3);
 
-                    if (quartos1.tipo == 1)
+                    if (tipo == 1)
                     {
                         quartos1.diaria = 100;
                     }
-                    else if (quartos1.tipo == 2)
+                    else if (tipo == 2)
                     {
                         quartos1.diaria = 250;
                     }
-                    else if (quartos1.tipo == 3)
+                    else if (tipo == 3)
                     {
                         quartos1.diaria = 35;
                     }

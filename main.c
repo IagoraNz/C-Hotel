@@ -10,7 +10,8 @@
 #include "./files/Funcionario/cadastro_func.c"
 #include "./files/Funcionario/login_func.c"
 
-int main(){
+int main()
+{
     int opcao, cont;
     Funcionario funcionario;
 
@@ -18,18 +19,18 @@ int main(){
 
     FILE *func;
 
-    func = fopen("..\\db\\funcionario.txt", "r");
-
-    if(func == NULL){
-        cont = 0;
-    }
-    else{
-        cont = 1;
-    }
-
-    do{
+    do
+    {
         opcao = menu();
-
+        func = fopen("..\\db\\funcionario.txt", "r");
+        if (func == NULL)
+        {
+            cont = 0;
+        } else
+        {
+            cont = 1;
+        }
+        fclose(func);
         switch (opcao)
         {
         case 1:
@@ -38,15 +39,18 @@ int main(){
             system("cls");
             break;
         case 2:
-            if(cont == 1){
+            if (cont == 1)
+            {
                 login(&funcionario);
             }
-            else{
+            else
+            {
                 printf("Nenhum funcionario cadastrado!\n");
                 printf("Deseja cadastrar um funcionario? (s/n): ");
                 char input[1];
                 scanf("%s", input);
-                if(input[0] == 's' || input[0] == 'S'){
+                if (input[0] == 's' || input[0] == 'S')
+                {
                     cadastrar(&funcionario);
                 }
             }
@@ -56,5 +60,5 @@ int main(){
         default:
             exit(EXIT_FAILURE);
         }
-    }while(opcao != 3);
+    } while (opcao != 3);
 }

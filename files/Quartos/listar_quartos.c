@@ -21,7 +21,7 @@ void listarQuartos(){
     while(fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5){
         quantidade++;
     }
-
+    fclose(quartos);
     printf("A quantidade total de quartos cadastrados: %d\n\n", quantidade);
 
     printf("Deseja ver a tabela de quartos? (s/n): ");
@@ -33,7 +33,5 @@ void listarQuartos(){
     }
     else{
         return menuQuartos();
-    }
-
-    fclose(quartos);
+    }    
 }

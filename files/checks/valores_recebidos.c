@@ -28,6 +28,11 @@ void Valores_Recebidos(){
 
     pagamento = fopen("..\\db\\pagamento.txt", "r");
 
+    if (pagamento == NULL) {
+        printf("Erro ao abrir o arquivo de pagamento.\n");
+        return;
+    }
+
     printf("Informe a Data de inicio(XX/XX/XXXX): ");
     scanf("%2d/%2d/%4d", &datai.dia, &datai.mes, &datai.ano);
 

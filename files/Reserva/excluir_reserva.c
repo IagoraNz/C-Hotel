@@ -40,10 +40,6 @@ void Excluir_reserva(){
     printf("Digite o codigo da reserva: ");
     scanf("%s", input);
 
-    
-
-
-
     int num_quarto;
 
     codigoexc = stringparaintres(input);
@@ -57,6 +53,7 @@ void Excluir_reserva(){
             num_quarto = reserva1.quarto.numquarto;
             encontrado = 1;
             printf("Reserva excluída com sucesso!\n");
+            system("PAUSE");
         } 
         else{
             fprintf(reservaTemp, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %.2f\n", reserva1.cod_reserva, reserva1.cliente.nome, reserva1.quarto.numquarto,
@@ -131,7 +128,14 @@ void Excluir_reserva(){
 
     fclose(quarto);
     fclose(quartoTemp);
+    fclose(reserva);
 
-    remove("..\\db\\quartos.txt");
-    rename("..\\db\\quarto_temp.txt", "..\\db\\quartos.txt");
+    if(verificacao == 1){
+        remove("..\\db\\quartos.txt");
+        rename("..\\db\\quarto_temp.txt", "..\\db\\quartos.txt");
+    }
+    else{
+        remove("..\\db\\quartos.txt");
+        rename("..\\db\\quarto_temp.txt", "..\\db\\quartos.txt");
+    }
 }

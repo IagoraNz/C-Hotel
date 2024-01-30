@@ -16,3 +16,5 @@ void Valores_Recebidos();
 int ComparaDatas(Data data1, Data data2);
 
 int DataEstaNoPeriodo(Data data, Data inicio, Data fim);
+
+void Valor_total();

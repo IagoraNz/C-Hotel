@@ -157,4 +157,16 @@ void cadastrarQuarto(){
     fprintf(quartos, "%d %d %d %.2f %d\n", quartos1.tipo, quartos1.numquarto, quartos1.status, quartos1.diaria, quartos1.capacidade);
 
     fclose(quartos);
+
+
+    char continuar[1];
+    printf("Quarto cadastrado com sucesso!\n");
+    printf("Deseja cadastrar outro quarto? (s/n): ");
+    scanf("%s", continuar);
+    if((strcmp(continuar, "s") == 0) || (strcmp(continuar, "S") == 0)){
+        return cadastrarQuarto();
+    }
+    else{
+        return menuQuartos();
+    }
 }

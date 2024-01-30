@@ -172,7 +172,6 @@ void checkout()
     }
 
     int encontrado = 0;
-    printf("Aux Quarto: %d\nAux Status: %d\n", aux_quarto, aux_status);
 
     while (fscanf(quartos, "%d%d%d%f%d", &quartos1.tipo, &quartos1.numquarto, &quartos1.status, &quartos1.diaria, &quartos1.capacidade) == 5)
     {

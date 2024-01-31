@@ -4,6 +4,7 @@
 #include "../Cliente/visualizar_cliente.c"
 #include "../Cliente/consultar_cliente.c"
 #include "../Cliente/edit_cliente.c"
+#include "../Cliente/excluir_cliente.c"
 
 int stringparaintc(const char str[]) {
     int result = 0, i;
@@ -46,6 +47,7 @@ void menuClientes()
         printf("2 - Visualizar clientes\n");
         printf("3 - Consultar cliente\n");
         printf("4 - Editar cliente\n");
+        printf("5 - Excluir Cliente\n");
         printf("0 - Voltar\n");
         do{
             printf("Digite a opcao desejada: ");
@@ -53,12 +55,12 @@ void menuClientes()
 
             input = stringparaintc(opc);
 
-            if(input == -1 || input > 4 || input < 0){
+            if(input == -1 || input > 5 || input < 0){
                 printf("Opcao invalida!\n");
                 system("PAUSE");
                 return menuClientes();
             }
-        }while(input < 0 || input > 4);
+        }while(input < 0 || input > 5);
 
         switch (input)
         {
@@ -102,6 +104,19 @@ void menuClientes()
             else
             {
                 Editar_Cliente();
+            }
+            break;
+        case 5:
+            if (cont == 0)
+            {
+                printf("Nenhum cliente cadastrado!\n");
+                system("PAUSE");
+                system("cls");
+                break;
+            }
+            else
+            {
+                Excluir_Cliente();
             }
             break;
         case 0:

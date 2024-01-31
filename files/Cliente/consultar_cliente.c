@@ -66,9 +66,9 @@ void Consultar_Cliente(){
             if (strcmp(auxs, cliente1.nome) == 0)
             {   
                 replaceUnderscoreWithSpace(cliente1.nome);
-                printf("Cliente encontrado!\n");
+                printf("\nCliente encontrado!\n\n");
                 printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-                printf("\xBA      CLIENTES    \xBA\n");
+                printf("\xBA      CLIENTE     \xBA\n");
                 printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
                 printf("Nome: %s\n", cliente1.nome);
                 printf("Idade: %d\n", cliente1.idade);
@@ -78,11 +78,18 @@ void Consultar_Cliente(){
                 printf("Telefone: %s\n", cliente1.telefone);
                 printf("Cidade: %s\n", cliente1.cidade);
                 printf("Estado: %s\n", cliente1.estado);
-                printf("\n\n");
+                printf("\n");
             }
         }
         fclose(cliente);
-        system("PAUSE");
+        printf("Deseja fazer outra consulta? (s/n): ");
+        scanf("%s", input);
+        if(input[0] == 's' || input[0] == 'S'){
+            Consultar_Cliente();
+        }
+        else{
+            return;
+        }
         break;
     case 2:
         printf("Digite o CPF (no formato XXX.XXX.XXX-XX): ");
@@ -97,9 +104,9 @@ void Consultar_Cliente(){
             &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
             if (aux1 == cliente1.bloco1 && aux2 == cliente1.bloco2 && aux3 == cliente1.bloco3 && aux4 == cliente1.bloco4)
                 {
-                    printf("Cliente encontrado!\n");
+                    printf("\nCliente encontrado!\n\n");
                     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-                    printf("\xBA      CLIENTES    \xBA\n");
+                    printf("\xBA      CLIENTE     \xBA\n");
                     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
                     replaceUnderscoreWithSpace(cliente1.nome);
                     printf("Nome: %s\n", cliente1.nome);
@@ -110,11 +117,18 @@ void Consultar_Cliente(){
                     printf("Telefone: %s\n", cliente1.telefone);
                     printf("Cidade: %s\n", cliente1.cidade);
                     printf("Estado: %s\n", cliente1.estado);
-                    printf("\n\n");
+                    printf("\n");
                 }
             }
         fclose(cliente);
-        system("PAUSE");
+        printf("Deseja fazer outra consulta? (s/n): ");
+        scanf("%s", input);
+        if(input[0] == 's' || input[0] == 'S'){
+            Consultar_Cliente();
+        }
+        else{
+            return;
+        }
         break;
     case 3:
         printf("Informe o RG: ");
@@ -124,9 +138,9 @@ void Consultar_Cliente(){
             &cliente1.rg, cliente1.email, cliente1.telefone, cliente1.cidade, cliente1.estado) == 11){
             if (aux1 == cliente1.rg)
                 {
-                    printf("Cliente encontrado!\n");
+                    printf("\nCliente encontrado!\n\n");
                     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
-                    printf("\xBA      CLIENTES    \xBA\n");
+                    printf("\xBA      CLIENTE     \xBA\n");
                     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
                     replaceUnderscoreWithSpace(cliente1.nome);
                     printf("Nome: %s\n", cliente1.nome);
@@ -137,15 +151,20 @@ void Consultar_Cliente(){
                     printf("Telefone: %s\n", cliente1.telefone);
                     printf("Cidade: %s\n", cliente1.cidade);
                     printf("Estado: %s\n", cliente1.estado);
-                    printf("\n\n");
+                    printf("\n");
                 }
             }
         fclose(cliente);
-        system("PAUSE");
+        printf("Deseja fazer outra consulta? (s/n): ");
+        scanf("%s", input);
+        if(input[0] == 's' || input[0] == 'S'){
+            Consultar_Cliente();
+        }
+        else{
+            return;
+        }
         break;
     default:
         break;
     }
-    
-
 }

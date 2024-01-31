@@ -77,16 +77,19 @@ void Reservar_Cliente()
         exit(EXIT_FAILURE);
     }
 
-    //Verifica se o código aleatório já existe
-    while(fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f %d\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
+    // Verifica se o código aleatório já existe
+    while (fscanf(reserva, "%d %s %d %02d/%02d/%4d %02d:%02d %3d.%3d.%3d-%2d %02d/%02d/%4d %02d:%02d %d %d %f %d\n", &reserva1.cod_reserva, reserva1.cliente.nome, &reserva1.quarto.numquarto,
                   &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano, &reserva1.datai.hora, &reserva1.datai.min, &reserva1.cliente.bloco1,
                   &reserva1.cliente.bloco2, &reserva1.cliente.bloco3, &reserva1.cliente.bloco4, &reserva1.dataf.dia,
-                  &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total, &reserva1.status_check) == 21){
-        do{
-            if(numero == reserva1.cod_reserva){
+                  &reserva1.dataf.mes, &reserva1.dataf.ano, &reserva1.dataf.hora, &reserva1.dataf.min, &reserva1.dias_reservado, &reserva1.status_pag, &reserva1.valor_total, &reserva1.status_check) == 21)
+    {
+        do
+        {
+            if (numero == reserva1.cod_reserva)
+            {
                 numero = rand() % 9000 + 1000;
             }
-        }while(numero == reserva1.cod_reserva);
+        } while (numero == reserva1.cod_reserva);
     }
 
     fseek(cliente1, 0, SEEK_SET);
@@ -101,6 +104,8 @@ void Reservar_Cliente()
     if (scanf("%3d.%3d.%3d-%2d", &aux1, &aux2, &aux3, &aux4) != 4)
     {
         printf("Formato de CPF invalido!\n");
+        fclose(cliente1);
+        fclose(reserva);
         return;
     }
 
@@ -174,20 +179,25 @@ void Reservar_Cliente()
                             reserva1.cod_reserva = numero + (Contar_reservas() + 1);
                             printf("Deseja consultar o calendario de um mes (s/n)?: ");
                             scanf("%s", input);
-                            if(input[0] == 's' || input[0] == 'S'){
+                            if (input[0] == 's' || input[0] == 'S')
+                            {
                                 maincalendario();
-                                do{
+                                do
+                                {
                                     printf("Deseja consultar outro mes (s/n)?: ");
                                     scanf("%s", input);
-                                    if(input[0] == 's' || input[0] == 'S'){
+                                    if (input[0] == 's' || input[0] == 'S')
+                                    {
                                         maincalendario();
                                     }
-                                    else{
+                                    else
+                                    {
                                         break;
                                     }
-                                }while(1);
+                                } while (1);
                             }
-                            do{
+                            do
+                            {
                                 erro = 0;
                                 printf("Digite a data da entrada(XX/XX/XXX): ");
                                 if (scanf("%2d/%2d/%4d", &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano) != 3)
@@ -195,9 +205,10 @@ void Reservar_Cliente()
                                     printf("Formato invalido!\n");
                                     erro++;
                                 }
-                            }while(erro != 0);
-                            
-                            do{
+                            } while (erro != 0);
+
+                            do
+                            {
                                 erro = 0;
                                 printf("Digite a hora de entrada(XX:XX): ");
                                 if (scanf("%2d:%d", &reserva1.datai.hora, &reserva1.datai.min) != 2)
@@ -205,9 +216,10 @@ void Reservar_Cliente()
                                     printf("Formato invalido!\n");
                                     erro++;
                                 }
-                            }while(erro != 0);
+                            } while (erro != 0);
 
-                            do{
+                            do
+                            {
                                 erro = 0;
                                 printf("Digite a data de saida(XX/XX/XXX): ");
                                 if (scanf("%2d/%2d/%4d", &reserva1.dataf.dia, &reserva1.dataf.mes, &reserva1.dataf.ano) != 3)
@@ -215,9 +227,10 @@ void Reservar_Cliente()
                                     printf("Formato invalido!\n");
                                     erro++;
                                 }
-                            }while(erro != 0);
+                            } while (erro != 0);
 
-                            do{
+                            do
+                            {
                                 erro = 0;
                                 printf("Digite a hora de saida(XX:XX): ");
                                 if (scanf("%2d:%d", &reserva1.dataf.hora, &reserva1.dataf.min) != 2)
@@ -225,39 +238,56 @@ void Reservar_Cliente()
                                     printf("Formato invalido!\n");
                                     erro++;
                                 }
-                            }while(erro != 0);
+                            } while (erro != 0);
 
-                            if(reserva1.dataf.ano < reserva1.datai.ano){
+                            if (reserva1.dataf.ano < reserva1.datai.ano)
+                            {
                                 printf("\nA data final nao pode ser anterior a inicial\n");
                                 system("PAUSE");
                                 printf("Deseje tentar o cadastro da reserva novamente (s/n)?: ");
                                 scanf("%s", input);
-                                if(input[0] == 's' || input[0] == 'S'){
+                                if (input[0] == 's' || input[0] == 'S')
+                                {
                                     return Reservar_Cliente();
                                 }
-                                else{
+                                else
+                                {
                                     return Menu_Reservas();
                                 }
                             }
-                            else if((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes < reserva1.datai.mes)){
+                            else if ((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes < reserva1.datai.mes))
+                            {
                                 printf("\nA data final nao pode ser anterior a inicial\n");
                                 printf("Deseje tentar o cadastro da reserva novamente (s/n)?: ");
                                 scanf("%s", input);
-                                if(input[0] == 's' || input[0] == 'S'){
+                                if (input[0] == 's' || input[0] == 'S')
+                                {
+                                    fclose(cliente1);
+                                    fclose(reserva);
                                     return Reservar_Cliente();
                                 }
-                                else{
+                                else
+                                {
+                                    fclose(cliente1);
+                                    fclose(reserva);
                                     return Menu_Reservas();
-                                }                                    
+                                }
                             }
-                            else if((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes == reserva1.datai.mes) && reserva1.dataf.dia < reserva1.datai.dia){
+                            else if ((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes == reserva1.datai.mes) && reserva1.dataf.dia < reserva1.datai.dia)
+                            {
                                 printf("\nA data final nao pode ser anterior a inicial\n");
                                 printf("Deseje tentar o cadastro da reserva novamente (s/n)?: ");
                                 scanf("%s", input);
-                                if(input[0] == 's' || input[0] == 'S'){
+                                if (input[0] == 's' || input[0] == 'S')
+                                {
+                                    fclose(cliente1);
+                                    fclose(reserva);
                                     return Reservar_Cliente();
                                 }
-                                else{
+                                else
+                                {
+                                    fclose(cliente1);
+                                    fclose(reserva);
                                     return Menu_Reservas();
                                 }
                             }
@@ -357,20 +387,25 @@ void Reservar_Cliente()
                                 reserva1.cod_reserva = numero + (Contar_reservas() + 1);
                                 printf("Deseja consultar o calendario de um mes (s/n)?: ");
                                 scanf("%s", input);
-                                if(input[0] == 's' || input[0] == 'S'){
+                                if (input[0] == 's' || input[0] == 'S')
+                                {
                                     maincalendario();
-                                    do{
+                                    do
+                                    {
                                         printf("Deseja consultar outro mes (s/n)?: ");
                                         scanf("%s", input);
-                                        if(input[0] == 's' || input[0] == 'S'){
+                                        if (input[0] == 's' || input[0] == 'S')
+                                        {
                                             maincalendario();
                                         }
-                                        else{
+                                        else
+                                        {
                                             break;
                                         }
-                                    }while(strcmp(input, "n") == 0 || strcmp(input, "N") == 0);
+                                    } while (strcmp(input, "n") == 0 || strcmp(input, "N") == 0);
                                 }
-                                do{
+                                do
+                                {
                                     erro = 0;
                                     printf("Digite a data da entrada(XX/XX/XXX): ");
                                     if (scanf("%2d/%2d/%4d", &reserva1.datai.dia, &reserva1.datai.mes, &reserva1.datai.ano) != 3)
@@ -378,9 +413,10 @@ void Reservar_Cliente()
                                         printf("Formato invalido!\n");
                                         erro++;
                                     }
-                                }while(erro != 0);
-                                
-                                do{
+                                } while (erro != 0);
+
+                                do
+                                {
                                     erro = 0;
                                     printf("Digite a hora de entrada(XX:XX): ");
                                     if (scanf("%2d:%d", &reserva1.datai.hora, &reserva1.datai.min) != 2)
@@ -388,9 +424,10 @@ void Reservar_Cliente()
                                         printf("Formato invalido!\n");
                                         erro++;
                                     }
-                                }while(erro != 0);
+                                } while (erro != 0);
 
-                                do{
+                                do
+                                {
                                     erro = 0;
                                     printf("Digite a data de saida(XX/XX/XXX): ");
                                     if (scanf("%2d/%2d/%4d", &reserva1.dataf.dia, &reserva1.dataf.mes, &reserva1.dataf.ano) != 3)
@@ -398,9 +435,10 @@ void Reservar_Cliente()
                                         printf("Formato invalido!\n");
                                         erro++;
                                     }
-                                }while(erro != 0);
+                                } while (erro != 0);
 
-                                do{
+                                do
+                                {
                                     erro = 0;
                                     printf("Digite a hora de saida(XX:XX): ");
                                     if (scanf("%2d:%d", &reserva1.dataf.hora, &reserva1.dataf.min) != 2)
@@ -408,38 +446,59 @@ void Reservar_Cliente()
                                         printf("Formato invalido!\n");
                                         erro++;
                                     }
-                                }while(erro != 0);
-                                if(reserva1.dataf.ano < reserva1.datai.ano){
+                                } while (erro != 0);
+                                if (reserva1.dataf.ano < reserva1.datai.ano)
+                                {
                                     printf("\nA data final nao pode ser anterior a inicial\n");
                                     system("PAUSE");
                                     printf("Deseje tentar o cadastro da reserva novamente (s/n)?: ");
                                     scanf("%s", input);
-                                    if(input[0] == 's' || input[0] == 'S'){
+                                    if (input[0] == 's' || input[0] == 'S')
+                                    {
+                                        fclose(cliente1);
+                                        fclose(reserva);
                                         return Reservar_Cliente();
                                     }
-                                    else{
+                                    else
+                                    {
+                                        fclose(cliente1);
+                                        fclose(reserva);
                                         return Menu_Reservas();
                                     }
                                 }
-                                else if((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes < reserva1.datai.mes)){
+                                else if ((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes < reserva1.datai.mes))
+                                {
                                     printf("\nA data final nao pode ser anterior a inicial\n");
                                     printf("Deseje tentar o cadastro da reserva novamente (s/n)?: ");
                                     scanf("%s", input);
-                                    if(input[0] == 's' || input[0] == 'S'){
+                                    if (input[0] == 's' || input[0] == 'S')
+                                    {
+                                        fclose(cliente1);
+                                        fclose(reserva);
                                         return Reservar_Cliente();
                                     }
-                                    else{
+                                    else
+                                    {
+                                        fclose(cliente1);
+                                        fclose(reserva);
                                         return Menu_Reservas();
-                                    }                                    
+                                    }
                                 }
-                                else if((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes == reserva1.datai.mes) && reserva1.dataf.dia < reserva1.datai.dia){
+                                else if ((reserva1.dataf.ano == reserva1.datai.ano) && (reserva1.dataf.mes == reserva1.datai.mes) && reserva1.dataf.dia < reserva1.datai.dia)
+                                {
                                     printf("\nA data final nao pode ser anterior a inicial\n");
                                     printf("Deseje tentar o cadastro da reserva novamente (s/n)?: ");
                                     scanf("%s", input);
-                                    if(input[0] == 's' || input[0] == 'S'){
+                                    if (input[0] == 's' || input[0] == 'S')
+                                    {
+                                        fclose(cliente1);
+                                        fclose(reserva);
                                         return Reservar_Cliente();
                                     }
-                                    else{
+                                    else
+                                    {
+                                        fclose(cliente1);
+                                        fclose(reserva);
                                         return Menu_Reservas();
                                     }
                                 }
@@ -480,15 +539,17 @@ void Reservar_Cliente()
                                             reserva1.dias_reservado, reserva1.status_pag, reserva1.valor_total, reserva1.status_check);
                                     fclose(reserva);
                                 }
-                                else{
+                                else
+                                {
                                     system("PAUSE");
                                     Atualizar_Status(numquarto);
                                 }
                             }
                         }
                     }
-                } 
-                else{
+                }
+                else
+                {
                     printf("Nao possui nenhuma reserva!\n");
                     system("PAUSE");
                     fclose(quarto1);

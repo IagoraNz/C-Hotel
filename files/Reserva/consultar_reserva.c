@@ -1,7 +1,21 @@
 #include "reserva.h"
 
+int stringparaintconsulres(const char str[]) {
+    int result = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if(isdigit(str[i])) {
+            result = result * 10 + (str[i] - '0');
+        } 
+        else{
+            return -1;
+        }
+    }
+    return result;
+}
+
 void Consultar_reserva()
 {
+    char input[1];
     int numquarto, opc, aux1, aux2, aux3, aux4;
     FILE *reserva;
     Reserva reserva1;
@@ -17,9 +31,25 @@ void Consultar_reserva()
     printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
     printf("\xBA      CONSULTAR     \xBA\n");
     printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
-    printf("1 - CPF\n2 - Numero do quarto\n");
+    printf("1 - CPF\n2 - Numero do quarto\n0 - Voltar\n");
     printf("Informe sua opcao: ");
-    scanf("%d", &opc);
+    scanf("%s", input);
+
+    opc = stringparaintconsulres(input);
+
+    if(opc < 0 || opc > 2 || opc == -1){
+        printf("Opcao invalida!\n");
+        printf("Deseja tentar a consulta novamente? (s/n): ");
+        scanf("%s", input);
+        system("PAUSE");
+        if (input[0] == 's' || input[0] == 'S'){
+            Consultar_reserva();
+        }
+        else{
+            return;
+        }
+    }
+
     switch (opc)
     {
     case 1:
@@ -51,6 +81,8 @@ void Consultar_reserva()
             }
         }
         system("PAUSE");
+        fclose(reserva);
+        return Consultar_reserva();
         break;
     case 2:
         printf("Informe o numero do quarto: ");
@@ -76,8 +108,15 @@ void Consultar_reserva()
                 printf("\n");
             }
         }
+        fclose(reserva);
         system("PAUSE");
+        return Consultar_reserva();
         break;
+
+    case 3:
+        return;
+        break;
+
     default:
         break;
     }

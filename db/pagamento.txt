@@ -1,2 +1,6 @@
 10/01/2024 Daniel_Rodrigues_de_Sousa 500.00 123.123.321-12 2 0
 10/01/2024 Daniel_Rodrigues_de_Sousa 500.00 123.123.321-12 2 0
+10/01/2024 Daniel_Rodrigues_de_Sousa 500.00 123.123.321-12 2 0
+30/01/2024 Daniel_Rodrigues_de_Sousa 700.00 123.123.321-12 1 0
+10/01/2024 Daniel_Rodrigues_de_Sousa 500.00 123.123.321-12 1 0
+14/01/2024 Daniel_Rodrigues_de_Sousa 500.00 123.123.321-12 2 0

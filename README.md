@@ -1,70 +1,85 @@
-# :page_facing_up: Sistema de Gerenciamento de Hotel
+# :page_facing_up: Hotel Management System
 
-**Programadores:** Iago Roberto e Francinaldo Barbosa
+A hotel management system developed in C offers a robust solution for automating several essential operations, from room reservation to financial tracking. By using the C language, it is possible to efficiently implement algorithms for controlling room availability, processing financial transactions and managing reservations.
 
-## :link:  Descrição do Projeto
+**Programmers:** Iago Roberto e Francinaldo Barbosa
 
-**Nota final:** 10/10
+## :link: Development environment
+1. Regarding GCC
+```
+gcc.exe (tdm64-1) 10.3.0
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+2. And about the Visual Studio Code
+```
+1.89.1
+```
 
-Este é um projeto desenvolvido como parte da 3ª avaliação da disciplina de Algoritmos e Programação II, ministrada pelo Professor Alan Rafael Ferreira dos Santos na Universidade Federal do Piauí - Campus Senador Helvídio Nunes de Barros, no curso de Bacharelado em Sistemas de Informação.
+## :link: Project description
 
-## :link: Objetivo do Projeto
-O objetivo deste projeto é criar um sistema de gerenciamento para um hotel de pequeno porte. O sistema deve ser implementado em linguagem C e atender aos requisitos essenciais estabelecidos, proporcionando o controle eficiente de reservas, clientes e pagamentos.
+**Final grade:** 10/10
 
-## :link: Funções requisitada
-> Quartos
+This is a project developed as part of the 3rd evaluation of the Algorithms and Programming II discipline, taught by Professor Alan Rafael Ferreira dos Santos at the Federal University of Piauí - Campus Senador Helvídio Nunes de Barros, in the Bachelor's degree in Information Systems.
 
-- Consultar quarto (Feito)
+## :link: Project's goal
+The objective of this project is to create a management system for a small hotel. The system must be implemented in C language and meet the established essential requirements, providing efficient control of reservations, customers and payments.
 
-- Editar quarto (Feito)
+## :link: Required functions
+> Rooms
 
-- Excluir quarto (Feito)
+- Consult room
 
-- FrontEndQuarto (Feito)
+- Edit room
 
-- DbQuarto (Feito)
+- Delete room
 
-> Controle de Clientes
+- FrontEndBedroom
 
-- Cadastrar cliente (Feito)
+- DbQuarto
 
-- Consultar cliente (Feito)
+> Customer Control
 
-- Editar cliente (Feito)
+- Register customer
 
-- Excluir cliente (Feito)
+- Consult customer
 
-- FrontEndCliente (Feito)
+- Edit client
 
-- DbCliente (Feito)
+- Delete customer
 
-> Gestão Financeira
+- FrontEndClient
 
-- Realizar reserva (Feito)
+- DbCliente
 
-- Excluir reserva (Feito)
+> Financial Management
 
-- Realizar check-in (Feito)
+- Make reservation
 
-- Realizar pagamento (Feito)
+- Delete booking
 
-- Consultar reservas (Feito)
+- Check in
 
-- Valores recebidos (Feito)
+- Make payment
 
-- FrontEndFinança (Feito)
+- Check reservations
 
-- DbFinanca (Feito)
+- Amounts received
 
-## :link: Comportamento das Funções
-**Realizar reserva:** Permite a reserva de quartos, verificando disponibilidade e registrando dados como nome do cliente, número do quarto, datas, status de pagamento e valor total da reserva.
+- FrontEndFinance
 
-**Consultar reserva:** Permite listar reservas de um determinado cliente por meio de um código de reserva ou pelo nome do cliente.
+- DbFinanca
 
-**Excluir Reserva:** Permite a exclusão de uma reserva já realizada.
+## :link: Function behavior
+**Make reservation:** Allows you to reserve rooms, checking availability and recording data such as customer name, room number, dates, payment status and total reservation amount.
 
-**Realizar check-in:** Possibilita o cadastro de dados adicionais nos arquivos dos quartos e das reservas, alterando o status do quarto para ocupado e registrando data e hora de entrada do cliente.
+**See reservation:** Allows you to list reservations for a specific customer using a reservation code or the customer's name.
 
-**Realizar pagamento:** Apresenta o valor a ser pago pelo cliente, atualizando o status do quarto e registrando o valor pago no arquivo de controle financeiro.
+**Delete Reservation:** Allows you to delete a reservation that has already been made.
 
-**Valores recebidos:** Permite a consulta de todos os valores recebidos durante um intervalo de tempo definido pelo usuário.
+**Perform check-in:** Enables the registration of additional data in the room and reservation files, changing the room status to occupied and recording the date and time of the customer's arrival.
+
+**Make payment:** Displays the amount to be paid by the customer, updating the room status and recording the amount paid in the financial control file.
+
+**Received values:** Allows querying of all values ​​received during a user-defined time interval.
